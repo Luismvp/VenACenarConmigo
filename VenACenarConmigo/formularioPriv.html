@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Privacidad</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            text-align: center;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        a{
+            color: whitesmoke;
+        }
+        #privacidad{
+            padding-top: 70px;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar navbar-fixed-top" style="background-color: #1d7045;" role="navigation">
+    <div class="contenedor">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">
+                <img src="cubiertos_icono.png" height="70px" width="70px">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li id="index"><a href="inicio.html">Inicio</a></li>
+                <li id="perfil"><a href="Perfil.html">Mi perfil</a></li>
+                <li id="search"><a href="">Buscar convite</a></li>
+                <li id="convite"><a href="creaConvite1.html">Crear Convite</a></li>
+                <li id="contacto"><a href="contacto.html">Contacto</a></li>
+                <li id="notificac"><a href="notificaciones.html">Notificaciones</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+    <div id="privacidad">
+        <h1>Configuración de privacidad</h1>
+        <h2>Selecciona entre las siguientes opciones de configuración de privacidad aquella que mas se ajuste a tus intereses</h2>
+        <form id="loginForm" action="" method="post" data-toggle="validator" role="form">
+        <fieldset><br><br>
+            <h4>Estas son las opciones de configuración respecto de la visualización del perfil. Los rangos de privacidad disponibles son:</h4>
+            <p>
+                <br>
+                <label for="cualquiera">Lo puede ver cualquiera</label>
+                <input type="radio" name="interes" id="cualquiera">
+                <br>
+                <label for="mesigue">Lo puede ver quien me sigue</label>
+                <input type="radio" name="interes" id="mesigue">
+                <br>
+                <label for="sigo">Lo puede ver quien me sigue y le sigo</label>
+                <input type="radio" name="interes" id="sigo">
+            </p>
+            <br>
+            <h4>Estas son las opciones de configuración respecto de la visualización de proposiciones de convite. Los rangos de privacidad disponibles son:</h4>
+            <p> <br>
+                <label for="cualq">Lo puede ver cualquiera</label>
+                <input type="radio" name="interes" id="cualq">
+                <br>
+                <label for="rango">Rango en km(Máximo 50)</label>
+                <input type="number" max="50" min="0" name="interes" id="rango">
+                <br>
+                <label for="sigue">Lo puede ver quien me sigue</label>
+                <input type="radio" name="interes" id="sigue">
+                <br>
+                <label for="siguiendo">Lo puede ver quien me sigue y le sigo</label>
+                <input type="radio" name="interes" id="siguiendo">
+            </p>
+            <br>
+            <h4>Estas son las opciones de configuración respecto de la visualización de publicaciones de tu perfil en otros perfiles. Los rangos de privacidad disponibles son:</h4>
+            <p>
+                <br>
+                <label for="seguidor">Lo puede ver quien me sigue</label>
+                <input type="radio"  name="interes" id="seguidor">
+                <br>
+                <label for="seguire">Lo puede ver quien me sigue y le sigo</label>
+                <input type="radio" name="interes" id="seguire">
+            </p>
+            <br>
+            <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
+        </fieldset>
+        </form>
+    </div>
+</body>
+</html>

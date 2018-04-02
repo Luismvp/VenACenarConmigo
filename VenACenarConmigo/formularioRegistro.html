@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Registro</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        a{
+            color: whitesmoke;
+        }
+        #Registro{
+            margin-top: 70px;
+            text-align: center;
+        }
+        label{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar navbar navbar-fixed-top" style="background-color: #1d7045;" role="navigation">
+    <div class="contenedor">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="cubiertos_icono.png" height="70px" width="70px">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li id="registro"><a href="formularioRegistro.html">Registro</a></li>
+                <li id="login"><a href="formularioLogin.html">Log in</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+<div id="Registro" style="padding-left: 100px; padding-right: 100px">
+    <h1>Página de registro</h1>
+    <h2>Introduce los datos en el formulario:</h2>
+    <form id="loginForm" action="" method="post" data-toggle="validator" role="form">
+        <fieldset>
+            <div class="form-group" id="user-group">
+                <label for="user">nombre</label>
+                <br>
+                <input type="text" name="user" class="form-control" id="user" placeholder="introduce tu nombre">
+            </div>
+            <div class="form-group" id="surnames-group">
+                <label for="surnames">Apellidos</label>
+                <br>
+                <input type="text" name="surnames" class="form-control" id="surnames"  autocomplete="off"
+                       placeholder="introduce tus apellidos" required
+                       data-error="La contraseña introducida no es correcta">
+            </div>
+            <div class="form-group" id="date-group">
+                <label for="date">Fecha de nacimiento</label>
+                <br>
+                <input type="date" name="date" class="form-control" id="date">
+            </div>
+            <div class="form-group" id="phone-group">
+                <label for="phone">Número de telefono</label>
+                <br>
+                <input type="tel" name="phone" class="form-control" id="phone" placeholder="introduce tu número de teléfono">
+            </div>
+            <div class="form-group" id="City-group">
+                <label for="city">Ciudad de residencia</label>
+                <br>
+                <input type="text" name="city" class="form-control" id="city" placeholder="introduce tu ciudad de residencia">
+            </div>
+            <div class="form-group" id="pCode-group">
+                <label for="pCode">Código postal</label>
+                <br>
+                <input type="text" name="pCode" class="form-control" id="pCode" placeholder="introduce tu código postal">
+            </div>
+            <div class="form-group" id="email-group">
+                <label for="email">Ciudad de residencia</label>
+                <br>
+                <input type="email" name="email" class="form-control" id="email" placeholder="introduce tu email">
+            </div>
+            <div class="form-group" id="password-group">
+                <label for="password">Contraseña</label>
+                <br>
+                <input type="text" name="password" class="form-control" id="password" placeholder="introduce tu contraseña">
+            </div>
+            <div class="form-group" id="repPassword-group">
+                <label for="repPassword">Repetir contraseña</label>
+                <br>
+                <input type="text" name="repPassword" class="form-control" id="repPassword" placeholder="introduce tu contraseña de nuevo">
+            </div>
+            <div class="form-group" id="profesion-group">
+                <label for="profesion">Profesión</label>
+                <br>
+                <input type="text" name="profesion" class="form-control" id="profesion" placeholder="introduce tu profesión">
+            </div>
+            <div class="form-group" id="interes-group">
+                <label>Gustos e intereses</label>
+                <p>
+                    <label for="musica">Música</label>
+                    <input type="checkbox" name="interes" id="musica">
+                    <label for="deporte">Deportes</label>
+                    <input type="checkbox" name="interes" id="deporte">
+                    <label for="arte">Arte</label>
+                    <input type="checkbox" name="interes" id="arte">
+                    <label for="politica">Política</label>
+                    <input type="checkbox" name="interes" id="politica">
+                    <br>
+                    <label for="cine">Cine</label>
+                    <input type="checkbox" name="interes" id="cine">
+                    <label for="literatura">Literatura</label>
+                    <input type="checkbox" name="interes" id="literatura">
+                    <label for="gastronomia">Gastronomía</label>
+                    <input type="checkbox" name="interes" id="gastronomia">
+                    <label for="tecnologia">Tecnología</label>
+                    <input type="checkbox" name="interes" id="tecnologia">
+                    <br>
+                </p>
+            </div>
+            <div class="form-group" id="descripcion-group">
+                <label for="descripcion">Descripción personal</label>
+                <br>
+                <textarea cols="120" rows="10" placeholder="Introduce una descripción personal" id="descripcion"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
