@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li id="home"><a href="Registro.jsp">Registro</a></li>
-                <li id="musica"><a href="formularioLogin.html">Log in</a></li>
+                <li id="musica"><a href="Login.jsp">Log in</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

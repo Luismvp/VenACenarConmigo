@@ -14,12 +14,12 @@
             <div class="form-group" id="nacimiento-group">
                 <label for="nacimiento">Fecha de nacimiento</label>
                 <br>
-                <input type="date" name="nacimiento" class="form-control" id="nacimiento" placeholder="dd/mm/aaaa">
+                <input type="text" name="nacimiento" class="form-control" id="nacimiento" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group" id="telefono-group">
                 <label for="telefono">Número de teléfono</label>
                 <br>
-                <input type="tel" name="nacimiento" class="form-control" id="telefono" placeholder="introduce tu número de teléfono">
+                <input type="text" name="nacimiento" class="form-control" id="telefono" placeholder="introduce tu número de teléfono">
             </div>
             <div class="form-group" id="ciudad-group">
                 <label for="ciudad">Ciudad de residencia</label>

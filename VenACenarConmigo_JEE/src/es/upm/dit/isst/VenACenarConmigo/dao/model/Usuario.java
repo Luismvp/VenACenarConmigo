@@ -15,12 +15,19 @@ public class Usuario implements Serializable {
 	private String email;
 	private String nombre;
 	private String apellidos;
-	private Date nacimiento;
-	private int telefono;
-	private int codigoPostal;
+	private String nacimiento;
+	private String telefono;
+	private String codigoPostal;
 	private String password;
 	private String profesionEstudios;
 	private String descripcionPersonal;
+	private Boolean validado;
+	public Boolean getValidado() {
+		return validado;
+	}
+	public void setValidado(Boolean validado) {
+		this.validado = validado;
+	}
 	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
 	private List<Aficion> aficiones;
 	public String getEmail() {
@@ -41,22 +48,22 @@ public class Usuario implements Serializable {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public Date getNacimiento() {
+	public String getNacimiento() {
 		return nacimiento;
 	}
-	public void setNacimiento(Date nacimiento) {
+	public void setNacimiento(String nacimiento) {
 		this.nacimiento = nacimiento;
 	}
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public int getCodigoPostal() {
+	public String getCodigoPostal() {
 		return codigoPostal;
 	}
-	public void setCodigoPostal(int codigoPostal) {
+	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
 	}
 	public String getPassword() {
