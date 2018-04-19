@@ -11,7 +11,7 @@ import es.upm.dit.isst.VenACenarConmigo.dao.SessionFactoryService;
 
 public class AficionDAOImplementation implements AficionDAO{
 	
-	private static AficionDAOImplementation instance;
+	private static AficionDAOImplementation instance = null;
 	private AficionDAOImplementation() {}
 	public static AficionDAOImplementation getInstance() {
 		if(null==instance) {

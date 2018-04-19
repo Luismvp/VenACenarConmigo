@@ -29,7 +29,7 @@
     <div class="text-center" style="padding-right: 100px; padding-left: 100px; padding-top: 70px">
         <h1>Log in</h1>
         <p>Introduce usuario y contraseña</p>
-		<%@include file="formularios/formularioLogin.jsp" %>
+		<%@include file="formularioLogin.jsp" %>
 	</div>
 </body>
 </html>

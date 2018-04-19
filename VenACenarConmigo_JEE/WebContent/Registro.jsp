@@ -35,7 +35,7 @@
 <div id="Registro" style="padding-left: 100px; padding-right: 100px">
     <h1>Página de registro</h1>
     <h2>Introduce los datos en el formulario:</h2>
-<%@ include file= "formularios/formularioRegistro.jsp" %>
+<%@ include file= "formularioRegistro.jsp" %>
 </div>
 </body>
 </html>

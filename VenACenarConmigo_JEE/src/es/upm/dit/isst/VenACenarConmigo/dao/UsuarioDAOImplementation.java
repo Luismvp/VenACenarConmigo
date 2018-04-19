@@ -10,10 +10,10 @@ import es.upm.dit.isst.VenACenarConmigo.dao.SessionFactoryService;
 
 public class UsuarioDAOImplementation implements UsuarioDAO{
 	
-	private static UsuarioDAOImplementation instance;
+	private static UsuarioDAOImplementation instance = null;
 	private UsuarioDAOImplementation() {}
 	public static UsuarioDAOImplementation getInstance() {
-		if ( null== instance ) {
+		if ( null == instance ) {
 			instance = new UsuarioDAOImplementation();
 		}
 		return instance;
@@ -28,7 +28,8 @@ public class UsuarioDAOImplementation implements UsuarioDAO{
 		Session session =  SessionFactoryService.get().openSession();	
 		try {
 			session.beginTransaction();
-			usuario = (Usuario) session.createQuery("select n from Usuario n where n.email= :email and n.password= :password")
+			usuario = (Usuario) session.createQuery("select u from Usuario u "
+					+ "where u.email= :email and u.password= :password")
 					.setParameter("email", email)
 					.setParameter("password", password)
 					.uniqueResult();
@@ -49,7 +50,7 @@ public class UsuarioDAOImplementation implements UsuarioDAO{
 		try {
 			session.beginTransaction();
 			usuarios.addAll(
-					session.createQuery("from Professor").list()
+					session.createQuery("from Usuario").list()
 			);
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -97,25 +98,6 @@ public class UsuarioDAOImplementation implements UsuarioDAO{
 		return usuario;
 	}
 	/*
-	 * Buscar usuario por nombre
-	 */
-	@Override
-	public Usuario readUsuarioPorNombre(String nombre) {
-		// TODO Auto-generated method stub
-		Usuario usuario = null;
-		Session session = SessionFactoryService.get().openSession();
-		try {
-			session.beginTransaction();
-			usuario = session.get(Usuario.class, nombre);
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			
-		} finally {
-			session.close();
-		}
-		return usuario;
-	}
-	/*
 	 * Sustituir información de usuario
 	 */
 	@Override
@@ -151,5 +133,6 @@ public class UsuarioDAOImplementation implements UsuarioDAO{
 		}
 		return usuario;
 	}
+
 
 }

@@ -1,7 +1,6 @@
 package es.upm.dit.isst.VenACenarConmigo.dao.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,10 +16,11 @@ public class Usuario implements Serializable {
 	private String apellidos;
 	private String nacimiento;
 	private String telefono;
+	private String ciudad;
 	private String codigoPostal;
 	private String password;
-	private String profesionEstudios;
-	private String descripcionPersonal;
+	private String profesion;
+	private String descripcion;
 	private Boolean validado;
 	public Boolean getValidado() {
 		return validado;
@@ -72,23 +72,29 @@ public class Usuario implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getProfesionEstudios() {
-		return profesionEstudios;
+	public String getProfesion() {
+		return profesion;
 	}
-	public void setProfesionEstudios(String profesionEstudios) {
-		this.profesionEstudios = profesionEstudios;
+	public void setProfesion(String profesionEstudios) {
+		this.profesion = profesionEstudios;
 	}
-	public String getDescripcionPersonal() {
-		return descripcionPersonal;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setDescripcionPersonal(String descripcionPersonal) {
-		this.descripcionPersonal = descripcionPersonal;
+	public void setDescripcion(String descripcionPersonal) {
+		this.descripcion = descripcionPersonal;
 	}
 	public List<Aficion> getAficiones() {
 		return aficiones;
 	}
 	public void setAficiones(List<Aficion> aficiones) {
 		this.aficiones = aficiones;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 	
 

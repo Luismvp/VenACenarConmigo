@@ -13,7 +13,6 @@
 </style>
 </head>
 <body>
-<%@ include file = "templates/navBar.jsp" %>
 
 <h1>Hemos procedido a realizar tu registro como usuario</h1>
 <p>No olvides validar tu cuenta por medio del enlace que hemos enviado a tu correo electronico</p>

@@ -10,7 +10,7 @@ public class SessionFactoryService {
 		sessionFactory = new Configuration().configure().buildSessionFactory();
 	}
 	public static SessionFactory get() {
-		if (null == sfs) sfs = new SessionFactoryService();
+		if (sfs == null) sfs = new SessionFactoryService();
 		return sfs.sessionFactory;
 	}
 }

@@ -9,7 +9,6 @@ public interface UsuarioDAO {
 	public List <Usuario> readAllUsuarios();
 	public void createUsuario(Usuario usuario);
 	public Usuario readUsuario(String email);
-	public Usuario readUsuarioPorNombre(String nombre);
 	public Usuario updateUsuario (Usuario usuario);
 	public Usuario deleteUsuario (Usuario usuario);
 	
