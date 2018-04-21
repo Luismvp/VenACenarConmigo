@@ -4,13 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
-<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cambiar contraseña</title>
+    <title>Recuperar contraseña</title>
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -24,25 +23,24 @@
         label{
             text-align: left;
         }
+        .Recuperar{
+        	margin-top:70px;
+        	text-align:center;
+        }
     </style>
 </head>
 <body>
-<%@ include file= "templates/navBarLoged.jsp" %>
-<div class="text-center" style="padding-right: 100px; padding-left: 100px; padding-top: 70px">
-    <h1>Cambio de contraseña</h1>
-    <h2>Introduce la contraseña antigua:</h2>
-    <form id="loginForm" action="CambioContrasenaServlet">
-        <div class="form-group" id="password-group">
-            <br>
-            <input type="password" name="password" class="form-control" id="password"  autocomplete="off"
-                   placeholder="introduce la contraseña" required
-                   data-error="La contraseña introducida no es correcta">
-        </div>
-        <a href="RecuperarContrasena.jsp" style="color: black">¿Olvidaste tu contraseña?</a>
-        <br>
-        <br>
+<%@ include file="templates/navBar.jsp" %>
+<div class="Recuperar">
+	<h2>Introduce tu correo electrónico y te enviaremos la contraseña enseguida!</h2>
+	<form action="RecuperarContrasenaServlet">
+		<div class="form-group" id="user-group">
+                <label for="email">Email</label>
+                <br>
+                <input type="text" name="email" class="form-control" id="email" placeholder="introduce tu email" required data-error="El usuario introducido no es correcto" data-remote="validateField.php">
+            </div>
         <button type="submit" class="btn btn-success" id="btnSubmit">Enviar<span class="glyphicon glyphicon-arrow-right"></span></button>
-    </form>
+	</form>
 </div>
 </body>
 </html>

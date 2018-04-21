@@ -12,7 +12,7 @@
                        placeholder="introduce la contraseña" required
                        data-error="La contraseña introducida no es correcta">
             </div>
-            <a href="" style="color: black">¿Olvidaste tu contraseña?</a>
+            <a href="RecuperarContrasena.jsp" style="color: black">¿Olvidaste tu contraseña?</a>
             <br>
             <br>
             <button type="submit" class="btn btn-success" id="btnSubmit">Iniciar sesión <span class="glyphicon glyphicon-arrow-right"></span></button>
