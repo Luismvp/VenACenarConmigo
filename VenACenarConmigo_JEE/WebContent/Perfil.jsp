@@ -30,6 +30,7 @@ a {
 
 #userInfo {
 	float: left;
+	max-width: 300px;
 }
 
 #publicaciones {
@@ -57,14 +58,14 @@ a {
 </style>
 </head>
 <body>
-	<%@ include file="templates/navBar.jsp"%>
+	<%@ include file="templates/navBarLoged.jsp"%>
 	<div class="container" style="margin-left: 100px">
 		<div id="foto">
 			<img src="cubiertos_icono.png"
 				style="margin-top: 20px; border: 2px groove #e7e5dd;">
 		</div>
 		<div id="nombre">
-			<h1>${usuario.nombre}</h1>
+			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
 			<br>
 			<p style="text-align: center">
 				<a href="" class="btn btn-success fontLobster"
@@ -75,7 +76,7 @@ a {
 					style="font-size: larger" role="button">Opciones de privacidad</a>
 			</p>
 			<p style="text-align: center">
-				<a href="formPass1.html" class="btn btn-success fontLobster"
+				<a href="CambioContrasena.jsp" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Cambiar contraseña</a>
 			</p>
 			<p style="text-align: center">
@@ -93,7 +94,7 @@ a {
         <h3>Teléfono móvil ${usuario.telefono }</h3>
         <h3>Ciudad ${usuario.ciudad }</h3>
         <h3>Email ${usuario.email }</h3>
-        <h3>Profesión ${usuario.profesion}</h3>
+        <h3>Profesión: ${usuario.profesion}</h3>
         <h3>Descripción personal:</h3>
         <p> ${usuario.descripcion}</p>
     </div>

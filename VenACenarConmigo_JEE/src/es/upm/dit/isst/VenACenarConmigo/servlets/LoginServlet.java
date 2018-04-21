@@ -26,9 +26,12 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("adminLogged", true);
 			req.getSession().setAttribute("usuario_list", UsuarioDAOImplementation.getInstance().readAllUsuarios());
 			resp.sendRedirect(req.getContextPath() + "/ListaUsuarios.jsp");
-		}else {
+		} else if (null != usuario) {
 			req.getSession().setAttribute("usuario", usuario);
+			req.getSession().setAttribute("email", email);
 			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
+		} else {
+			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
 		}
 	}
 }
