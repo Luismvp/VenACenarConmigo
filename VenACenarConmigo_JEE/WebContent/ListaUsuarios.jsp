@@ -9,6 +9,7 @@
 <title>ListaUsuarios</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<table border="1">
 		<tr>
 			<th>email</th>
@@ -39,6 +40,40 @@
 				<td>${usuarioi.validado}</td>
 			</tr>
 		</c:forEach>
+=======
+<table border="1">
+<tr>
+<th>email</th>
+<th>nombre</th>
+<th>apellidos</th>
+<th>fecha de nacimiento</th>
+<th>telefono</th>
+<th>ciudad</th>
+<th>codigo postal</th>
+<th>password</th>
+<th>profesion o estudios</th>
+<th>descripcion personal</th>
+<th>validado</th>
+<th>Privacidad</th>
+</tr>
+
+<c:forEach items="${usuario_list}" var="usuarioi">
+	<tr>
+	<td> ${usuarioi.email} </td>
+	<td> ${usuarioi.nombre} </td>
+	<td> ${usuarioi.apellidos} </td>
+	<td> ${usuarioi.nacimiento} </td>
+	<td> ${usuarioi.telefono}</td>
+	<td> ${usuarioi.ciudad}</td>
+	<td> ${usuarioi.codigoPostal}</td>
+	<td> ${usuarioi.password}</td>
+	<td> ${usuarioi.profesion}</td>
+	<td> ${usuarioi.descripcion}</td>
+	<td> ${usuarioi.validado}</td>
+	<td> ${usuarioi.privacidad1} ${usuarioi.privacidad2} ${usuarioi.privacidad3}</td>
+	</tr>
+</c:forEach>
+>>>>>>> 16ee902c99f917ec51ae12ef3ada4b4a38810b6c
 
 	</table>
 </body>

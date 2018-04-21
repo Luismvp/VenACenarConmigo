@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="/home/pegaso/Documentos/Programas/isst_lib/jandex-2.0.3.Final.jar"/>
 	<classpathentry kind="lib" path="/home/pegaso/Documentos/Programas/isst_lib/itextpdf-5.5.13.jar"/>
 	<classpathentry kind="lib" path="/home/pegaso/Documentos/Programas/isst_lib/classmate-1.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/pegaso/Documentos/Programas/isst_lib/javax.mail-api-1.6.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
