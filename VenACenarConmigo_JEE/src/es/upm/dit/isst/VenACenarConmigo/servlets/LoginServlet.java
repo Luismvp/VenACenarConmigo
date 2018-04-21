@@ -26,9 +26,17 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("adminLogged", true);
 			req.getSession().setAttribute("usuario_list", UsuarioDAOImplementation.getInstance().readAllUsuarios());
 			resp.sendRedirect(req.getContextPath() + "/ListaUsuarios.jsp");
+//<<<<<<< HEAD -Luis
 		}else {
 			req.getSession().setAttribute("usuario", usuario);
 			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
+//=======
+//		} else if (null != usuario) {
+//			req.getSession().setAttribute("usuario", usuario);
+//			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
+//		} else {
+//			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
+//>>>>>>> JulioDG
 		}
 	}
 }
