@@ -32,6 +32,10 @@ public class Usuario implements Serializable {
 	private List<Publicaciones> publicaciones;
 	@ManyToMany
 	private List<AsistenciaConvite> asistenciaConvite;
+	@ManyToMany
+	private List<AccionUsuario> accionUsuario;
+	//ToDo: revisar relaciones
+	
 	public Boolean getValidado() {
 		return validado;
 	}

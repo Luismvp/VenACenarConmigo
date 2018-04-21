@@ -1,17 +1,32 @@
 package es.upm.dit.isst.VenACenarConmigo.dao.model;
 
 import java.io.Serializable;
-
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.ManyToMany;
 @Entity
 public class Convite implements Serializable{
 	@Id
 	private int iDConvite;
 	@ManyToOne
-	private Usuario usuario;
+	private Usuario anfitrion;
+	@ManyToMany
+	private List<Usuario> invitados;
+	private String nombre;
+	//Mirar tipo fecha
+	private String fecha;
+	private String horaCominezo;
+	private String horaFin;
+	private String restaurante;
+	private String menu;
+	private String temasConversacion;
+	private Integer maxInvitados;
+	private Integer precioInvitado;
+	private String descripcion;
+	private String ciudad;
+	private String area;
 	/**
 	 * @return the iDConvite
 	 */
@@ -25,16 +40,28 @@ public class Convite implements Serializable{
 		this.iDConvite = iDConvite;
 	}
 	/**
-	 * @return the usuario
+	 * @return the anfitrion
 	 */
-	public Usuario getUsuario() {
-		return usuario;
+	public Usuario getAnfitrion() {
+		return anfitrion;
 	}
 	/**
-	 * @param usuario the usuario to set
+	 * @param anfitrion the anfitrion to set
 	 */
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setAnfitrion(Usuario anfitrion) {
+		this.anfitrion = anfitrion;
+	}
+	/**
+	 * @return the invitados
+	 */
+	public List<Usuario> getInvitados() {
+		return invitados;
+	}
+	/**
+	 * @param invitados the invitados to set
+	 */
+	public void setInvitados(List<Usuario> invitados) {
+		this.invitados = invitados;
 	}
 	/**
 	 * @return the nombre
@@ -180,20 +207,4 @@ public class Convite implements Serializable{
 	public void setArea(String area) {
 		this.area = area;
 	}
-	private String nombre;
-	//Mirar tipo fecha
-	private String fecha;
-	private String horaCominezo;
-	private String horaFin;
-	private String restaurante;
-	private String menu;
-	private String temasConversacion;
-	private Integer maxInvitados;
-	private Integer precioInvitado;
-	private String descripcion;
-	private String ciudad;
-	private String area;
-	
-	
-
 }

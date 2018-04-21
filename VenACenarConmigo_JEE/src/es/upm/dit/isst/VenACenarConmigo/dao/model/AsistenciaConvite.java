@@ -8,9 +8,9 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class AsistenciaConvite implements Serializable {
+	//ToDo:Revisar relaciones
 	@Id
 	private int iDAsistencia;
-	
 	@ManyToMany
 	private List<Usuario> usuarioAsistente;
 	private Convite convite;
