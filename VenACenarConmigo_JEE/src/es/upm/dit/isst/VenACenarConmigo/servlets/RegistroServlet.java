@@ -28,6 +28,7 @@ public class RegistroServlet extends HttpServlet {
 		String repPassword = req.getParameter("repPassword");
 		String profesion = req.getParameter("profesion");
 		String descripcion = req.getParameter("descripcion");
+		int privacidad1 = 1;
 
 		if (repPassword.equals(password)) {
 			Usuario usuario = new Usuario();
@@ -42,6 +43,9 @@ public class RegistroServlet extends HttpServlet {
 			usuario.setProfesion(profesion);
 			usuario.setDescripcion(descripcion);
 			usuario.setValidado(false);
+			usuario.setPrivacidad1(privacidad1);
+			usuario.setPrivacidad2(privacidad1);
+			usuario.setPrivacidad3(privacidad1);
 			UsuarioDAOImplementation.getInstance().createUsuario(usuario);
 			resp.sendRedirect(req.getContextPath() + "/Validacion.jsp");
 		}else {

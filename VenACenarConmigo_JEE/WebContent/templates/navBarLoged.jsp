@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li id="index"><a href="inicio.html">Inicio</a></li>
-                <li id="perfil"><a href="Perfil.html">Mi perfil</a></li>
+                <li id="perfil"><a href="Perfil.jsp">Mi perfil</a></li>
                 <li id="search"><a href="">Buscar convite</a></li>
                 <li id="convite"><a href="creaConvite1.html">Crear Convite</a></li>
                 <li id="contacto"><a href="contacto.html">Contacto</a></li>

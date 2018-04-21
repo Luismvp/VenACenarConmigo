@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -22,6 +23,36 @@ public class Usuario implements Serializable {
 	private String profesion;
 	private String descripcion;
 	private Boolean validado;
+	private int privacidad1;
+	private int privacidad2;
+	private int privacidad3;
+	@Lob
+	private byte[] foto;
+	
+	public byte[] getFoto() {
+		return foto;
+	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+	public int getPrivacidad1() {
+		return privacidad1;
+	}
+	public void setPrivacidad1(int privacidad1) {
+		this.privacidad1 = privacidad1;
+	}
+	public int getPrivacidad2() {
+		return privacidad2;
+	}
+	public void setPrivacidad2(int privacidad2) {
+		this.privacidad2 = privacidad2;
+	}
+	public int getPrivacidad3() {
+		return privacidad3;
+	}
+	public void setPrivacidad3(int privacidad3) {
+		this.privacidad3 = privacidad3;
+	}
 	public Boolean getValidado() {
 		return validado;
 	}

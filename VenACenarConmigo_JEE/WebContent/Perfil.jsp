@@ -63,6 +63,12 @@ a {
 		<div id="foto">
 			<img src="cubiertos_icono.png"
 				style="margin-top: 20px; border: 2px groove #e7e5dd;">
+			<p style="text-align: center">
+				<a href="NuevaFoto.jsp" class="btn btn-success fontLobster"
+					style="font-size: larger" role="button">Editar Foto</a>
+			</p>
+</form>
+			
 		</div>
 		<div id="nombre">
 			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
@@ -72,7 +78,7 @@ a {
 					style="font-size: larger" role="button">Editar Perfil</a>
 			</p>
 			<p style="text-align: center">
-				<a href="formularioPriv.html" class="btn btn-success fontLobster"
+				<a href="Privacidad.jsp" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Opciones de privacidad</a>
 			</p>
 			<p style="text-align: center">
