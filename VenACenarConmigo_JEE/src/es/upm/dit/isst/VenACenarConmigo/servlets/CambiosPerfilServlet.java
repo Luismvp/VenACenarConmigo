@@ -17,7 +17,7 @@ import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 public class CambiosPerfilServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String emailUsuario = req.getParameter("emailUsuario");
+		String emailUsuario = (String) req.getSession().getAttribute("email");
 		UsuarioDAO dao = UsuarioDAOImplementation.getInstance();
 		
 		Usuario usuario = dao.readUsuario(emailUsuario);
@@ -30,16 +30,33 @@ public class CambiosPerfilServlet extends HttpServlet{
 		String email = req.getParameter("email");
 		String profesion = req.getParameter("profesion");
 		String descripcion = req.getParameter("descripcion");
-		
-		usuario.setNombre(nombre);
-		usuario.setApellidos(apellidos);
-		usuario.setNacimiento(nacimiento);
-		usuario.setTelefono(telefono);
-		usuario.setCiudad(ciudad);
-		usuario.setCodigoPostal(codigoPostal);
-		usuario.setEmail(email);
-		usuario.setProfesion(profesion);
-		usuario.setDescripcion(descripcion);
+		if(null!=nombre) {
+			usuario.setNombre(nombre);
+		}
+		if(null!=apellidos) {
+			usuario.setApellidos(apellidos);
+		}
+		if(null!=nacimiento) {
+			usuario.setNacimiento(nacimiento);
+		}else if(null!=telefono) {
+			usuario.setTelefono(telefono);
+		}
+		if(null!=ciudad) {	
+			usuario.setCiudad(ciudad);
+		}
+		if(null!=codigoPostal) {
+			usuario.setCodigoPostal(codigoPostal);
+		}
+		if(null!=email) {
+			usuario.setEmail(email);
+		}
+		if(null!=profesion) {
+			usuario.setProfesion(profesion);
+		}
+		if(null!=descripcion) {
+			usuario.setDescripcion(descripcion);
+		}
+		req.getSession().setAttribute("usuario", usuario);
 		dao.updateUsuario(usuario);
 		resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
 	}

@@ -74,7 +74,7 @@ a {
 			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
 			<br>
 			<p style="text-align: center">
-				<a href="" class="btn btn-success fontLobster"
+				<a href="CambiosPerfil.jsp" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Editar Perfil</a>
 			</p>
 			<p style="text-align: center">
