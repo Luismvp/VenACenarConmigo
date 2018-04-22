@@ -2,10 +2,7 @@ package es.upm.dit.isst.VenACenarConmigo.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
-
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Aficion;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 import es.upm.dit.isst.VenACenarConmigo.dao.SessionFactoryService;
 
@@ -84,7 +81,7 @@ public class ConviteDAOImplementation implements ConviteDAO {
 			session.close();
 		}
 	}
-	//Metodo que elimina una fila de la tabla Aficion
+	//Metodo que elimina una fila de la tabla Convite
 	@Override
 	public void deleteConvite(Convite convite) {
 		// TODO Auto-generated method stub

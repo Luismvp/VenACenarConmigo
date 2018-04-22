@@ -3,30 +3,27 @@ package es.upm.dit.isst.VenACenarConmigo.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Aficion;
-import es.upm.dit.isst.VenACenarConmigo.dao.SessionFactoryService;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 
-
-public class AficionDAOImplementation implements AficionDAO{
-	
-	private static AficionDAOImplementation instance = null;
-	private AficionDAOImplementation() {}
-	public static AficionDAOImplementation getInstance() {
+public class AccionUsuarioDAOImplementation implements AccionUsuarioDAO{
+	private static AccionUsuarioDAOImplementation instance = null;
+	private AccionUsuarioDAOImplementation() {}
+	public static AccionUsuarioDAOImplementation getInstance() {
 		if(null==instance) {
-			instance = new AficionDAOImplementation();
+			instance = new AccionUsuarioDAOImplementation();
 		}
 		return instance;
 	}
-	//Metodo que permite obtener una lista con todas las filas de la tabla Aficion
+	//Metodo que permite obtener una lista con todas las filas de la tabla AccionUsuario
 	@Override
-	public List<Aficion> readAllAficion() {
+	public List<AccionUsuario> readAllAccionUsuario() {
 		// TODO Auto-generated method stub
-		List<Aficion> aficiones= new ArrayList<>();
+		List<AccionUsuario> accionUsuario= new ArrayList<>();
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			aficiones.addAll(
-					session.createQuery("from Aficion").list()
+			accionUsuario.addAll(
+					session.createQuery("from AccionUsuario").list()
 			);
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -34,16 +31,16 @@ public class AficionDAOImplementation implements AficionDAO{
 		} finally {
 			session.close();
 		}
-		return aficiones;
+		return accionUsuario;
 	}
-	//Crear fila en la tabla Aficiones
+	//Crear fila en la tabla AccionUsuario
 	@Override
-	public void createAficion(Aficion aficion) {
+	public void createAccionUsuario(AccionUsuario accionUsuario) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.save(aficion);
+			session.save(accionUsuario);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -51,31 +48,31 @@ public class AficionDAOImplementation implements AficionDAO{
 			session.close();
 		}
 	}
-	//Buscar fila en la tabla aficiones a traves del email de usuario
+	//Buscar fila en la tabla AccionUsuario a traves del email de usuario
 	@Override
-	public Aficion readAficion(String email) {
+	public AccionUsuario readAccionUsuario(String email) {
 		// TODO Auto-generated method stub
-		Aficion aficion = null;
+		AccionUsuario accionUsuario = null;
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			aficion = session.get(Aficion.class, email);
+			accionUsuario = session.get(AccionUsuario.class, email);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-		return aficion;
+		return accionUsuario; 
 	}
-	//Metodo que actualiza una fila de la tabla Aficion
+	//Metodo que actualiza una fila de la tabla AccionUsuario
 	@Override
-	public void updateAficion(Aficion aficion) {
+	public void updateAccionUsuario(AccionUsuario accionUsuario) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(aficion);
+			session.saveOrUpdate(accionUsuario);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -83,14 +80,14 @@ public class AficionDAOImplementation implements AficionDAO{
 			session.close();
 		}
 	}
-	//Metodo que elimina una fila de la tabla Aficion
+	//Metodo que elimina una fila de la tabla AccionUsuario
 	@Override
-	public void deleteAficion(Aficion aficion) {
+	public void deleteAccionUsuario(AccionUsuario accionUsuario) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.delete(aficion);
+			session.delete(accionUsuario);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
