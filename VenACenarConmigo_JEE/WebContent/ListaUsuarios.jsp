@@ -22,6 +22,7 @@
 <th>profesion o estudios</th>
 <th>descripcion personal</th>
 <th>validado</th>
+<th>Privacidad</th>
 </tr>
 
 <c:forEach items="${usuario_list}" var="usuarioi">
@@ -37,6 +38,7 @@
 	<td> ${usuarioi.profesion}</td>
 	<td> ${usuarioi.descripcion}</td>
 	<td> ${usuarioi.validado}</td>
+	<td> ${usuarioi.privacidad1} ${usuarioi.privacidad2} ${usuarioi.privacidad3}</td>
 	</tr>
 </c:forEach>
 

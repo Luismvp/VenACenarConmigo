@@ -12,20 +12,18 @@ import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAO;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
-@WebServlet("/CambioContraseñaServlet")
-public class CambioContraseñaServlet extends HttpServlet {
+@WebServlet("/CambioContrasenaServlet")
+public class CambioContrasenaServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String emailUsuario = req.getParameter("emailUsuario");
+		String emailUsuario = (String) req.getSession().getAttribute("email");
 		UsuarioDAO dao = UsuarioDAOImplementation.getInstance();
 		
 		Usuario usuario = dao.readUsuario(emailUsuario);
 		String password = req.getParameter("password");
-		String repPassword = req.getParameter("repPassword");
+		String repPassword = usuario.getPassword();
 		if (repPassword.equals(password)) {
-			usuario.setPassword(password);
-			dao.updateUsuario(usuario);
-			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
+			resp.sendRedirect(req.getContextPath() + "/NuevaContrasena.jsp");
 		}
 	}
 

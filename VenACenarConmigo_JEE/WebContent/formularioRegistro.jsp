@@ -1,7 +1,7 @@
 <form action="RegistroServlet">
         <fieldset>
             <div class="form-group" id="nombre-group">
-                <label for="nombre">nombre</label>
+                <label for="nombre">Nombre</label>
                 <br>
                 <input type="text" name="nombre" class="form-control" id="nombre" placeholder="introduce tu nombre">
             </div>
@@ -39,15 +39,15 @@
             <div class="form-group" id="password-group">
                 <label for="password">Contraseña</label>
                 <br>
-                <input type="text" name="password" class="form-control" id="password" placeholder="introduce tu contraseña">
+                <input type="password" name="password" class="form-control" id="password" placeholder="introduce tu contraseña">
             </div>
             <div class="form-group" id="repPassword-group">
                 <label for="repPassword">Repetir contraseña</label>
                 <br>
-                <input type="text" name="repPassword" class="form-control" id="repPassword" placeholder="introduce tu contraseña de nuevo">
+                <input type="password" name="repPassword" class="form-control" id="repPassword" placeholder="introduce tu contraseña de nuevo">
             </div>
             <div class="form-group" id="profesion-group">
-                <label for="profesion">Profesión</label>
+                <label for="profesion">Ocupación</label>
                 <br>
                 <input type="text" name="profesion" class="form-control" id="profesion" placeholder="introduce tu profesión">
             </div>

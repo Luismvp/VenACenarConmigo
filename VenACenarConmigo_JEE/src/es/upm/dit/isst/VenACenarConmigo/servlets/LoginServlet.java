@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
@@ -26,8 +27,12 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("adminLogged", true);
 			req.getSession().setAttribute("usuario_list", UsuarioDAOImplementation.getInstance().readAllUsuarios());
 			resp.sendRedirect(req.getContextPath() + "/ListaUsuarios.jsp");
+		} else if ("convites".equals(email) && "convites".equals(password)) {
+			req.getSession().setAttribute("convite_list", ConviteDAOImplementation.getInstance().readAllConvite());
+			resp.sendRedirect(req.getContextPath() + "/ListaConvites.jsp");
 		} else if (null != usuario) {
 			req.getSession().setAttribute("usuario", usuario);
+			req.getSession().setAttribute("email", email);
 			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
