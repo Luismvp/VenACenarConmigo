@@ -6,28 +6,28 @@ import java.util.List;
 import org.hibernate.Session;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Aficion;
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
-import es.upm.dit.isst.VenACenarConmigo.dao.SessionFactoryService;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 
-public class ConviteDAOImplementation implements ConviteDAO {
-	private static ConviteDAOImplementation instance = null;
-	private ConviteDAOImplementation() {}
-	public static ConviteDAOImplementation getInstance() {
+public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO{
+	
+	private static AsistenciaConviteDAOImplementation instance = null;
+	private AsistenciaConviteDAOImplementation() {}
+	public static AsistenciaConviteDAOImplementation getInstance() {
 		if(null==instance) {
-			instance = new ConviteDAOImplementation();
+			instance = new AsistenciaConviteDAOImplementation();
 		}
 		return instance;
 	}
-	//Metodo que permite obtener una lista con todas las filas de la tabla Convite
+	//Metodo que permite obtener una lista con todas las filas de la tabla AsistenciaConvite
 	@Override
-	public List<Convite> readAllConvite() {
+	public List<AsistenciaConvite> readAllAsistenciaConvite() {
 		// TODO Auto-generated method stub
-		List<Convite> convites= new ArrayList<>();
+		List<AsistenciaConvite> asistenciaConvite= new ArrayList<>();
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			convites.addAll(
-					session.createQuery("from Convite").list()
+			asistenciaConvite.addAll(
+					session.createQuery("from AsistenciaConvite").list()
 			);
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -35,16 +35,16 @@ public class ConviteDAOImplementation implements ConviteDAO {
 		} finally {
 			session.close();
 		}
-		return convites;
+		return asistenciaConvite;
 	}
-	//Crear fila en la tabla Convite
+	//Crear fila en la tabla AsistenciaConvite
 	@Override
-	public void createConvite(Convite convite) {
+	public void createAsistenciaConvite(AsistenciaConvite asistenciaConvite) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.save(convite);
+			session.save(asistenciaConvite);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -52,46 +52,31 @@ public class ConviteDAOImplementation implements ConviteDAO {
 			session.close();
 		}
 	}
-	//Buscar fila en la tabla convites a traves del email de usuario
+	//Buscar fila en la tabla AsistenciaConvite a traves del email de usuario
 	@Override
-	public Convite readConvite(String email) {
+	public AsistenciaConvite readAsistenciaConvite(String email) {
 		// TODO Auto-generated method stub
-		Convite convite = null;
+		AsistenciaConvite asistenciaConvite = null;
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			convite = session.get(Convite.class, email);
+			asistenciaConvite = session.get(AsistenciaConvite.class, email);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-		return convite;
+		return asistenciaConvite;
 	}
-	//Metodo que actualiza una fila de la tabla Convite
+	//Metodo que actualiza una fila de la tabla AsistenciaConvite
 	@Override
-	public void updateConvite(Convite convite) {
+	public void updateAsistenciaConvite(AsistenciaConvite asistenciaConvite) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(convite);
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			
-		} finally {
-			session.close();
-		}
-	}
-	//Metodo que elimina una fila de la tabla Convite
-	@Override
-	public void deleteConvite(Convite convite) {
-		// TODO Auto-generated method stub
-		Session session = SessionFactoryService.get().openSession();
-		try {
-			session.beginTransaction();
-			session.delete(convite);
+			session.saveOrUpdate(asistenciaConvite);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -100,5 +85,19 @@ public class ConviteDAOImplementation implements ConviteDAO {
 		}
 		
 	}
-
+	//Metodo que elimina una fila de la tabla AsistenciaConvite
+	@Override
+	public void deleteAsistenciaConvite(AsistenciaConvite asistenciaConvite) {
+		// TODO Auto-generated method stub
+		Session session = SessionFactoryService.get().openSession();
+		try {
+			session.beginTransaction();
+			session.delete(asistenciaConvite);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			
+		} finally {
+			session.close();
+		}
+	}
 }
