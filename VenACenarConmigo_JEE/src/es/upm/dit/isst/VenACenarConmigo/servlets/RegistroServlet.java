@@ -41,7 +41,7 @@ public class RegistroServlet extends HttpServlet {
 			usuario.setEmail(email);
 			usuario.setPassword(password);
 			usuario.setProfesion(profesion);
-			usuario.setDescripcion(descripcion);
+			usuario.setDescripcionPersonal(descripcion);
 			usuario.setValidado(false);
 			usuario.setPrivacidad1(privacidad1);
 			usuario.setPrivacidad2(privacidad1);
