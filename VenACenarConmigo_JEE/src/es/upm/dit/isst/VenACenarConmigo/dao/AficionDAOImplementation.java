@@ -2,9 +2,7 @@ package es.upm.dit.isst.VenACenarConmigo.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
-
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Aficion;
 import es.upm.dit.isst.VenACenarConmigo.dao.SessionFactoryService;
 

@@ -1,29 +1,29 @@
 package es.upm.dit.isst.VenACenarConmigo.dao;
 
-import org.hibernate.Session;
 import java.util.ArrayList;
 import java.util.List;
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones;
+import org.hibernate.Session;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 
-public class PublicacionesDAOImplementation implements PublicacionesDAO{
-	private static PublicacionesDAOImplementation instance = null;
-	private PublicacionesDAOImplementation() {}
-	public static PublicacionesDAOImplementation getInstance() {
+public class AccionUsuarioDAOImplementation implements AccionUsuarioDAO{
+	private static AccionUsuarioDAOImplementation instance = null;
+	private AccionUsuarioDAOImplementation() {}
+	public static AccionUsuarioDAOImplementation getInstance() {
 		if(null==instance) {
-			instance = new PublicacionesDAOImplementation();
+			instance = new AccionUsuarioDAOImplementation();
 		}
 		return instance;
 	}
-	//Metodo que permite obtener una lista con todas las filas de la tabla Publicaciones
+	//Metodo que permite obtener una lista con todas las filas de la tabla AccionUsuario
 	@Override
-	public List<Publicaciones> readAllPublicaciones() {
+	public List<AccionUsuario> readAllAccionUsuario() {
 		// TODO Auto-generated method stub
-		List<Publicaciones> publicaciones= new ArrayList<>();
+		List<AccionUsuario> accionUsuario= new ArrayList<>();
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			publicaciones.addAll(
-					session.createQuery("from Publicaciones").list()
+			accionUsuario.addAll(
+					session.createQuery("from AccionUsuario").list()
 			);
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -31,16 +31,16 @@ public class PublicacionesDAOImplementation implements PublicacionesDAO{
 		} finally {
 			session.close();
 		}
-		return publicaciones;
+		return accionUsuario;
 	}
-	//Crear fila en la tabla Publicaciones
+	//Crear fila en la tabla AccionUsuario
 	@Override
-	public void createPublicaciones(Publicaciones publicaciones) {
+	public void createAccionUsuario(AccionUsuario accionUsuario) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.save(publicaciones);
+			session.save(accionUsuario);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -48,31 +48,31 @@ public class PublicacionesDAOImplementation implements PublicacionesDAO{
 			session.close();
 		}
 	}
-	//Buscar fila en la tabla Publicaciones a traves del email de usuario
+	//Buscar fila en la tabla AccionUsuario a traves del email de usuario
 	@Override
-	public Publicaciones readPublicaciones(String email) {
+	public AccionUsuario readAccionUsuario(String email) {
 		// TODO Auto-generated method stub
-		Publicaciones publicaciones = null;
+		AccionUsuario accionUsuario = null;
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			publicaciones = session.get(Publicaciones.class, email);
+			accionUsuario = session.get(AccionUsuario.class, email);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-		return publicaciones;
+		return accionUsuario; 
 	}
-	//Metodo que actualiza una fila de la tabla Publicaciones
+	//Metodo que actualiza una fila de la tabla AccionUsuario
 	@Override
-	public void updateAficion(Publicaciones publicaciones) {
+	public void updateAccionUsuario(AccionUsuario accionUsuario) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(publicaciones);
+			session.saveOrUpdate(accionUsuario);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -80,14 +80,14 @@ public class PublicacionesDAOImplementation implements PublicacionesDAO{
 			session.close();
 		}
 	}
-	//Metodo que elimina una fila de la tabla Publicaciones
+	//Metodo que elimina una fila de la tabla AccionUsuario
 	@Override
-	public void deleteAficion(Publicaciones publicaciones) {
+	public void deleteAccionUsuario(AccionUsuario accionUsuario) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.delete(publicaciones);
+			session.delete(accionUsuario);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
