@@ -15,7 +15,6 @@ public class Convite implements Serializable{
 	@ManyToMany
 	private List<Usuario> invitados;
 	private String nombre;
-	//Mirar tipo fecha
 	private String fecha;
 	private String horaCominezo;
 	private String horaFin;
