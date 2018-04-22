@@ -1,31 +1,30 @@
 package es.upm.dit.isst.VenACenarConmigo.dao;
 
+import org.hibernate.Session;
+
 import java.util.ArrayList;
 import java.util.List;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones;
 
-import org.hibernate.Session;
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
-import es.upm.dit.isst.VenACenarConmigo.dao.SessionFactoryService;
-
-public class ConviteDAOImplementation implements ConviteDAO {
-	private static ConviteDAOImplementation instance = null;
-	private ConviteDAOImplementation() {}
-	public static ConviteDAOImplementation getInstance() {
+public class PublicacionesDAOImplementation implements PublicacionesDAO{
+	private static PublicacionesDAOImplementation instance = null;
+	private PublicacionesDAOImplementation() {}
+	public static PublicacionesDAOImplementation getInstance() {
 		if(null==instance) {
-			instance = new ConviteDAOImplementation();
+			instance = new PublicacionesDAOImplementation();
 		}
 		return instance;
 	}
-	//Metodo que permite obtener una lista con todas las filas de la tabla Convite
+	//Metodo que permite obtener una lista con todas las filas de la tabla Publicaciones
 	@Override
-	public List<Convite> readAllConvite() {
+	public List<Publicaciones> readAllPublicaciones() {
 		// TODO Auto-generated method stub
-		List<Convite> convites= new ArrayList<>();
+		List<Publicaciones> publicaciones= new ArrayList<>();
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			convites.addAll(
-					session.createQuery("from Convite").list()
+			publicaciones.addAll(
+					session.createQuery("from Publicaciones").list()
 			);
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -33,16 +32,16 @@ public class ConviteDAOImplementation implements ConviteDAO {
 		} finally {
 			session.close();
 		}
-		return convites;
+		return publicaciones;
 	}
-	//Crear fila en la tabla Convite
+	//Crear fila en la tabla Publicaciones
 	@Override
-	public void createConvite(Convite convite) {
+	public void createPublicaciones(Publicaciones publicaciones) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.save(convite);
+			session.save(publicaciones);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -50,31 +49,31 @@ public class ConviteDAOImplementation implements ConviteDAO {
 			session.close();
 		}
 	}
-	//Buscar fila en la tabla convites a traves del email de usuario
+	//Buscar fila en la tabla Publicaciones a traves del email de usuario
 	@Override
-	public Convite readConvite(String email) {
+	public Publicaciones readPublicaciones(String email) {
 		// TODO Auto-generated method stub
-		Convite convite = null;
+		Publicaciones publicaciones = null;
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			convite = session.get(Convite.class, email);
+			publicaciones = session.get(Publicaciones.class, email);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-		return convite;
+		return publicaciones;
 	}
-	//Metodo que actualiza una fila de la tabla Convite
+	//Metodo que actualiza una fila de la tabla Publicaciones
 	@Override
-	public void updateConvite(Convite convite) {
+	public void updateAficion(Publicaciones publicaciones) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(convite);
+			session.saveOrUpdate(publicaciones);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
@@ -82,21 +81,20 @@ public class ConviteDAOImplementation implements ConviteDAO {
 			session.close();
 		}
 	}
-	//Metodo que elimina una fila de la tabla Convite
+	//Metodo que elimina una fila de la tabla Publicaciones
 	@Override
-	public void deleteConvite(Convite convite) {
+	public void deleteAficion(Publicaciones publicaciones) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			session.delete(convite);
+			session.delete(publicaciones);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			
 		} finally {
 			session.close();
 		}
-		
 	}
 
 }

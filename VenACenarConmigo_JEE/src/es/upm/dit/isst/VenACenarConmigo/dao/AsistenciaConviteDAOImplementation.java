@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
-
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Aficion;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 
 public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO{
@@ -83,7 +81,6 @@ public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO{
 		} finally {
 			session.close();
 		}
-		
 	}
 	//Metodo que elimina una fila de la tabla AsistenciaConvite
 	@Override
