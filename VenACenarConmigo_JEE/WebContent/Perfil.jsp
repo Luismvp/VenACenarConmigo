@@ -86,7 +86,7 @@ a {
 					style="font-size: larger" role="button">Cambiar contraseña</a>
 			</p>
 			<p style="text-align: center">
-				<a href="aceptDenegInvitados.html"
+				<a href="GestionaConvitesServlet"
 					class="btn btn-success fontLobster" style="font-size: larger"
 					role="button">Gestionar convites</a>
 			</p>

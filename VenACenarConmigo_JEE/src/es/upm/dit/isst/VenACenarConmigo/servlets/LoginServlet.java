@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 		} else if (null != usuario) {
 			req.getSession().setAttribute("usuario", usuario);
 			req.getSession().setAttribute("email", email);
+			req.getSession().setAttribute("numero_notificaciones", AsistenciaConviteDAOImplementation.getInstance().readNotificacionesAsistenciaConvite(email).size());
 			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
