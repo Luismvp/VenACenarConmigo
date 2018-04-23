@@ -97,12 +97,12 @@ a {
         <h3>${usuario.nombre }</h3>
         <h3>${usuario.apellidos }</h3>
         <h3>Nacid@ el ${usuario.nacimiento }</h3>
-        <h3>Teléfono móvil ${usuario.telefono }</h3>
-        <h3>Ciudad ${usuario.ciudad }</h3>
-        <h3>Email ${usuario.email }</h3>
-        <h3>Profesión: ${usuario.profesion}</h3>
+        <h3>${usuario.email }</h3>
+        <h3>Teléfono móvil: ${usuario.telefono }</h3>
+        <h3>Ciudad: ${usuario.ciudad }</h3>
+        <h3>Ocupación: ${usuario.profesion}</h3>
         <h3>Descripción personal:</h3>
-        <p> ${usuario.descripcion}</p>
+        <h4> ${usuario.descripcion}</h4>
     </div>
     <div id="publicaciones" style="margin-top: 15px">
         <p style="text-align: center"><a href="" class="btn btn-success fontLobster" style="font-size: larger "  role="button">Añadir publicación</a></p>
