@@ -16,7 +16,7 @@
                 <li id="index"><a href="inicio.html">Inicio</a></li>
                 <li id="perfil"><a href="Perfil.jsp">Mi perfil</a></li>
                 <li id="search"><a href="">Buscar convite</a></li>
-                <li id="convite"><a href="creaConvite1.jsp">Crear Convite</a></li>
+                <li id="convite"><a href="CrearConvite.jsp">Crear Convite</a></li>
                 <li id="contacto"><a href="contacto.html">Contacto</a></li>
                 <li id="notificac"><a href="notificaciones.html">Notificaciones<span class="badge">42</span></a></li>
             </ul>

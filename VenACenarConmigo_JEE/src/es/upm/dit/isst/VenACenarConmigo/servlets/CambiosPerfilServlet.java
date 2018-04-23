@@ -29,7 +29,7 @@ public class CambiosPerfilServlet extends HttpServlet{
 		String codigoPostal = req.getParameter("codigoPostal");
 		String profesion = req.getParameter("profesion");
 		String descripcion = req.getParameter("descripcion");
-		
+
 		if(!nombre.isEmpty()) {
 			usuario.setNombre(nombre);
 		}

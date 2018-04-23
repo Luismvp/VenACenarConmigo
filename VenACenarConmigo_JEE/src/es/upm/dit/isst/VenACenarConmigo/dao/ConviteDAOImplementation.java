@@ -66,6 +66,22 @@ public class ConviteDAOImplementation implements ConviteDAO {
 		}
 		return convite;
 	}
+        @Override
+	public Convite readConvite(int id) {
+		// TODO Auto-generated method stub
+		Convite convite = null;
+		Session session = SessionFactoryService.get().openSession();
+		try {
+			session.beginTransaction();
+			convite = session.get(Convite.class, id);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			
+		} finally {
+			session.close();
+		}
+		return convite;
+	}
 	//Metodo que actualiza una fila de la tabla Convite
 	@Override
 	public void updateConvite(Convite convite) {

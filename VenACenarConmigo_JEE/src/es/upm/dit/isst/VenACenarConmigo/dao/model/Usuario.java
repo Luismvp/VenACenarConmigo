@@ -23,6 +23,7 @@ public class Usuario implements Serializable {
 	private String profesion;
 	private String descripcion;
 	private Boolean validado;
+<<<<<<< HEAD
 	private Integer privacidad1;
 	private Integer privacidad2;
 	private Integer privacidad3;
@@ -37,6 +38,7 @@ public class Usuario implements Serializable {
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
+
 	public Integer getPrivacidad1() {
 		return privacidad1;
 	}

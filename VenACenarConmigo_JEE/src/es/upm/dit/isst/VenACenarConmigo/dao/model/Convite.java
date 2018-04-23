@@ -10,10 +10,7 @@ import javax.persistence.ManyToMany;
 public class Convite implements Serializable{
 	@Id
 	private Integer iDConvite;
-	@ManyToOne
-	private Usuario anfitrion;
-	@ManyToMany
-	private List<Usuario> invitados;
+        private String emailAnfitrion;
 	private String nombre;
 	private String fecha;
 	private String horaComienzo;
@@ -22,45 +19,29 @@ public class Convite implements Serializable{
 	private String menu;
 	private String temasConversacion;
 	private Integer maxInvitados;
-	private Integer precioInvitado;
+	private Float precioInvitado;
 	private String descripcion;
 	private String ciudad;
 	private String area;
 	/**
 	 * @return the iDConvite
 	 */
-	public int getIDConvite() {
+	public Integer getIDConvite() {
 		return iDConvite;
 	}
 	/**
 	 * @param iDConvite the iDConvite to set
 	 */
-	public void setIDConvite(int iDConvite) {
+	public void setIDConvite(Integer iDConvite) {
 		this.iDConvite = iDConvite;
 	}
-	/**
-	 * @return the anfitrion
-	 */
-	public Usuario getAnfitrion() {
-		return anfitrion;
+	
+	public String getEmailAnfitrion() {
+		return emailAnfitrion;
 	}
-	/**
-	 * @param anfitrion the anfitrion to set
-	 */
-	public void setAnfitrion(Usuario anfitrion) {
-		this.anfitrion = anfitrion;
-	}
-	/**
-	 * @return the invitados
-	 */
-	public List<Usuario> getInvitados() {
-		return invitados;
-	}
-	/**
-	 * @param invitados the invitados to set
-	 */
-	public void setInvitados(List<Usuario> invitados) {
-		this.invitados = invitados;
+	public void setEmailAnfitrion(String emailAnfitrion) {
+		this.emailAnfitrion = emailAnfitrion;
+
 	}
 	/**
 	 * @return the nombre
@@ -161,13 +142,15 @@ public class Convite implements Serializable{
 	/**
 	 * @return the precioInvitado
 	 */
-	public Integer getPrecioInvitado() {
+	
+	public Float getPrecioInvitado() {
 		return precioInvitado;
 	}
 	/**
 	 * @param precioInvitado the precioInvitado to set
 	 */
-	public void setPrecioInvitado(Integer precioInvitado) {
+
+	public void setPrecioInvitado(Float precioInvitado) {
 		this.precioInvitado = precioInvitado;
 	}
 	/**

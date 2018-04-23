@@ -35,6 +35,28 @@ public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO{
 		}
 		return asistenciaConvite;
 	}
+
+	@Override
+	public List<AsistenciaConvite> readNotificacionesAsistenciaConvite(String email) {
+		// TODO Auto-generated method stub
+		List<AsistenciaConvite> asistenciaConvite= new ArrayList<>();
+		Session session = SessionFactoryService.get().openSession();
+		try {
+			int invitacionInscripcion=1;
+			boolean confirmado=false;
+			session.beginTransaction();
+			asistenciaConvite.addAll(
+					session.createQuery("select a from AsistenciaConvite a "
+							+ "where a.emailUsuarioAsistente= :email and a.invitacionInscripcion= :invitacionInscripcion and a.confirmado= :confirmado").list());
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			
+		} finally {
+			session.close();
+		}
+		return asistenciaConvite;
+	}
+
 	//Crear fila en la tabla AsistenciaConvite
 	@Override
 	public void createAsistenciaConvite(AsistenciaConvite asistenciaConvite) {
@@ -67,6 +89,23 @@ public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO{
 		}
 		return asistenciaConvite;
 	}
+
+	public AsistenciaConvite readAsistenciaConvite(int id) {
+		// TODO Auto-generated method stub
+		AsistenciaConvite asistenciaConvite = null;
+		Session session = SessionFactoryService.get().openSession();
+		try {
+			session.beginTransaction();
+			asistenciaConvite = session.get(AsistenciaConvite.class, id);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			
+		} finally {
+			session.close();
+		}
+		return asistenciaConvite;
+	}
+
 	//Metodo que actualiza una fila de la tabla AsistenciaConvite
 	@Override
 	public void updateAsistenciaConvite(AsistenciaConvite asistenciaConvite) {
@@ -84,12 +123,14 @@ public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO{
 	}
 	//Metodo que elimina una fila de la tabla AsistenciaConvite
 	@Override
-	public void deleteAsistenciaConvite(AsistenciaConvite asistenciaConvite) {
+	public void deleteAsistenciaConvite(AsistenciaConvite asistenciaConvite) {	
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
+
 			session.delete(asistenciaConvite);
+
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			

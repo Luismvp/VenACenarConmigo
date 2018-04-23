@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
-
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
+import es.upm.dit.isst.VenACenarConmigo.util.EmailHandler;
 
 @WebServlet("/RegistroServlet")
 public class RegistroServlet extends HttpServlet {
@@ -51,8 +51,11 @@ public class RegistroServlet extends HttpServlet {
 			usuario.setPrivacidad1(privacidad);
 			usuario.setPrivacidad2(privacidad);
 			usuario.setPrivacidad3(privacidad);
+			usuario.setPrivacidad1(privacidad1);
+			usuario.setPrivacidad2(privacidad1);
+			usuario.setPrivacidad3(privacidad1);
 			UsuarioDAOImplementation.getInstance().createUsuario(usuario);
-			resp.sendRedirect(req.getContextPath() + "/ValidarCuenta.jsp");
+			resp.sendRedirect(req.getContextPath() + "/Validacion.jsp");
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/Registro.jsp");
 		}

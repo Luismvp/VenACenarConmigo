@@ -3,29 +3,27 @@ package es.upm.dit.isst.VenACenarConmigo.dao.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
 public class AccionUsuario implements Serializable{
-	//ToDo:Revisar relaciones ¿foreingnkey?
 	@Id
-	private int iDAccion;
+	private Integer iDAccion;
 	private Usuario usuarioEmisor;
 	private Usuario usuarioReceptor;
-	private String seguimientoBloqueoDenuncia;
+	private Integer seguimientoBloqueoDenuncia;
 	private String comentario;
 	/**
 	 * @return the iDAccion
 	 */
-	public int getiDAccion() {
+	public Integer getiDAccion() {
 		return iDAccion;
 	}
 	/**
 	 * @param iDAccion the iDAccion to set
 	 */
-	public void setiDAccion(int iDAccion) {
+	public void setiDAccion(Integer iDAccion) {
 		this.iDAccion = iDAccion;
 	}
 	/**
@@ -55,13 +53,13 @@ public class AccionUsuario implements Serializable{
 	/**
 	 * @return the seguimientoBloqueoDenuncia
 	 */
-	public String getSeguimientoBloqueoDenuncia() {
+	public Integer getSeguimientoBloqueoDenuncia() {
 		return seguimientoBloqueoDenuncia;
 	}
 	/**
 	 * @param seguimientoBloqueoDenuncia the seguimientoBloqueoDenuncia to set
 	 */
-	public void setSeguimientoBloqueoDenuncia(String seguimientoBloqueoDenuncia) {
+	public void setSeguimientoBloqueoDenuncia(Integer seguimientoBloqueoDenuncia) {
 		this.seguimientoBloqueoDenuncia = seguimientoBloqueoDenuncia;
 	}
 	/**
@@ -77,3 +75,4 @@ public class AccionUsuario implements Serializable{
 		this.comentario = comentario;
 	}
 }
+

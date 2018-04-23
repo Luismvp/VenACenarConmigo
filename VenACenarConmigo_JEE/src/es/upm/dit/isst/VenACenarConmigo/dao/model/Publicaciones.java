@@ -9,21 +9,22 @@ import javax.persistence.ManyToOne;
 @Entity
 public class  Publicaciones implements Serializable{
 	@Id
-	private int iDPublicacion;
+	private Integer iDPublicacion;
 	@ManyToOne
 	private Usuario usuario;
 	private String texto;
 	private byte[] adjunto;
+
 	/**
 	 * @return the iDPublicacion
 	 */
-	public int getiDPublicacion() {
+	public Integer getiDPublicacion() {
 		return iDPublicacion;
 	}
 	/**
 	 * @param iDPublicacion the iDPublicacion to set
 	 */
-	public void setiDPublicacion(int iDPublicacion) {
+	public void setiDPublicacion(Integer iDPublicacion) {
 		this.iDPublicacion = iDPublicacion;
 	}
 	/**
@@ -53,6 +54,7 @@ public class  Publicaciones implements Serializable{
 	/**
 	 * @return the adjunto
 	 */
+
 	public byte[] getAdjunto() {
 		return adjunto;
 	}
