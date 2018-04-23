@@ -8,32 +8,33 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class AsistenciaConvite implements Serializable {
+	//ToDo:Revisar relaciones
 	@Id
-	private Integer idAsistencia;
+	private int idAsistente;
 	private String emailAnfitrion;
-	private Integer idConvite;
+	private int idConvite;
 	private String emailUsuarioAsistente;
-	private Integer invitacionInscripcion;
+	private int invitacionInscripcion;
 	private Boolean confirmado;
-	private Integer numeroInvitado;
+	private int numeroInvitado;
 	
 	
-	public Integer getIdAsistencia() {
-		return idAsistencia;
+	public int getIdAsistente() {
+		return idAsistente;
 	}
-	public void setIdAsistencia(Integer idAsistencia) {
-		this.idAsistencia = idAsistencia;
+	public void setIdAsistente(int idAsistente) {
+		this.idAsistente = idAsistente;
 	}
-	public Integer getIdConvite() {
+	public int getIdConvite() {
 		return idConvite;
 	}
-	public void setIdConvite(Integer idConvite) {
+	public void setIdConvite(int idConvite) {
 		this.idConvite = idConvite;
 	}
-	public Integer getNumeroInvitado() {
+	public int getNumeroInvitado() {
 		return numeroInvitado;
 	}
-	public void setNumeroInvitado(Integer numeroInvitado) {
+	public void setNumeroInvitado(int numeroInvitado) {
 		this.numeroInvitado = numeroInvitado;
 	}
 	public String getEmailAnfitrion() {
@@ -48,10 +49,10 @@ public class AsistenciaConvite implements Serializable {
 	public void setEmailUsuarioAsistente(String emailUsuarioAsistente) {
 		this.emailUsuarioAsistente = emailUsuarioAsistente;
 	}
-	public Integer getInvitacionInscripcion() {
+	public int getInvitacionInscripcion() {
 		return invitacionInscripcion;
 	}
-	public void setInvitacionInscripcion(Integer invitacionInscripcion) {
+	public void setInvitacionInscripcion(int invitacionInscripcion) {
 		this.invitacionInscripcion = invitacionInscripcion;
 	}
 	public Boolean getConfirmado() {
@@ -61,4 +62,3 @@ public class AsistenciaConvite implements Serializable {
 		this.confirmado = confirmado;
 	}
 }
-

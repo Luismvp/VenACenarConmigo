@@ -44,22 +44,22 @@
         <div class="form-group" id="date-group">
             <label for="fecha">Fecha del convite: </label>
             <br>
-            <input type="text" name="fecha" class="form-control" id="fecha">
+            <input type="text" name="fecha" class="form-control" id="fecha" placeholder="introduce la fecha del convite">
         </div>
         <div class="form-group" id="time-group">
             <label for="horaComienzo">Hora de inicio del convite: </label>
             <br>
-            <input type="text" name="horaComienzo" class="form-control" id="horaComienzo">
+            <input type="text" name="horaComienzo" class="form-control" id="horaComienzo" placeholder="introduce la hora de inicio">
         </div>
         <div class="form-group" id="timeEnd-group">
             <label for="horaFin">Hora de finalización del convite: </label>
             <br>
-            <input type="text" name="horaFin" class="form-control" id="horaFin">
+            <input type="text" name="horaFin" class="form-control" id="horaFin" placeholder="introduce la hora de finalización">
         </div>
         <div class="form-group" id="rest-group">
             <label for="restaurante">Nombre del restaurante: </label>
             <br>
-            <input type="text" name="restaurante" class="form-control" id="restaurante" placeholder="introduce el nombre del restaurante">
+            <input type="text" name="restaurante" class="form-control" id="restaurante" placeholder="introduce el nombre del restaurante (si procede)">
         </div>
         <div id="menu">
             <div class="form-group" id="menu-group">
@@ -77,10 +77,10 @@
         <div class="form-group" id="precio-group">
             <label for="precioInvitado">Precio por invitado:</label>
             <br>
-            <input type="text" name="precioInvitado"  min="0" class="form-control" id="precioInvitado" placeholder="introduce el precio de la comida">
+            <input type="text" name="precioInvitado"  min="0" class="form-control" id="precioInvitado" placeholder="introduce el precio de la comida por invitado">
         </div>
         <div class="form-group" id="descripcion-group">
-            <label for="temas">Descripción de la temática del convite:</label>
+            <label for="descripcion">Descripción de la temática del convite:</label>
             <br>
             <textarea cols="152" rows="7" placeholder="Introduce una descripción de la temática del convite" id="temas" name="temas"></textarea>
         </div>

@@ -86,7 +86,7 @@ a {
 					style="font-size: larger" role="button">Cambiar contraseña</a>
 			</p>
 			<p style="text-align: center">
-				<a href="aceptDenegInvitados.html"
+				<a href="GestionaConvitesServlet"
 					class="btn btn-success fontLobster" style="font-size: larger"
 					role="button">Gestionar convites</a>
 			</p>
@@ -99,7 +99,6 @@ a {
         <h3>Nacid@ el ${usuario.nacimiento }</h3>
         <h3>Teléfono móvil ${usuario.telefono }</h3>
         <h3>Ciudad ${usuario.ciudad }</h3>
-        <h3>Código postal ${usuario.codigoPostal }</h3>
         <h3>Email ${usuario.email }</h3>
         <h3>Profesión: ${usuario.profesion}</h3>
         <h3>Descripción personal:</h3>

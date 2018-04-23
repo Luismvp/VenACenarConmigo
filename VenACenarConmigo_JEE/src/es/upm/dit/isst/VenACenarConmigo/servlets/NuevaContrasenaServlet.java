@@ -26,8 +26,6 @@ public class NuevaContrasenaServlet extends HttpServlet {
 			usuario.setPassword(repPassword);
 			dao.updateUsuario(usuario);
 			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
-		} else {
-			resp.sendRedirect(req.getContextPath() + "/NuevaContraseña.jsp");
 		}
 	}
 

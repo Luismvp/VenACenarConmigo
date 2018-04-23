@@ -47,7 +47,7 @@
                 <input type="password" name="repPassword" class="form-control" id="repPassword" placeholder="introduce tu contraseña de nuevo">
             </div>
             <div class="form-group" id="profesion-group">
-                <label for="profesion">Ocupación</label>
+                <label for="profesion">Profesión</label>
                 <br>
                 <input type="text" name="profesion" class="form-control" id="profesion" placeholder="introduce tu profesión">
             </div>

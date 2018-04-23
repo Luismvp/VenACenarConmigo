@@ -14,13 +14,13 @@ import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 @WebServlet("/EliminaUsuarioServlet")
 public class EliminaUsuarioServlet extends HttpServlet {
 
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
 		Usuario usuario = UsuarioDAOImplementation.getInstance().readUsuario(email);
-		Usuario usuarioVacio = UsuarioDAOImplementation.getInstance().readUsuario("");
+		Usuario usuarioVacion = UsuarioDAOImplementation.getInstance().readUsuario("");
 		UsuarioDAOImplementation.getInstance().deleteUsuario(usuario);
-		UsuarioDAOImplementation.getInstance().deleteUsuario(usuarioVacio);
-
+		UsuarioDAOImplementation.getInstance().deleteUsuario(usuarioVacion);
 		resp.sendRedirect(req.getContextPath()+"/borrarUsuarios.jsp");
 	}
 }

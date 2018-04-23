@@ -9,39 +9,38 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Convite implements Serializable{
 	@Id
-	private Integer iDConvite;
-    private String emailAnfitrion;
+	private int idConvite;
+	public int getIdConvite() {
+		return idConvite;
+	}
+	public void setIdConvite(int idConvite) {
+		this.idConvite = idConvite;
+	}
+	private String emailAnfitrion;
 	private String nombre;
 	private String fecha;
 	private String horaComienzo;
 	private String horaFin;
 	private String restaurante;
 	private String menu;
+	private int maxInvitados;
+	private String precioInvitado;
 	private String temasConversacion;
-	private Integer maxInvitados;
-	private Float precioInvitado;
-	private String descripcion;
 	private String ciudad;
 	private String area;
-	/**
-	 * @return the iDConvite
-	 */
-	public Integer getIDConvite() {
-		return iDConvite;
+	private String descripcion;
+
+	public int getMaxInvitados() {
+		return maxInvitados;
 	}
-	/**
-	 * @param iDConvite the iDConvite to set
-	 */
-	public void setIDConvite(Integer iDConvite) {
-		this.iDConvite = iDConvite;
+	public void setMaxInvitados(int maxInvitados) {
+		this.maxInvitados = maxInvitados;
 	}
-	
 	public String getEmailAnfitrion() {
 		return emailAnfitrion;
 	}
 	public void setEmailAnfitrion(String emailAnfitrion) {
 		this.emailAnfitrion = emailAnfitrion;
-
 	}
 	/**
 	 * @return the nombre
@@ -76,8 +75,8 @@ public class Convite implements Serializable{
 	/**
 	 * @param horaCominezo the horaCominezo to set
 	 */
-	public void setHoraComienzo(String horaComienzo) {
-		this.horaComienzo = horaComienzo;
+	public void setHoraComienzo(String horaCominezo) {
+		this.horaComienzo = horaCominezo;
 	}
 	/**
 	 * @return the horaFin
@@ -128,43 +127,18 @@ public class Convite implements Serializable{
 		this.temasConversacion = temasConversacion;
 	}
 	/**
-	 * @return the maxInvitados
-	 */
-	public Integer getMaxInvitados() {
-		return maxInvitados;
-	}
-	/**
-	 * @param maxInvitados the maxInvitados to set
-	 */
-	public void setMaxInvitados(Integer maxInvitados) {
-		this.maxInvitados = maxInvitados;
-	}
-	/**
 	 * @return the precioInvitado
 	 */
-	
-	public Float getPrecioInvitado() {
+	public String getPrecioInvitado() {
 		return precioInvitado;
 	}
 	/**
 	 * @param precioInvitado the precioInvitado to set
 	 */
-
-	public void setPrecioInvitado(Float precioInvitado) {
+	public void setPrecioInvitado(String precioInvitado) {
 		this.precioInvitado = precioInvitado;
 	}
-	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-	/**
-	 * @param descripcion the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+	
 	/**
 	 * @return the ciudad
 	 */
@@ -188,5 +162,18 @@ public class Convite implements Serializable{
 	 */
 	public void setArea(String area) {
 		this.area = area;
+	}
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 }

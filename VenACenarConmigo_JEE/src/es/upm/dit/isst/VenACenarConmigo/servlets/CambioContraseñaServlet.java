@@ -8,25 +8,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAO;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
-
-@WebServlet("/ValidacionServlet")
-
-public class ValidacionServlet extends HttpServlet {
-	
+@WebServlet("/CambioContraseñaServlet")
+public class CambioContraseñaServlet extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String email = req.getParameter("email");
+		String emailUsuario = req.getParameter("emailUsuario");
+		UsuarioDAO dao = UsuarioDAOImplementation.getInstance();
+		
+		Usuario usuario = dao.readUsuario(emailUsuario);
 		String password = req.getParameter("password");
-		Usuario usuario = UsuarioDAOImplementation.getInstance().readUsuario(email);
-		if(usuario.getPassword().equals(password)) {
-			usuario.setValidado(true);
-			UsuarioDAOImplementation.getInstance().updateUsuario(usuario);
+		String repPassword = req.getParameter("repPassword");
+		if (repPassword.equals(password)) {
+			usuario.setPassword(password);
+			dao.updateUsuario(usuario);
 			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
-		}else {
-			req.getSession().setAttribute("error", "La contraseña introducida no coincide con la del email.");
-			resp.sendRedirect(req.getContextPath() + "/ValidarCuenta.jsp");
 		}
-	}	
+	}
+
 }

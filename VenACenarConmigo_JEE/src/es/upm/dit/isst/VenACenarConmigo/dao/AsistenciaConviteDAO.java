@@ -8,7 +8,7 @@ public interface AsistenciaConviteDAO {
 	public List <AsistenciaConvite> readNotificacionesAsistenciaConvite(String email);
 	public void createAsistenciaConvite (AsistenciaConvite asistenciaConvite);
 	public AsistenciaConvite readAsistenciaConvite (String email);
-	public AsistenciaConvite readAsistenciaConvite (Integer id);
+	public AsistenciaConvite readAsistenciaConvite (int id);
 	public void updateAsistenciaConvite (AsistenciaConvite asistenciaConvite);
-	public void deleteAsistenciaConvite (AsistenciaConvite asistenciaConvite);
+	public void deleteAsistenciaConvite (AsistenciaConvite asistente);
 }

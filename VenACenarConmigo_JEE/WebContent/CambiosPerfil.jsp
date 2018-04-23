@@ -78,7 +78,7 @@ form{
 		</div>
 		<br>
 		<button type="submit" class="btn btn-success col-xs-12" id="btnSubmit">
-			Guardar <span class="glyphicon glyphicon-arrow-right"></span>
+			Enviar <span class="glyphicon glyphicon-arrow-right"></span>
 		</button>
 	</form>
 </body>

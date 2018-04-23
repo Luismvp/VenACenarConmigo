@@ -46,7 +46,7 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setInvitacionInscripcion(1);
 			asistente.setNumeroInvitado(1);
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
 		}
@@ -56,7 +56,7 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setEmailUsuarioAsistente(emailInv2);
 			asistente.setInvitacionInscripcion(1);
 			asistente.setNumeroInvitado(2);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setIdConvite(idConvite);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
@@ -64,7 +64,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[2].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv3);
 			asistente.setInvitacionInscripcion(1);
@@ -75,7 +75,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[3].isEmpty()) {
 			idAsistente = + 1;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv4);
 			asistente.setInvitacionInscripcion(1);
@@ -87,7 +87,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[4].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv5);
 			asistente.setInvitacionInscripcion(1);
@@ -98,7 +98,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[5].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv6);
 			asistente.setInvitacionInscripcion(1);
@@ -109,7 +109,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[6].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv7);
 			asistente.setInvitacionInscripcion(1);
@@ -120,7 +120,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[7].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv8);
 			asistente.setInvitacionInscripcion(1);
@@ -131,7 +131,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[8].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv9);
 			asistente.setInvitacionInscripcion(1);
@@ -142,7 +142,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[9].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv10);
 			asistente.setInvitacionInscripcion(1);
@@ -153,7 +153,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[10].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv11);
 			asistente.setInvitacionInscripcion(1);
@@ -164,7 +164,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[11].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv12);
 			asistente.setInvitacionInscripcion(1);
@@ -175,7 +175,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[12].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv13);
 			asistente.setInvitacionInscripcion(1);
@@ -186,7 +186,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[13].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv14);
 			asistente.setInvitacionInscripcion(1);
@@ -197,7 +197,7 @@ public class InvitadosServlet extends HttpServlet{
 		if(!emailInvitados[14].isEmpty()) {
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
-			asistente.setIdAsistencia(idAsistente);
+			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv15);
 			asistente.setInvitacionInscripcion(1);

@@ -42,8 +42,8 @@
 					${usuarioi.privacidad3}</td>
 			</tr>
 		</c:forEach>
-	</table>
 
+	</table>
 	<table border="1">
 		<tr>
 			<th>id del convite</th>
@@ -59,6 +59,7 @@
 			<th>temas de conversación</th>
 			<th>ciudad</th>
 			<th>área</th>
+			<th>descripción</th>
 		</tr>
 		<c:forEach items="${convite_list}" var="convitei">
 			<tr>
@@ -75,10 +76,10 @@
 				<td>${convitei.temasConversacion}</td>
 				<td>${convitei.ciudad}</td>
 				<td>${convitei.area}</td>
+				<td>${convitei.descripcion}</td>
 			</tr>
 		</c:forEach>
 	</table>
-
 	<table border="1">
 		<tr>
 			<th>id del Asistente</th>
@@ -101,5 +102,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<a href="LogoutServlet">Logout</a>
 </body>
 </html>

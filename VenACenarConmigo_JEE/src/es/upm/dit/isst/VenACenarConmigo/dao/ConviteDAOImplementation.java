@@ -66,7 +66,6 @@ public class ConviteDAOImplementation implements ConviteDAO {
 		}
 		return convite;
 	}
-        @Override
 	public Convite readConvite(int id) {
 		// TODO Auto-generated method stub
 		Convite convite = null;
