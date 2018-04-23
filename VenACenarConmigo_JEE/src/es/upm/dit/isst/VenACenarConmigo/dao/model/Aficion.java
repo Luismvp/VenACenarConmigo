@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 @Entity
-public class Aficion implements Serializable{
+public class Aficion implements Serializable {
 	@Id
 	private String aficion;
 	private String descripcion;

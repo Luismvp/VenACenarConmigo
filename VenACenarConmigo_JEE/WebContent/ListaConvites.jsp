@@ -13,13 +13,11 @@
 <tr>
 <th>IDConvite</th>
 <th>Nombre</th>
-<th>Anfitrión</th>
 <th>Fecha</th>
 <th>Hora de comienzo</th>
 <th>Hora de fin</th>
 <th>Restaurante</th>
 <th>Menú</th>
-<th>Temas de conversación</th>
 <th>Número máximo de invitados</th>
 <th>Precio por invitado</th>
 <th>Ciudad</th>
@@ -30,19 +28,16 @@
 	<tr>
 	<td> ${convitei.iDConvite} </td>
 	<td> ${convitei.nombre} </td>
-	<td> ${convitei.anfitrion.email} </td>
 	<td> ${convitei.fecha}</td>
 	<td> ${convitei.horaComienzo}</td>
 	<td> ${convitei.horaFin}</td>
 	<td> ${convitei.restaurante}</td>
 	<td> ${convitei.menu}</td>
-	<td> ${convitei.temasConversacion}</td>
 	<td> ${convitei.maxInvitados}</td>
 	<td> ${convitei.precioInvitado}</td>
 	<td> ${convitei.descripcion}</td>
 	<td> ${convitei.ciudad}</td>
 	<td> ${convitei.area}</td>
-	
 	</tr>
 </c:forEach>
 

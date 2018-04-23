@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAO;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
@@ -17,7 +18,7 @@ import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 public class NuevoConviteServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer id = 1;
+		Integer id = 3;
 		String nombre = req.getParameter("nombre");
 		String fecha = req.getParameter("fecha");
 		String horaInicio = req.getParameter("horaInicio");
@@ -34,13 +35,15 @@ public class NuevoConviteServlet extends HttpServlet{
 		String ciudad = req.getParameter("ciudad");
 		String area = req.getParameter("distrito");
 		
-		String emailAnfitrion = req.getParameter("emailAnfitrion");
-		Usuario anfitrion = UsuarioDAOImplementation.getInstance().readUsuario(emailAnfitrion);
+		String emailAnfitrion = req.getParameter("email");
+		UsuarioDAO dao = UsuarioDAOImplementation.getInstance();
+		Usuario anfitrion = dao.readUsuario(emailAnfitrion);
+
 	    
 		Convite convite = new Convite();
 		convite.setIDConvite(id);
 	    convite.setNombre(nombre);
-	  //  convite.setAnfitrion(anfitrion);
+	    convite.setAnfitrion(anfitrion);
 	    convite.setFecha(fecha);
 	    convite.setHoraComienzo(horaInicio);
 	    convite.setHoraFin(horaFin);
@@ -52,11 +55,11 @@ public class NuevoConviteServlet extends HttpServlet{
 	    convite.setDescripcion(descripcion);
 	    convite.setCiudad(ciudad);
 	    convite.setArea(area);
-	    convite.setAnfitrion(anfitrion);
 	    
 	    ConviteDAOImplementation.getInstance().createConvite(convite);
 	    
-	    resp.sendRedirect(req.getContextPath() + "/Perfil.jsp"); 
+	    req.getSession().setAttribute("convite_list", ConviteDAOImplementation.getInstance().readAllConvite());
+		resp.sendRedirect(req.getContextPath() + "/ListaConvites.jsp");
 	}
 	
 

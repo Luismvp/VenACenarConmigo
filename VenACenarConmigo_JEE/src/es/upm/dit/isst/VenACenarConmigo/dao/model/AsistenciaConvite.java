@@ -8,11 +8,9 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class AsistenciaConvite implements Serializable {
-	//ToDo:Revisar relaciones
 	@Id
 	private int iDAsistencia;
-	@ManyToMany
-	private List<Usuario> usuarioAsistente;
+	private Usuario usuarioAsistente;
 	private Convite convite;
 	private Usuario anfitrion;
 	private String invitacionInscripcion;
@@ -32,13 +30,13 @@ public class AsistenciaConvite implements Serializable {
 	/**
 	 * @return the usuarioAsistente
 	 */
-	public List<Usuario> getUsuarioAsistente() {
+	public Usuario getUsuarioAsistente() {
 		return usuarioAsistente;
 	}
 	/**
 	 * @param usuarioAsistente the usuarioAsistente to set
 	 */
-	public void setUsuarioAsistente(List<Usuario> usuarioAsistente) {
+	public void setUsuarioAsistente(Usuario usuarioAsistente) {
 		this.usuarioAsistente = usuarioAsistente;
 	}
 	/**

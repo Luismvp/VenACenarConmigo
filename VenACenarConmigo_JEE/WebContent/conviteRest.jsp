@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-<%@include file="templates/navBar.jsp" %>
+<%@include file="templates/navBarLoged.jsp" %>
 <div id="Domicilio">
     <h1>Convite en restaurante</h1>
     <form action="NuevoConviteServlet">

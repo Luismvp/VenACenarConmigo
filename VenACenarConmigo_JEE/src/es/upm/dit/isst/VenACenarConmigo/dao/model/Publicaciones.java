@@ -13,8 +13,7 @@ public class  Publicaciones implements Serializable{
 	@ManyToOne
 	private Usuario usuario;
 	private String texto;
-	//Mirar que tipo de objeto es atributo
-	private String adjunto;
+	private byte[] adjunto;
 	/**
 	 * @return the iDPublicacion
 	 */
@@ -54,13 +53,13 @@ public class  Publicaciones implements Serializable{
 	/**
 	 * @return the adjunto
 	 */
-	public String getAdjunto() {
+	public byte[] getAdjunto() {
 		return adjunto;
 	}
 	/**
 	 * @param adjunto the adjunto to set
 	 */
-	public void setAdjunto(String adjunto) {
+	public void setAdjunto(byte[] adjunto) {
 		this.adjunto = adjunto;
 	}
 }

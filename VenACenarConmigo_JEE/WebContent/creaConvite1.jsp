@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-<%@include file="templates/navBar.jsp" %>
+<%@include file="templates/navBarLoged.jsp" %>
     <div id="seleccion">
         <h1> ¿Dónde quieres que se celebre el convite?</h1>
         <p><a href="conviteDom.jsp" class="btn btn-success fontLobster" style="font-size: larger"  role="button">En mi domicilio</a></p>

@@ -12,14 +12,8 @@ public class AccionUsuario implements Serializable{
 	//ToDo:Revisar relaciones ¿foreingnkey?
 	@Id
 	private int iDAccion;
-	@ManyToMany
-	private List<Usuario> usuarioEmisor;
-	@ManyToMany
-	private List<Usuario> usuarioReceptor;
-//	@ForeignKey
-//	private Integer iDConvite;
-//	@ForeignKey
-	private String email;
+	private Usuario usuarioEmisor;
+	private Usuario usuarioReceptor;
 	private String seguimientoBloqueoDenuncia;
 	private String comentario;
 	/**
@@ -37,25 +31,25 @@ public class AccionUsuario implements Serializable{
 	/**
 	 * @return the usuarioEmisor
 	 */
-	public List<Usuario> getUsuarioEmisor() {
+	public Usuario getUsuarioEmisor() {
 		return usuarioEmisor;
 	}
 	/**
 	 * @param usuarioEmisor the usuarioEmisor to set
 	 */
-	public void setUsuarioEmisor(List<Usuario> usuarioEmisor) {
+	public void setUsuarioEmisor(Usuario usuarioEmisor) {
 		this.usuarioEmisor = usuarioEmisor;
 	}
 	/**
 	 * @return the usuarioReceptor
 	 */
-	public List<Usuario> getUsuarioReceptor() {
+	public Usuario getUsuarioReceptor() {
 		return usuarioReceptor;
 	}
 	/**
 	 * @param usuarioReceptor the usuarioReceptor to set
 	 */
-	public void setUsuarioReceptor(List<Usuario> usuarioReceptor) {
+	public void setUsuarioReceptor(Usuario usuarioReceptor) {
 		this.usuarioReceptor = usuarioReceptor;
 	}
 	/**

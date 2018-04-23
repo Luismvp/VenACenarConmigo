@@ -28,6 +28,8 @@ public class Usuario implements Serializable {
 	private Integer privacidad3;
 	@Lob
 	private byte[] foto;
+	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	private List<Aficion> aficiones;
 	
 	public byte[] getFoto() {
 		return foto;
@@ -59,8 +61,6 @@ public class Usuario implements Serializable {
 	public void setValidado(Boolean validado) {
 		this.validado = validado;
 	}
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
-	private List<Aficion> aficiones;
 	public String getEmail() {
 		return email;
 	}
