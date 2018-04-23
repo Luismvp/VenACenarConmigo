@@ -8,11 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Usuario implements Serializable {
-	
 	@Id
 	private String email;
 	private String nombre;
@@ -23,20 +21,8 @@ public class Usuario implements Serializable {
 	private String codigoPostal;
 	private String password;
 	private String profesion;
-	private String privacidadPerfil;
-	private String rango;
-	private String descripcionPersonal;
+	private String descripcion;
 	private Boolean validado;
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
-	private List<Aficion> aficiones;
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
-	private List<Publicaciones> publicaciones;
-	@ManyToMany
-	private List<AsistenciaConvite> asistenciaConvite;
-	@ManyToMany
-	private List<AccionUsuario> accionUsuario;
-	//ToDo: revisar relaciones
-
 	private int privacidad1;
 	private int privacidad2;
 	private int privacidad3;
@@ -73,7 +59,8 @@ public class Usuario implements Serializable {
 	public void setValidado(Boolean validado) {
 		this.validado = validado;
 	}
-
+	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	private List<Aficion> aficiones;
 	public String getEmail() {
 		return email;
 	}
@@ -122,26 +109,14 @@ public class Usuario implements Serializable {
 	public void setProfesion(String profesionEstudios) {
 		this.profesion = profesionEstudios;
 	}
-	public String getDescripcionPersonal() {
-		return descripcionPersonal;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setDescripcionPersonal(String descripcionPersonal) {
-		this.descripcionPersonal = descripcionPersonal;
+	public void setDescripcion(String descripcionPersonal) {
+		this.descripcion = descripcionPersonal;
 	}
 	public List<Aficion> getAficiones() {
 		return aficiones;
-	}
-	public String getPrivacidadPerfil() {
-		return privacidadPerfil;
-	}
-	public void setPrivacidadPerfil(String privacidadPerfil) {
-		this.privacidadPerfil = privacidadPerfil;
-	}
-	public String getRango() {
-		return rango;
-	}
-	public void setRango(String rango) {
-		this.rango = rango;
 	}
 	public void setAficiones(List<Aficion> aficiones) {
 		this.aficiones = aficiones;
@@ -152,4 +127,6 @@ public class Usuario implements Serializable {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+
 }

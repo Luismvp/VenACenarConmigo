@@ -65,11 +65,6 @@ form{
 				type="text" name="codigoPostal" class="form-control"
 				id="codigoPostal" placeholder="introduce tu código postal">
 		</div>
-		<div class="form-group" id="email-group">
-			<label for="email">Email</label> <br> <input type="email"
-				name="email" class="form-control" id="email"
-				placeholder="introduce tu email">
-		</div>
 		<div class="form-group" id="profesion-group">
 			<label for="profesion">Profesión</label> <br> <input type="text"
 				name="profesion" class="form-control" id="profesion"

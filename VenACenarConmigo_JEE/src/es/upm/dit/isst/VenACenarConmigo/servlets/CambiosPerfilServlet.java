@@ -30,30 +30,28 @@ public class CambiosPerfilServlet extends HttpServlet{
 		String email = req.getParameter("email");
 		String profesion = req.getParameter("profesion");
 		String descripcion = req.getParameter("descripcion");
-		if(null!=nombre) {
+		if(!nombre.isEmpty()) {
 			usuario.setNombre(nombre);
 		}
-		if(null!=apellidos) {
+		if(!apellidos.isEmpty()) {
 			usuario.setApellidos(apellidos);
 		}
-		if(null!=nacimiento) {
+		if(!nacimiento.isEmpty()) {
 			usuario.setNacimiento(nacimiento);
-		}else if(null!=telefono) {
+		}
+		if(!telefono.isEmpty()) {
 			usuario.setTelefono(telefono);
 		}
-		if(null!=ciudad) {	
+		if(!ciudad.isEmpty()) {	
 			usuario.setCiudad(ciudad);
 		}
-		if(null!=codigoPostal) {
+		if(!codigoPostal.isEmpty()) {
 			usuario.setCodigoPostal(codigoPostal);
 		}
-		if(null!=email) {
-			usuario.setEmail(email);
-		}
-		if(null!=profesion) {
+		if(!profesion.isEmpty()) {
 			usuario.setProfesion(profesion);
 		}
-		if(null!=descripcion) {
+		if(!descripcion.isEmpty()) {
 			usuario.setDescripcion(descripcion);
 		}
 		req.getSession().setAttribute("usuario", usuario);

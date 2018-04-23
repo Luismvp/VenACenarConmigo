@@ -10,84 +10,55 @@ import javax.persistence.ManyToMany;
 public class AsistenciaConvite implements Serializable {
 	//ToDo:Revisar relaciones
 	@Id
-	private int iDAsistencia;
-	@ManyToMany
-	private List<Usuario> usuarioAsistente;
-	private Convite convite;
-	private Usuario anfitrion;
-	private String invitacionInscripcion;
+	private int idAsistente;
+	private String emailAnfitrion;
+	private int idConvite;
+	private String emailUsuarioAsistente;
+	private int invitacionInscripcion;
 	private Boolean confirmado;
-	/**
-	 * @return the iDAsistencia
-	 */
-	public int getiDAsistencia() {
-		return iDAsistencia;
+	private int numeroInvitado;
+	
+	
+	public int getIdAsistente() {
+		return idAsistente;
 	}
-	/**
-	 * @param iDAsistencia the iDAsistencia to set
-	 */
-	public void setiDAsistencia(int iDAsistencia) {
-		this.iDAsistencia = iDAsistencia;
+	public void setIdAsistente(int idAsistente) {
+		this.idAsistente = idAsistente;
 	}
-	/**
-	 * @return the usuarioAsistente
-	 */
-	public List<Usuario> getUsuarioAsistente() {
-		return usuarioAsistente;
+	public int getIdConvite() {
+		return idConvite;
 	}
-	/**
-	 * @param usuarioAsistente the usuarioAsistente to set
-	 */
-	public void setUsuarioAsistente(List<Usuario> usuarioAsistente) {
-		this.usuarioAsistente = usuarioAsistente;
+	public void setIdConvite(int idConvite) {
+		this.idConvite = idConvite;
 	}
-	/**
-	 * @return the convite
-	 */
-	public Convite getConvite() {
-		return convite;
+	public int getNumeroInvitado() {
+		return numeroInvitado;
 	}
-	/**
-	 * @param convite the convite to set
-	 */
-	public void setConvite(Convite convite) {
-		this.convite = convite;
+	public void setNumeroInvitado(int numeroInvitado) {
+		this.numeroInvitado = numeroInvitado;
 	}
-	/**
-	 * @return the anfitrion
-	 */
-	public Usuario getAnfitrion() {
-		return anfitrion;
+	public String getEmailAnfitrion() {
+		return emailAnfitrion;
 	}
-	/**
-	 * @param anfitrion the anfitrion to set
-	 */
-	public void setAnfitrion(Usuario anfitrion) {
-		this.anfitrion = anfitrion;
+	public void setEmailAnfitrion(String emailAnfitrion) {
+		this.emailAnfitrion = emailAnfitrion;
 	}
-	/**
-	 * @return the invitacionInscripcion
-	 */
-	public String getInvitacionInscripcion() {
+	public String getEmailUsuarioAsistente() {
+		return emailUsuarioAsistente;
+	}
+	public void setEmailUsuarioAsistente(String emailUsuarioAsistente) {
+		this.emailUsuarioAsistente = emailUsuarioAsistente;
+	}
+	public int getInvitacionInscripcion() {
 		return invitacionInscripcion;
 	}
-	/**
-	 * @param invitacionInscripcion the invitacionInscripcion to set
-	 */
-	public void setInvitacionInscripcion(String invitacionInscripcion) {
+	public void setInvitacionInscripcion(int invitacionInscripcion) {
 		this.invitacionInscripcion = invitacionInscripcion;
 	}
-	/**
-	 * @return the confirmado
-	 */
 	public Boolean getConfirmado() {
 		return confirmado;
 	}
-	/**
-	 * @param confirmado the confirmado to set
-	 */
 	public void setConfirmado(Boolean confirmado) {
 		this.confirmado = confirmado;
 	}
-	
 }

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
+import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 
 @WebServlet("/NuevoConviteServlet")
 public class NuevoConviteServlet extends HttpServlet{
@@ -21,38 +21,43 @@ public class NuevoConviteServlet extends HttpServlet{
 		String horaFin = req.getParameter("horaFin");
 		if (req.getParameter("restaurante") != null) {
 			String restaurante = req.getParameter("restaurante");
-		} else {
-			String restaurante = "";
-		}
+		} 
+		String restaurante = "no aplica";	
 		String menu = req.getParameter("menu");
 		String temas = req.getParameter("temas");
-		String numInvitados = req.getParameter("numInvitados");
-		String precioInvitado = req.getParameter("precioInvitado");
-		String descripcion = req.getParameter("descripcion");
+		String numInvitados = (String) req.getParameter("numInvitados");
+		String precioInvitado = (String)req.getParameter("precioInvitado");
 		String ciudad = req.getParameter("ciudad");
-		String distrito = req.getParameter("distrito");
-		
-		String emailAnfitrion = req.getParameter("emailAnfitrion");
-		Usuario anfitrion = UsuarioDAOImplementation.getInstance().readUsuario(emailAnfitrion);
-	    /*
-		Convite convite = new Convite();
+		String area = req.getParameter("area");	
+		String emailAnfitrion = (String) req.getSession().getAttribute("email");
+	    int numInvitados2=1;
+		for(int i=1;i<=15;i++){
+	    	String j = i+"";
+	    	if(numInvitados.equals(j)) {
+	    		numInvitados2= Integer.parseInt(j);
+	    	}
+	    }
+		int IdConvite = ConviteDAOImplementation.getInstance().readAllConvite().size()+1;
+	    Convite convite = new Convite();
+	    convite.setIdConvite(IdConvite);
 	    convite.setNombre(nombre);
 	    convite.setFecha(fecha);
-	    convite.setHoraInicio(horaInicio);
+	    convite.setHoraComienzo(horaComienzo);
 	    convite.setHoraFin(horaFin);
 	    convite.setRestaurante(restaurante);
 	    convite.setMenu(menu);
-	    convite.setTemas(temas);
-	    convite.setNumInvitados(numInvitados);
-	    convite.setPrecioInvitados(precioInvitado);
-	    convite.setDescripcion(descripcion);
+	    convite.setTemasConversacion(temas);
+	    convite.setMaxInvitados(numInvitados2);
+	    convite.setPrecioInvitado(precioInvitado);
 	    convite.setCiudad(ciudad);
-	    convite.setDistrito(distrito);
-	    convite.setAnfitrion(anfitrion);
+	    convite.setArea(area);
+	    convite.setEmailAnfitrion(emailAnfitrion);
 	    
 	    ConviteDAOImplementation.getInstance().createConvite(convite);
-	    
-	    resp.sendRedirect(req.getContextPath() + "/Perfil.jsp"); */
+	    req.getSession().setAttribute("convite", convite);
+	    req.getSession().setAttribute("idConvite", IdConvite);
+	    req.getSession().setAttribute("emailAnfitrion", emailAnfitrion);
+	    resp.sendRedirect(req.getContextPath() + "/Invitados.jsp");
 	}
 	
 
