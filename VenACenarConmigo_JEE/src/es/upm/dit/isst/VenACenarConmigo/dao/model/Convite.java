@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 public class Convite implements Serializable{
 	@Id
 	private Integer iDConvite;
-        private String emailAnfitrion;
+    private String emailAnfitrion;
 	private String nombre;
 	private String fecha;
 	private String horaComienzo;

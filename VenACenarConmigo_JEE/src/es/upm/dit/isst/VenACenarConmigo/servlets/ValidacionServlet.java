@@ -28,7 +28,7 @@ public class ValidacionServlet extends HttpServlet {
 			UsuarioDAOImplementation.getInstance().updateUsuario(usuario);
 			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
 		} else {
-			req.getSession().setAttribute("error", "La contraseña introducida no coincide con la del 
+			req.getSession().setAttribute("error", "La contraseña introducida no coincide con la del usuario");
 			resp.sendRedirect(req.getContextPath() + "/ValidarCuenta.jsp");
 		}
 	}	

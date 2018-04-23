@@ -51,9 +51,6 @@ public class RegistroServlet extends HttpServlet {
 			usuario.setPrivacidad1(privacidad);
 			usuario.setPrivacidad2(privacidad);
 			usuario.setPrivacidad3(privacidad);
-			usuario.setPrivacidad1(privacidad1);
-			usuario.setPrivacidad2(privacidad1);
-			usuario.setPrivacidad3(privacidad1);
 			UsuarioDAOImplementation.getInstance().createUsuario(usuario);
 			resp.sendRedirect(req.getContextPath() + "/Validacion.jsp");
 		} else {

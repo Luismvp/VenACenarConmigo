@@ -90,7 +90,7 @@ public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO{
 		return asistenciaConvite;
 	}
 
-	public AsistenciaConvite readAsistenciaConvite(int id) {
+	public AsistenciaConvite readAsistenciaConvite(Integer id) {
 		// TODO Auto-generated method stub
 		AsistenciaConvite asistenciaConvite = null;
 		Session session = SessionFactoryService.get().openSession();

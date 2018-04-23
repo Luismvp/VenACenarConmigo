@@ -23,7 +23,6 @@ public class Usuario implements Serializable {
 	private String profesion;
 	private String descripcion;
 	private Boolean validado;
-<<<<<<< HEAD
 	private Integer privacidad1;
 	private Integer privacidad2;
 	private Integer privacidad3;
@@ -130,5 +129,4 @@ public class Usuario implements Serializable {
 		this.ciudad = ciudad;
 	}
 	
-
 }
