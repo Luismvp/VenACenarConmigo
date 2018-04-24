@@ -18,6 +18,7 @@
 body {
 	padding-left: 100px;
 	padding-right: 100px;
+	margin-top:70px;
 }
 
 a {
@@ -27,27 +28,24 @@ a {
 label {
 	text-align: left;
 }
-.convite{
-	margin-top:70px;
-	text-align:center;
-}
+
 </style>
 </head>
 <body>
 <%@include file="templates/navBarLoged.jsp" %>
-	<div class="convite">
+	<div>
 		<h2>${convite.nombre}</h2>
-		<h4>${convite.fecha}</h4>
-		<h4>${convite.horaComienzo}</h4>
-		<h4>${convite.horaFin}</h4>
-		<h4>${convite.restaurante}</h4>
-		<h4>${convite.menu}</h4>
-		<h4>${convite.maxInvitados}</h4>
-		<h4>${convite.precioInvitado}</h4>
-		<h4>${convite.temasConversacion}</h4>
-		<h4>${convite.ciudad}</h4>
-		<h4>${convite.area}</h4>
-		<h4>${convite.descripcion}</h4>
+		<h4>Fecha: ${convite.fecha}</h4>
+		<h4>Hora de comienzo: ${convite.horaComienzo}</h4>
+		<h4>Hora de finalización: ${convite.horaFin}</h4>
+		<h4>Restaurante (si procede): ${convite.restaurante}</h4>
+		<h4>Menú propuesto: ${convite.menu}</h4>
+		<h4>Número máximo de invitados: ${convite.maxInvitados}</h4>
+		<h4>Precio por invitado: ${convite.precioInvitado}</h4>
+		<h4>Temas de conversación propuestos: ${convite.temasConversacion}</h4>
+		<h4>Ciudad: ${convite.ciudad}</h4>
+		<h4>Área: ${convite.area}</h4>
+		<h4>Descripción: ${convite.descripcion}</h4>
 		<h2>Asistentes</h2>
 		<c:forEach items="${lista_invitados}" var="asistentei">
 				<h4>${asistentei.emailUsuarioAsistente}</h4>

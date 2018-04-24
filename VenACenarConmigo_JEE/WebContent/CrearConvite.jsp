@@ -82,7 +82,7 @@
         <div class="form-group" id="descripcion-group">
             <label for="descripcion">Descripción de la temática del convite:</label>
             <br>
-            <textarea cols="152" rows="7" placeholder="Introduce una descripción de la temática del convite" id="temas" name="temas"></textarea>
+            <textarea cols="152" rows="7" placeholder="Introduce una descripción de la temática del convite" id="descripcion" name="descripcion"></textarea>
         </div>
         <div class="form-group" id="ciudad-group">
             <label for="ciudad">Ciudad:</label>
