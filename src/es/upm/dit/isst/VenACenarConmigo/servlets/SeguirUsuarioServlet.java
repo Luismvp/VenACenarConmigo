@@ -44,8 +44,10 @@ public class SeguirUsuarioServlet extends HttpServlet {
 			accion.setSeguimientoBloqueoDenuncia(seguimientoBloqueoDenuncia);
 			AccionUsuarioDAOImplementation.getInstance().createAccionUsuario(accion);
 		}
+		
 		Boolean enBusqueda = Boolean.parseBoolean(req.getParameter("enBusqueda"));
-		if (enBusqueda) {
+		Boolean enConvite = Boolean.parseBoolean(req.getParameter("enConvite"));
+		if (enBusqueda || enConvite) {
 			int index = Integer.parseInt(req.getParameter("index"));
 			List<Integer> botones = (List<Integer>) req.getSession().getAttribute("botones");
 			List<Integer> privacidades = (List<Integer>) req.getSession().getAttribute("privacidades");
@@ -63,9 +65,15 @@ public class SeguirUsuarioServlet extends HttpServlet {
 			
 			req.getSession().setAttribute("relaciones", relaciones);
 			req.getSession().setAttribute("botones", botones);
-			resp.sendRedirect(req.getContextPath() + "/BuscarUsuario.jsp");
+			if (enBusqueda) {
+				resp.sendRedirect(req.getContextPath() + "/BuscarUsuario.jsp");
+			} else if (enConvite) {
+				resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
+			}
+			
 		} else {
-			req.getSession().setAttribute("accion", accion);
+			int relacion = 2;
+			req.getSession().setAttribute("relacion", relacion);
 			resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 		}
 	}

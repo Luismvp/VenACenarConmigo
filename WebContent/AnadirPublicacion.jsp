@@ -43,7 +43,7 @@ label {
 					class="form-control" id="comentario" autocomplete="off"
 					placeholder="Introduce un comentario" cols="100" rows="8" required></textarea>
 			</div>
-			<br> <br>
+			<br>
 			<button type="submit" class="btn btn-success">Enviar</button>
 		</form>
 	</div>

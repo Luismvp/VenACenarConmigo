@@ -34,7 +34,6 @@ public class DenunciarUsuarioServlet extends HttpServlet {
 		accion.setComentario(comentario);
 		AccionUsuarioDAOImplementation.getInstance().createAccionUsuario(accion);
 		
-		req.getSession().setAttribute("accion", accion);
 		resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 	}
 }

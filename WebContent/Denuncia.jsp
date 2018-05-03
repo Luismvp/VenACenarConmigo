@@ -9,7 +9,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Nuevo convite</title>
+    <title>Denuncia</title>
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -19,10 +19,6 @@
         }
         a{
             color: whitesmoke;
-        }
-        #Registro{
-            margin-top: 70px;
-            text-align: center;
         }
         label{
             text-align: left;
@@ -35,14 +31,13 @@
 </head>
 <body>
 <%@include file="templates/navBarLoged.jsp" %>
-<form id="loginForm" action="DenunciarUsuarioServlet">
+<form id="denunciaForm" action="DenunciarUsuarioServlet">
         <div class="form-group" id="descripcion-group">
             <label for="comentario">Motivo de la denuncia:</label>
             <br>
-            <textarea cols="152" rows="7" placeholder="Explique el motivo de su denuncia" id="comentario" name="comentario"></textarea>
+            <textarea cols="122" rows="7" placeholder="Explique el motivo de su denuncia" id="comentario" name="comentario"></textarea>
         </div>
         <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
-        </fieldset>
-    </form>
+</form>
 </body>
 </html>

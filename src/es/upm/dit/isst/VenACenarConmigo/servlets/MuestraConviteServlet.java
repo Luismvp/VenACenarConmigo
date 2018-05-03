@@ -11,14 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.VenACenarConmigo.dao.AccionUsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ComentarioConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.ValoracionDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.ComentarioConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Valoracion;
 
 @WebServlet("/MuestraConviteServlet")
 
@@ -101,7 +105,96 @@ public class MuestraConviteServlet extends HttpServlet {
 				}
 			}
 		}
+		boolean haValorado = false;
+		List<Valoracion> valoraciones = ValoracionDAOImplementation.getInstance().readAllValoracion();
+		for(Valoracion v:valoraciones) {
+			if(v.getUsuarioValorador().equals(email) && v.getConvite() == idConvite) {
+				haValorado = true;
+			}
+		}
+		Usuario anfitrion = UsuarioDAOImplementation.getInstance().readUsuario(convite.getEmailAnfitrion());
+		String nombre_anfitrion = anfitrion.getNombre();
+		nombre_anfitrion += " "+anfitrion.getApellidos();
 		
+		List<AccionUsuario> accionesUsuarios = AccionUsuarioDAOImplementation.getInstance().readAllAccionUsuario();
+		// 0=soyYo 1=ninguna, 2=sigoAlAnfitrion 3=nosSeguimos (4=meSigue) 5=meBloqueó
+		List<Integer> relaciones = new ArrayList<>();
+		for (int i = 0; i < asistentes2.size(); i++) {
+			relaciones.add(1);
+		}
+		List<Integer> privacidades = new ArrayList<>();
+		for (int i = 0; i < asistentes2.size(); i++) {
+			privacidades.add(1);
+		}
+		// 0=Ninguno 1=Ver perfil, 2=Seguir, 3=Dejar de seguir
+		List<Integer> botones = new ArrayList<>();
+		for (int i = 0; i < asistentes2.size(); i++) {
+			botones.add(1);
+		}
+		for (int i = 0; i < asistentes2.size(); i++) {
+			String emailAjeno = asistentes2.get(i).getEmailUsuarioAsistente();
+			if(email.equals(emailAjeno)) {
+				privacidades.set(i, 1);
+				relaciones.set(i, 0);
+				continue;
+			} else {
+				Usuario usuarioAjeno = UsuarioDAOImplementation.getInstance().readUsuario(emailAjeno);
+				privacidades.set(i, usuarioAjeno.getPrivacidad1());
+			}
+			
+			// Compruebo la relacion del usuario con el usuario que busca (1, 2 o 3)
+			for (int j = 0; j < accionesUsuarios.size(); j++) {
+			    if (accionesUsuarios.get(j).getUsuarioEmisor().equals(emailAjeno) &&
+					accionesUsuarios.get(j).getUsuarioReceptor().equals(email) &&
+					accionesUsuarios.get(j).getSeguimientoBloqueoDenuncia() == 2) {
+			    	relaciones.set(i, 5);
+					break;
+			    } else if (accionesUsuarios.get(j).getUsuarioEmisor().equals(email) &&
+					accionesUsuarios.get(j).getUsuarioReceptor().equals(emailAjeno) &&
+					accionesUsuarios.get(j).getSeguimientoBloqueoDenuncia() == 1) {
+					// Si también me sigue
+					if (relaciones.get(i) == 4) {
+						relaciones.set(i, 3);
+						break;
+					} else {
+						relaciones.set(i, 2);
+					}
+				} else if (accionesUsuarios.get(j).getUsuarioEmisor().equals(emailAjeno) &&
+						accionesUsuarios.get(j).getUsuarioReceptor().equals(email) &&
+						accionesUsuarios.get(j).getSeguimientoBloqueoDenuncia() == 1) {
+					if (relaciones.get(i) == 2) {
+						relaciones.set(i, 3);
+						break;
+					} else {
+						relaciones.set(i, 4);
+					}
+				} 
+			}
+		}
+		
+		for (int i = 0; i < asistentes2.size(); i++) {
+		    if (relaciones.get(i) == 0 || relaciones.get(i) == 5) {
+		    	botones.set(i, 0);
+		    } else if (privacidades.get(i) == 3 && relaciones.get(i) == 2) {
+		    	botones.set(i, 3);
+		    } else if (privacidades.get(i) == 3 && (relaciones.get(i) < 2 || relaciones.get(i) == 4)){
+		    	botones.set(i, 2);
+			} else if (privacidades.get(i) == 2 && (relaciones.get(i) < 2 || relaciones.get(i) == 4)) {
+				botones.set(i, 2);
+			}
+		}
+		
+		List<Integer> indexList = new ArrayList<>();
+		for (int i = 0; i < asistentes2.size(); i++) {
+			indexList.add(i);
+		}
+		
+		req.getSession().setAttribute("privacidades", privacidades);
+		req.getSession().setAttribute("relaciones", relaciones);
+		req.getSession().setAttribute("botones", botones);
+		req.getSession().setAttribute("indexList", indexList);
+		req.getSession().setAttribute("nombre_anfitrion", nombre_anfitrion);
+		req.getSession().setAttribute("haValorado", haValorado);
 		req.getSession().setAttribute("esAnfitrion", esAnfitrion);
 		req.getSession().setAttribute("esAsistenteConfirmado", esAsistenteConfirmado);
 		req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);

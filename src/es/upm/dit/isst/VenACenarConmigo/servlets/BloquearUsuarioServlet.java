@@ -43,7 +43,8 @@ public class BloquearUsuarioServlet extends HttpServlet {
 			accion.setSeguimientoBloqueoDenuncia(seguimientoBloqueoDenuncia);
 			AccionUsuarioDAOImplementation.getInstance().createAccionUsuario(accion);
 		}
-		req.getSession().setAttribute("accion", accion);
+		int relacion = 5;
+		req.getSession().setAttribute("relacion", relacion);
 		resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 	}
 }
