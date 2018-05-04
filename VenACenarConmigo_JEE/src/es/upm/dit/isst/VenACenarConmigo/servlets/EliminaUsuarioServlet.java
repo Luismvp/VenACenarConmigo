@@ -21,6 +21,6 @@ public class EliminaUsuarioServlet extends HttpServlet {
 		Usuario usuarioVacion = UsuarioDAOImplementation.getInstance().readUsuario("");
 		UsuarioDAOImplementation.getInstance().deleteUsuario(usuario);
 		UsuarioDAOImplementation.getInstance().deleteUsuario(usuarioVacion);
-		resp.sendRedirect(req.getContextPath()+"/borrarUsuarios.jsp");
+		resp.sendRedirect(req.getContextPath()+"/Login.jsp");
 	}
 }

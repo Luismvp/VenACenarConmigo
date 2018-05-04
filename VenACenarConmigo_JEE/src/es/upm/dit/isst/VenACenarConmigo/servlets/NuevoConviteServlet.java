@@ -19,10 +19,10 @@ public class NuevoConviteServlet extends HttpServlet{
 		String fecha = req.getParameter("fecha");
 		String horaComienzo = req.getParameter("horaComienzo");
 		String horaFin = req.getParameter("horaFin");
+		String restaurante = "No aplica";
 		if (req.getParameter("restaurante") != null) {
-			String restaurante = req.getParameter("restaurante");
-		} 
-		String restaurante = "no aplica";	
+			restaurante = req.getParameter("restaurante");
+		} 	
 		String menu = req.getParameter("menu");
 		String temas = req.getParameter("temas");
 		String numInvitados = (String) req.getParameter("numInvitados");

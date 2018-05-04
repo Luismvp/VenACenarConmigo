@@ -41,7 +41,7 @@ label {
 		<h4>Restaurante (si procede): ${convite.restaurante}</h4>
 		<h4>Menú propuesto: ${convite.menu}</h4>
 		<h4>Número máximo de invitados: ${convite.maxInvitados}</h4>
-		<h4>Precio por invitado: ${convite.precioInvitado}</h4>
+		<h4>Precio por invitado: ${convite.precioInvitado} €</h4>
 		<h4>Temas de conversación propuestos: ${convite.temasConversacion}</h4>
 		<h4>Ciudad: ${convite.ciudad}</h4>
 		<h4>Área: ${convite.area}</h4>

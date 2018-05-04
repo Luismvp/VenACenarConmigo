@@ -73,13 +73,12 @@ public class InvitadosServlet extends HttpServlet{
 			dao.createAsistenciaConvite(asistente);
 		}
 		if(!emailInvitados[3].isEmpty()) {
-			idAsistente = + 1;
+			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv4);
 			asistente.setInvitacionInscripcion(1);
-			asistente.setIdConvite(idConvite);
 			asistente.setNumeroInvitado(4);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);

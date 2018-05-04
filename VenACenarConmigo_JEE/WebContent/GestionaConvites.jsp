@@ -30,12 +30,16 @@
 </head>
 <body>
 <%@include file="templates/navBarLoged.jsp" %>
+<c:if test="${empty convites_anfitrion}">
+		<h2>No tienes convites creados en este momento</h2>
+	</c:if>
 <c:forEach items="${convites_anfitrion}" var="convitei">
         <div>
 		<h2>${convitei.nombre}</h2>
 		<h4>Fecha: ${convitei.fecha}</h4>
 		<h4>Ciudad: ${convitei.ciudad}</h4>
 		<h4>Área: ${convitei.area}</h4>
+		<h4>Precio por invitado: ${convitei.precioInvitado} €</h4>
 		<h4>Descripción: ${convitei.descripcion}</h4>
 	    </div>
 	    <form action="MuestraConviteServlet">
