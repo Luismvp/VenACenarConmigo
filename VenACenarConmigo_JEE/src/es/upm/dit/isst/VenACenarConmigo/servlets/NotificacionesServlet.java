@@ -15,23 +15,58 @@ import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 
-
 @WebServlet("/NotificacionesServlet")
 
 public class NotificacionesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = (String) req.getSession().getAttribute("email");
-		List<AsistenciaConvite> notificaciones = AsistenciaConviteDAOImplementation.getInstance().readNotificacionesAsistenciaConvite(email);
-		req.getSession().setAttribute("lista_notificaciones", notificaciones);
-		List<Convite> convites = new ArrayList();
-		for (int i=0;i<notificaciones.size();i++) {
-		
-			convites.add((Convite)ConviteDAOImplementation.getInstance().readConvite(notificaciones.get(i).getIdConvite()));
+		List<AsistenciaConvite> asistenciaConvite = AsistenciaConviteDAOImplementation.getInstance()
+				.readAllAsistenciaConvite();
+		List<AsistenciaConvite> asistenciaConvite2 = new ArrayList<>();
+		List<AsistenciaConvite> asistenciaConvite3 = new ArrayList<>();
+		for (int i = 0; i < asistenciaConvite.size(); i++) {
+			if (asistenciaConvite.get(i).getInvitacionInscripcion() == 1
+					&& asistenciaConvite.get(i).getConfirmado() == false
+					&& asistenciaConvite.get(i).getEmailUsuarioAsistente().equals(email)) {
+				asistenciaConvite2.add(asistenciaConvite.get(i));
+			}
 		}
-		req.getSession().setAttribute("numero_notificaciones", AsistenciaConviteDAOImplementation.getInstance().readNotificacionesAsistenciaConvite(email).size());
-		req.getSession().setAttribute("Lista_convites", convites);
+		if (null != req.getSession().getAttribute("lista_notificaciones")) {
+			req.getSession().setAttribute("lista_notificaciones", asistenciaConvite2);
+		} else {
+			req.getSession().removeAttribute("lista_notificaciones");
+			req.getSession().setAttribute("lista_notificaciones", asistenciaConvite2);
+		}
+		List<Convite> convites = new ArrayList();
+		List<Convite> convitesConfirmados = new ArrayList();
+		if (!asistenciaConvite2.isEmpty()) {
+			for (int i = 0; i < asistenciaConvite2.size(); i++) {
+
+				convites.add((Convite) ConviteDAOImplementation.getInstance()
+						.readConvite(asistenciaConvite2.get(i).getIdConvite()));
+			}
+		}
+		for (int i = 0; i < asistenciaConvite.size(); i++) {
+			if (asistenciaConvite.get(i).getInvitacionInscripcion() == 1
+					&& asistenciaConvite.get(i).getConfirmado() == true
+					&& asistenciaConvite.get(i).getEmailUsuarioAsistente().equals(email)) {
+				asistenciaConvite3.add(asistenciaConvite.get(i));
+			}
+		}
+		if (!asistenciaConvite3.isEmpty()) {
+			for (int i = 0; i < asistenciaConvite3.size(); i++) {
+
+				convitesConfirmados.add((Convite) ConviteDAOImplementation.getInstance()
+						.readConvite(asistenciaConvite3.get(i).getIdConvite()));
+			}
+		}
+		if (!convites.isEmpty()) {
+			req.getSession().setAttribute("Lista_convites", convites);
+		}
+		if (!convitesConfirmados.isEmpty()) {
+			req.getSession().setAttribute("convitesConfirmados", convitesConfirmados);
+		}
 		resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
-		
-		
+
 	}
 }

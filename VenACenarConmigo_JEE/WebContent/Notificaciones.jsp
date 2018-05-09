@@ -39,7 +39,7 @@
 <c:forEach items="${Lista_convites}" var="convitei">
 	<div class="notificacion">
         <h3>${convitei.nombre}</h3>
-        <h4>${convitei.fecha}</h4>
+        <h3>${convitei.fecha}</h3>
         <p>${convitei.temasConversacion }</p>
         <p>${convitei.restaurante }</p>
         <p>${convitei.menu}</p>
@@ -49,15 +49,20 @@
         <p>Ciudad: ${convitei.ciudad }</p>
         <p>Area: ${convitei.area}</p>
         <form action="AceptaInvitacionServlet">
-        <input type="text" value="${convitei.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
         <button type="submit" class="btn btn-success" id="btnSubmit" >Aceptar invitación</button>
-        </form>
-        <form action="AceptaInvitacionServlet">
+        <br>
         <input type="text" value="${convitei.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
+        </form>
+        <form action="RechazaInvitacionServlet">
         <button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar invitación</button>
+        <br>
+        <input type="text" value="${convitei.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
         </form>
     </div>
     <br>
+</c:forEach>
+<c:forEach items="${convitesConfirmados}" var="convitec">
+	<h3>Has confirmado tu asistencia al evento ${convitec.nombre} </h3>
 </c:forEach>
 </div>
 </body>

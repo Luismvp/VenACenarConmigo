@@ -27,31 +27,66 @@ a {
 label {
 	text-align: left;
 }
-.convite{
-	margin-top:70px;
-	text-align:center;
+
+.convite {
+	margin-top: 70px;
+}
+
+.infoconvite {
+	float: left;
+	max-width: 250px;
+}
+
+.invitados {
+	margin-left: 300px;
+	max-width: 300px;
 }
 </style>
 </head>
 <body>
-<%@include file="templates/navBarLoged.jsp" %>
+	<%@include file="templates/navBarLoged.jsp"%>
 	<div class="convite">
-		<h2>${convite.nombre}</h2>
-		<h4>${convite.fecha}</h4>
-		<h4>${convite.horaComienzo}</h4>
-		<h4>${convite.horaFin}</h4>
-		<h4>${convite.restaurante}</h4>
-		<h4>${convite.menu}</h4>
-		<h4>${convite.maxInvitados}</h4>
-		<h4>${convite.precioInvitado}</h4>
-		<h4>${convite.temasConversacion}</h4>
-		<h4>${convite.ciudad}</h4>
-		<h4>${convite.area}</h4>
-		<h2>Asistentes</h2>
-		<c:forEach items="${lista_invitados}" var="asistentei">
-				<h4>${asistentei.emailUsuarioAsistente}</h4>
-		</c:forEach>
-	</div>
+		<div class="infoconvite">
+			<h3>${convite.nombre}</h3>
+			<h3>${convite.fecha}</h3>
+			<h3>${convite.horaComienzo}</h3>
+			<h3>${convite.horaFin}</h3>
+			<h4>${convite.restaurante}</h4>
+			<h4>${convite.menu}</h4>
+			<h4>${convite.maxInvitados}</h4>
+			<h4>${convite.precioInvitado}</h4>
+			<h4>${convite.temasConversacion}</h4>
+			<h4>${convite.ciudad}</h4>
+			<h4>${convite.area}</h4>
+		</div>
+		<div class="invitados">
 
+			<h3 style="text-align: center;">Asistentes</h3>
+			<c:forEach items="${lista_invitados}" var="asistentei">
+				<h4>${asistentei.emailUsuarioAsistente}</h4>
+				<h4>
+					Estado:
+					<c:if test="${asistentei.confirmado == true }">confirmado</c:if>
+					<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
+				</h4>
+				<form action="RechazaInvitacionServlet">
+					<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
+						invitación</button>
+					<br> <input type="text" value="${convitei.idConvite}"
+						name="idConvite" id="idConvite" style="visibility: hidden;">
+
+				</form>
+			</c:forEach>
+			<br>
+			<c:if test="${null!=conviteFin && conviteFin== 1}">
+				<form action="">
+					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar Convite</button>
+					<br> <input type="text" value="${convitei.idConvite}"
+						name="idConvite" id="idConvite" style="visibility: hidden;">
+
+				</form>
+			</c:if>
+		</div>
+	</div>
 </body>
 </html>
