@@ -26,6 +26,7 @@
     label{
             text-align: left;
     }
+
 </style>
 </head>
 <body>
@@ -44,7 +45,7 @@
 	    </div>
 	    <form action="MuestraConviteServlet">
 	    	<input type="hidden" value="${convitei.idConvite}" name="idConvite">
-        	<button>Ver detalles</button>
+        	<button type="submit" class="btn btn-success" id="btnSubmit">Ver detalles</button>
         </form>
     </c:forEach>
 </body>

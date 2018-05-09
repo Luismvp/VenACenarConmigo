@@ -29,28 +29,68 @@ label {
 	text-align: left;
 }
 
+.convite {
+	margin-top: 70px;
+}
+
+.infoconvite {
+	float: left;
+	max-width: 500px;
+}
+
+.invitados {
+	margin-left: 600px;
+	max-width: 300px;
+}
+
 </style>
 </head>
 <body>
 <%@include file="templates/navBarLoged.jsp" %>
-	<div>
-		<h2>${convite.nombre}</h2>
-		<h4>Fecha: ${convite.fecha}</h4>
-		<h4>Hora de comienzo: ${convite.horaComienzo}</h4>
-		<h4>Hora de finalización: ${convite.horaFin}</h4>
-		<h4>Restaurante (si procede): ${convite.restaurante}</h4>
-		<h4>Menú propuesto: ${convite.menu}</h4>
-		<h4>Número máximo de invitados: ${convite.maxInvitados}</h4>
-		<h4>Precio por invitado: ${convite.precioInvitado} €</h4>
-		<h4>Temas de conversación propuestos: ${convite.temasConversacion}</h4>
-		<h4>Ciudad: ${convite.ciudad}</h4>
-		<h4>Área: ${convite.area}</h4>
-		<h4>Descripción: ${convite.descripcion}</h4>
-		<h2>Asistentes</h2>
-		<c:forEach items="${lista_invitados}" var="asistentei">
+	<div class="convite">
+		<h1 align="center">${convite.nombre}</h1>
+		<div class="infoconvite">
+			<h2>Datos del convite</h2>
+			<h4>Fecha: ${convite.fecha}</h4>
+			<h4>Hora de comienzo: ${convite.horaComienzo}</h4>
+			<h4>Hora de finalización: ${convite.horaFin}</h4>
+			<h4>Restaurante (si procede): ${convite.restaurante}</h4>
+			<h4>Menú propuesto: ${convite.menu}</h4>
+			<h4>Número máximo de invitados: ${convite.maxInvitados}</h4>
+			<h4>Precio por invitado: ${convite.precioInvitado} €</h4>
+			<h4>Ciudad: ${convite.ciudad}</h4>
+			<h4>Área: ${convite.area}</h4>
+			<h4>Descripción: ${convite.descripcion}</h4>
+		</div>
+		<div class="invitados">
+			<h2>Asistentes</h2>
+			<c:forEach items="${lista_invitados}" var="asistentei">
 				<h4>${asistentei.emailUsuarioAsistente}</h4>
-		</c:forEach>
-	</div>
+				<h4>
+					Estado:
+					<c:if test="${asistentei.confirmado == true }">Confirmado</c:if>
+					<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
+				</h4>
+				<c:if test="${esAnfitrion}">
+					<form action="RechazaInvitacionServlet">
+						<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
+							invitación</button>
+						<br> <input type="text" value="${convitei.idConvite}"
+							name="idConvite" id="idConvite" style="visibility: hidden;">
+					</form>
+				</c:if>
+				<br>
+			</c:forEach>
+			<br>
+			<c:if test="${null!=conviteFin && conviteFin== 1}">
+				<form action="">
+					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar Convite</button>
+					<br> <input type="text" value="${convitei.idConvite}"
+						name="idConvite" id="idConvite" style="visibility: hidden;">
 
+				</form>
+			</c:if>
+		</div>
+	</div>
 </body>
 </html>

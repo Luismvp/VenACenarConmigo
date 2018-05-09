@@ -18,6 +18,27 @@ public class BuscarConviteServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = (String) req.getSession().getAttribute("email");
 		List<Convite> convites = ConviteDAOImplementation.getInstance().readAllConvite();
+		// 1=ninguna, 2=sigoAlAnfitrion 3=nosSeguimos
+		int[] relaciones = null;
+		int[] privacidades = null;
+		
+		/*for (int i = 0; i < convites.size(); i++) {
+			String emailAnfitrion = convites.get(i).getEmailAnfitrion();
+			// Compruebo la relacion del usuario con el anfitrion (1, 2 o 3)
+			// relaciones[i] = ...
+			Usuario anfitrion = UsuarioDAOImplementation.getInstance().readUsuario(emailAnfitrion);
+			privacidades[i] = anfitrion.getPrivacidad2();
+		}
+		
+		for (int i = 0; i < convites.size(); i++) {
+			if (privacidades[i] == 3 && relaciones[i] < 3) {
+				convites.remove(i);
+				i--;
+			} else if (privacidades[i] == 2 && relaciones[i] < 2) {
+				convites.remove(i);
+				i--;
+			}
+		}*/
 		int selectedOrder = 0;
 		int selectedFilter = 0;
 		req.getSession().setAttribute("selectedOrder", selectedOrder);

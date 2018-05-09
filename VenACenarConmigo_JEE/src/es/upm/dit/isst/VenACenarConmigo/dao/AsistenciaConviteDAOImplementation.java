@@ -39,30 +39,6 @@ public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO 
 		return asistenciaConvite;
 	}
 
-	@Override
-	public List<AsistenciaConvite> readNotificacionesAsistenciaConvite(String email) {
-		// TODO Auto-generated method stub
-		List<AsistenciaConvite> asistenciaConvite = new ArrayList<>();
-		List<AsistenciaConvite> asistenciaConvite2 = new ArrayList<>();
-		Session session = SessionFactoryService.get().openSession();
-		try {
-			session.beginTransaction();
-			asistenciaConvite.addAll(session.createQuery("from AsistenciaConvite").list());
-			for (int i = 0; i < asistenciaConvite.size(); i++) {
-				if (asistenciaConvite.get(i).getInvitacionInscripcion() == 1 && asistenciaConvite.get(i).getConfirmado() == false
-						&& asistenciaConvite.get(i).getEmailUsuarioAsistente() == email) {
-					asistenciaConvite2.add(asistenciaConvite.get(i));
-				}
-			}
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
-			session.close();
-		}
-		return asistenciaConvite2;
-	}
-
 	// Crear fila en la tabla AsistenciaConvite
 	@Override
 	public void createAsistenciaConvite(AsistenciaConvite asistenciaConvite) {
