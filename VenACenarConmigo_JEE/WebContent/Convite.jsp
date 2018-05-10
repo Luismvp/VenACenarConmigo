@@ -48,42 +48,53 @@ label {
 	<div class="convite">
 		<div class="infoconvite">
 			<h3>${convite.nombre}</h3>
-			<h3>${convite.fecha}</h3>
-			<h3>${convite.horaComienzo}</h3>
-			<h3>${convite.horaFin}</h3>
-			<h4>${convite.restaurante}</h4>
-			<h4>${convite.menu}</h4>
-			<h4>${convite.maxInvitados}</h4>
-			<h4>${convite.precioInvitado}</h4>
-			<h4>${convite.temasConversacion}</h4>
-			<h4>${convite.ciudad}</h4>
-			<h4>${convite.area}</h4>
+			<h4>Fecha:${convite.fecha}</h4>
+			<h4>Hora de comienzo:${convite.horaComienzo}</h4>
+			<h4>Hora de finalización:${convite.horaFin}</h4>
+			<h4>Restaurante:${convite.restaurante}</h4>
+			<h4>Menú:${convite.menu}</h4>
+			<h4>Número de invitados:${convite.maxInvitados}</h4>
+			<h4>Precio por invitado${convite.precioInvitado}€</h4>
+			<h4>Temas de conversación:${convite.temasConversacion}</h4>
+			<h4>Ciudad:${convite.ciudad}</h4>
+			<h4>Área:${convite.area}</h4>
 		</div>
 		<div class="invitados">
+			<c:if test="${null!=conviteFin && conviteFin== 0}">
+				<h3 style="text-align: center;">Asistentes</h3>
+				<c:forEach items="${lista_invitados}" var="asistentei">
+					<h4>${asistentei.emailUsuarioAsistente}</h4>
+					<h4>
+						Estado:
+						<c:if test="${asistentei.confirmado == true }">confirmado</c:if>
+						<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
+					</h4>
+					<form action="RechazaInvitacionServlet">
+						<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
+							invitación</button>
+						<br> <input type="text" value="${convite.idConvite}"
+							name="idConvite" id="idConvite${asistentei.idAsistente}" style="visibility: hidden;">
+							<input type="text" value="${asistentei.idAsistente}"
+							name="idAsistente" id="idAsistente${asistentei.idAsistente}" style="visibility: hidden;">
 
-			<h3 style="text-align: center;">Asistentes</h3>
-			<c:forEach items="${lista_invitados}" var="asistentei">
-				<h4>${asistentei.emailUsuarioAsistente}</h4>
-				<h4>
-					Estado:
-					<c:if test="${asistentei.confirmado == true }">confirmado</c:if>
-					<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
-				</h4>
-				<form action="RechazaInvitacionServlet">
-					<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
-						invitación</button>
-					<br> <input type="text" value="${convitei.idConvite}"
-						name="idConvite" id="idConvite" style="visibility: hidden;">
-
-				</form>
-			</c:forEach>
+					</form>
+				</c:forEach>
+			</c:if>
 			<br>
 			<c:if test="${null!=conviteFin && conviteFin== 1}">
+				<c:forEach items="${lista_invitados}" var="asistentei">
+					<h4>${asistentei.emailUsuarioAsistente}</h4>
+					<h4>
+						Estado:
+						<c:if test="${asistentei.confirmado == true }">confirmado</c:if>
+						<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
+					</h4>
+				</c:forEach>
 				<form action="">
-					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar Convite</button>
-					<br> <input type="text" value="${convitei.idConvite}"
+					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar
+						Convite</button>
+					<br> <input type="text" value="${convite.idConvite}"
 						name="idConvite" id="idConvite" style="visibility: hidden;">
-
 				</form>
 			</c:if>
 		</div>
