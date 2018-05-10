@@ -36,6 +36,7 @@
 <body>
 <%@include file="templates/navBarLoged.jsp" %>
 <div class="notificaciones">
+<input type="hidden" value="true" name="enNotificaciones" id="enNotificaciones">
 <c:forEach items="${Lista_convites}" var="convitei">
     <div class="notificacion">
         <h2>${convitei.nombre}</h2>
@@ -47,12 +48,12 @@
         <form action="AceptaInvitacionServlet">
         <button type="submit" class="btn btn-success" id="btnSubmit" >Aceptar invitación</button>
         <br>
-        <input type="text" value="${convitei.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
+        <input type="hidden" value="${convitei.idConvite}" name="idConvite" id="idConvite">
         </form>
         <form action="RechazaInvitacionServlet">
         <button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar invitación</button>
         <br>
-        <input type="text" value="${convitei.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
+        <input type="hidden" value="${convitei.idConvite}" name="idConvite" id="idConvite">
         </form>
     </div>
     <br>

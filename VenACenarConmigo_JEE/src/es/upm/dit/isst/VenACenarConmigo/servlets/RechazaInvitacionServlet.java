@@ -112,7 +112,23 @@ public class RechazaInvitacionServlet extends HttpServlet {
 		if (!convitesConfirmados.isEmpty()) {
 			req.getSession().setAttribute("convitesConfirmados", convitesConfirmados);
 		}
-		resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
+		boolean enNotificaciones = Boolean.getBoolean(req.getParameter("enNotificaciones"));
+		
+		if (enNotificaciones) {
+			resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
+		} else {
+			List<AsistenciaConvite> asistentes2 = new ArrayList();
+			for (int i = 0; i < asistenciaConvite.size(); i++) {
+				if (asistenciaConvite.get(i).getIdConvite() == idConvite) {
+					asistentes2.add(asistenciaConvite.get(i));
+				}
+			}
+			boolean esInvitadoPendiente = false;
+			req.getSession().setAttribute("lista_invitados", asistentes2);
+			req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
+			resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
+		}
+		
 
 	}
 }
