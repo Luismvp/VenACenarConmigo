@@ -67,11 +67,11 @@ a {
 				<a href="NuevaFoto.jsp" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Editar Foto</a>
 			</p>
-</form>
-			
+			</form>
+
 		</div>
 		<div id="nombre">
-			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
+			<h1>${usuario.nombre}${usuario.apellidos}</h1>
 			<br>
 			<p style="text-align: center">
 				<a href="CambiosPerfil.jsp" class="btn btn-success fontLobster"
@@ -93,45 +93,42 @@ a {
 		</div>
 	</div>
 	<div class="container" style="margin-top: 50px; margin-left: 100px">
-    <div id="userInfo">
-        <h3>${usuario.nombre }</h3>
-        <h3>${usuario.apellidos }</h3>
-        <h3>Nacid@ el ${usuario.nacimiento }</h3>
-        <h3>${usuario.email }</h3>
-        <h3>Teléfono móvil: ${usuario.telefono }</h3>
-        <h3>Ciudad: ${usuario.ciudad }</h3>
-        <h3>Ocupación: ${usuario.profesion}</h3>
-        <h3>Descripción personal:</h3>
-        <h4> ${usuario.descripcion}</h4>
-    </div>
-    <div id="publicaciones" style="margin-top: 15px">
-        <p style="text-align: center"><a href="" class="btn btn-success fontLobster" style="font-size: larger "  role="button">Añadir publicación</a></p>
-        <h3>Historial de publicaciones:</h3>
-            <div class="publicacion">
-                <div class="fotoPub">
-                    <img src="cubiertos_icono.png" height="150" width="150" style="margin-top: 20px; border: 2px groove #e7e5dd;">
-                </div>
-                <div class="descripPub">
-                    <p>Lorep ipsum dolor amet</p>
-                </div>
-            </div>
-            <div class="publicacion-next">
-                <div class="fotoPub">
-                    <img src="cubiertos_icono.png" height="150" width="150" style="margin-top: 20px; border: 2px groove #e7e5dd;">
-                </div>
-                <div class="descripPub">
-                    <p>Lorep ipsum dolor amet</p>
-                </div>
-            </div>
-            <div class="publicacion-next2">
-                <div class="fotoPub">
-                    <img src="cubiertos_icono.png" height="150" width="150" style="margin-top: 20px; border: 2px groove #e7e5dd;">
-                </div>
-                <div class="descripPub">
-                    <p>Lorep ipsum dolor amet</p>
-                </div>
-            </div>
-    </div>
-</div>
+		<div id="userInfo">
+			<h3>${usuario.nombre }</h3>
+			<h3>${usuario.apellidos }</h3>
+			<h3>Nacid@ el ${usuario.nacimiento }</h3>
+			<h3>${usuario.email }</h3>
+			<h3>Teléfono móvil: ${usuario.telefono }</h3>
+			<h3>Ciudad: ${usuario.ciudad }</h3>
+			<h3>Ocupación: ${usuario.profesion}</h3>
+			<h3>Descripción personal:</h3>
+			<h4>${usuario.descripcion}</h4>
+		</div>
+		<div id="publicaciones" style="margin-top: 15px">
+			<p style="text-align: center">
+				<a href="AnadirPublicacion.jsp" class="btn btn-success fontLobster"
+					style="font-size: larger" role="button">Añadir publicación</a>
+			</p>
+			<h3>Historial de publicaciones:</h3>
+			<table>
+				<c:forEach items="${lista_publicaciones_usuario}" var="publicacioni">
+					<tr>
+						<td>
+							<div class="publicacion">
+								<div class="fotoPub">
+									<img src="cubiertos_icono.png" height="150" width="150"
+										style="margin-top: 20px; border: 2px groove #e7e5dd;">
+								</div>
+								<div class="descripPub" height="150" width="150"
+									style="margin-left: 20px;">
+									<p>${publicacioni.texto}</p>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

@@ -19,5 +19,6 @@
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Convite" />
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite" />
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario" />
+		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones" />
 	</session-factory>
 </hibernate-configuration>

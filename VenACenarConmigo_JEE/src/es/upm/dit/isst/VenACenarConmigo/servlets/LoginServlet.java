@@ -1,6 +1,8 @@
 package es.upm.dit.isst.VenACenarConmigo.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.PublicacionesDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
 
@@ -24,16 +28,25 @@ public class LoginServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		Usuario usuario = UsuarioDAOImplementation.getInstance().loginUsuario(email, password);
+		List<Publicaciones> publicaciones = PublicacionesDAOImplementation.getInstance().readAllPublicaciones();
+        List<Publicaciones> publicacionesUsuario = new ArrayList<>();
+        for(int i = publicaciones.size()-1; i>= 0; i--) {
+        	if (publicaciones.get(i).getUsuario().getEmail() == usuario.getEmail()) {
+        		publicacionesUsuario.add(publicaciones.get(i));
+        	} 	
+        }
 		if (ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password) ) {
 			req.getSession().setAttribute("adminLogged", true);
 			req.getSession().setAttribute("usuario_list", UsuarioDAOImplementation.getInstance().readAllUsuarios());
 			req.getSession().setAttribute("convite_list", ConviteDAOImplementation.getInstance().readAllConvite());
 			req.getSession().setAttribute("asistente_list", AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite());
+			req.getSession().setAttribute("lista_publicaciones_usuario", publicacionesUsuario);
 			resp.sendRedirect(req.getContextPath() + "/ListaUsuarios.jsp");
 		} else if (null != usuario) {
 			req.getSession().setAttribute("usuario", usuario);
 			req.getSession().setAttribute("email", email);
 			req.getSession().setAttribute("numero_notificaciones", AsistenciaConviteDAOImplementation.getInstance().readNotificacionesAsistenciaConvite(email).size());
+			req.getSession().setAttribute("lista_publicaciones_usuario", publicacionesUsuario);
 			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
