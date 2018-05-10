@@ -20,12 +20,15 @@ a {
 
 #foto {
 	float: left;
+	min-width:260px;
 }
 
 #nombre {
 	float: left;
 	margin-left: 150px;
 	margin-top: 70px;
+	min-width:520px;
+	text-align:center;
 }
 
 #userInfo {
@@ -63,11 +66,11 @@ a {
 		<div id="foto">
 			<c:if test="${usuario.nombreFoto == null }">
 				<img src="cubiertos_icono.png"
-					style="margin-top: 30px; border: 2px groove #e7e5dd;">
+					style="margin-top: 30px; border: 2px groove #e7e5dd; width:260px; height:300px;">
 			</c:if>
 			<c:if test="${usuario.nombreFoto != null }">
 				<img src="images/${usuario.nombreFoto}"
-					style="margin-top: 60px; border: 2px groove #e7e5dd;">
+					style="margin-top: 60px; border: 2px groove #e7e5dd; width:260px; height:300px;">
 			</c:if>
 			<p style="text-align: center">
 				<a href="NuevaFoto.jsp" class="btn btn-success fontLobster"
@@ -77,7 +80,7 @@ a {
 
 		</div>
 		<div id="nombre">
-			<h1>${usuario.nombre}${usuario.apellidos}</h1>
+			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
 			<br>
 			<p style="text-align: center">
 				<a href="CambiosPerfil.jsp" class="btn btn-success fontLobster"

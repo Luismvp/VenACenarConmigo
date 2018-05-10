@@ -28,9 +28,11 @@ public class MuestraConviteServlet extends HttpServlet {
 				.readAllAsistenciaConvite();
 		List<AsistenciaConvite> asistentes2 = new ArrayList();
 		int conviteFin = 0;
+		int ultimoInvitado=0;
 		for (int i = 0; i < asistentes.size(); i++) {
 			if (asistentes.get(i).getIdConvite() == idConvite) {
 				asistentes2.add(asistentes.get(i));
+				ultimoInvitado=asistentes.get(i).getNumeroInvitado();
 			}
 		}
 		int numRestante = convite.getMaxInvitados() - asistentes2.size();
@@ -39,7 +41,7 @@ public class MuestraConviteServlet extends HttpServlet {
 		req.getSession().setAttribute("convite", convite);
 		req.getSession().setAttribute("lista_invitados", asistentes2);
 		req.getSession().setAttribute("numero_invitados", asistentes2.size());
-
+		req.getSession().setAttribute("ultimoInvitado", ultimoInvitado);
 		Calendar ahora = Calendar.getInstance();
 		log("" + ahora);
 		if (convite.getFechaYHoraFin().compareTo(ahora) < 0) {

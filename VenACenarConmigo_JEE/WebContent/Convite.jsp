@@ -73,14 +73,28 @@ label {
 						<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
 							invitación</button>
 						<br> <input type="text" value="${convite.idConvite}"
-							name="idConvite" id="idConvite${asistentei.idAsistente}" style="visibility: hidden;">
-							<input type="text" value="${asistentei.idAsistente}"
-							name="idAsistente" id="idAsistente${asistentei.idAsistente}" style="visibility: hidden;">
+							name="idConvite" id="idConvite${asistentei.idAsistente}"
+							style="visibility: hidden;"> <input type="text"
+							value="${asistentei.idAsistente}" name="idAsistente"
+							id="idAsistente${asistentei.idAsistente}"
+							style="visibility: hidden;">
 
 					</form>
 				</c:forEach>
+				<c:if test="${ultimoInvitado < convite.maxInvitados}">
+					<form action="AnadirInvitadoServlet">
+						<button class="btn btn-success" type="submit" id="btnSubmit2">
+							invitar mas gente</button>
+						<br> <input type="text" value="${convite.idConvite}"
+							name="idConvite" id="idConvite${asistentei.idAsistente}"
+							style="visibility: hidden;">
+					</form>
+				</c:if>
 			</c:if>
 			<br>
+
+
+
 			<c:if test="${null!=conviteFin && conviteFin== 1}">
 				<c:forEach items="${lista_invitados}" var="asistentei">
 					<h4>${asistentei.emailUsuarioAsistente}</h4>

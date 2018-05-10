@@ -29,6 +29,7 @@ public class FotoPerfilServlet extends HttpServlet {
 		Usuario usuario = UsuarioDAOImplementation.getInstance().readUsuario(email);
 		usuario.setNombreFoto(fileName);
 		UsuarioDAOImplementation.getInstance().updateUsuario(usuario);
+		req.getSession().setAttribute("usuario", usuario);
 		resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
 
 	}

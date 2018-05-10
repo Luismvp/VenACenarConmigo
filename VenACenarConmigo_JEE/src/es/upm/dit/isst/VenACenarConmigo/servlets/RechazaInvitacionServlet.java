@@ -114,23 +114,26 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			}
 			resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
 
-		}else {
+		} else {
 			int idAsistente = Integer.parseInt((String) req.getParameter("idAsistente"));
-			AsistenciaConvite retirarAsistente = AsistenciaConviteDAOImplementation.getInstance().readAsistenciaConvite(idAsistente);
+			AsistenciaConvite retirarAsistente = AsistenciaConviteDAOImplementation.getInstance()
+					.readAsistenciaConvite(idAsistente);
 			AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(retirarAsistente);
 			asistente = null;
 			asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
 			for (int i = 0; i < asistente.size(); i++) {
 				log("" + asistente.get(i).getIdAsistente());
-				if (asistente.get(i).getIdConvite() == idConvite
-						&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
-					log("" + asistente.get(i).getIdAsistente());
-					AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistente.get(i));
-					asistente.get(i).setIdAsistente(asistente.get(i).getIdAsistente() - 1);
-					asistente.get(i).setNumeroInvitado(asistente.get(i).getNumeroInvitado() - 1);
-					AsistenciaConviteDAOImplementation.getInstance().createAsistenciaConvite(asistente.get(i));
-					asistente.clear();
-					asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
+				if (i != 0) {
+					if (asistente.get(i).getIdConvite() == idConvite
+							&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
+						log("" + asistente.get(i).getIdAsistente());
+						AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistente.get(i));
+						asistente.get(i).setIdAsistente(asistente.get(i).getIdAsistente() - 1);
+						asistente.get(i).setNumeroInvitado(asistente.get(i).getNumeroInvitado() - 1);
+						AsistenciaConviteDAOImplementation.getInstance().createAsistenciaConvite(asistente.get(i));
+						asistente.clear();
+						asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
+					}
 				}
 			}
 			for (int i = 1; i < asistente.size(); i++) {
@@ -144,12 +147,15 @@ public class RechazaInvitacionServlet extends HttpServlet {
 					asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
 				}
 			}
+			int ultimoAsistente = 0;
 			List<AsistenciaConvite> asistente2 = new ArrayList<>();
-			for(int i=0;i<asistente.size();i++) {
-				if(idConvite == asistente.get(i).getIdConvite()) {
+			for (int i = 0; i < asistente.size(); i++) {
+				if (idConvite == asistente.get(i).getIdConvite()) {
 					asistente2.add(asistente.get(i));
+					ultimoAsistente = asistente.get(i).getNumeroInvitado();
 				}
 			}
+			req.getSession().setAttribute("ultimoInvitado", ultimoAsistente);
 			req.getSession().setAttribute("lista_invitados", null);
 			req.getSession().setAttribute("lista_invitados", asistente2);
 			resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
