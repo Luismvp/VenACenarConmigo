@@ -71,23 +71,52 @@ label {
 					<c:if test="${asistentei.confirmado == true }">Confirmado</c:if>
 					<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
 				</h4>
-				<c:if test="${esAnfitrion}">
+				<c:if test="${esAnfitrion && null!=conviteFin && conviteFin==0}">
 					<form action="RechazaInvitacionServlet">
 						<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
 							invitación</button>
-						<br> <input type="text" value="${convitei.idConvite}"
+						<br> <input type="text" value="${convite.idConvite}"
 							name="idConvite" id="idConvite" style="visibility: hidden;">
 					</form>
 				</c:if>
+				<c:if test="${esInvitadoPendiente && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
+					<form action="AceptaInvitacionServlet">
+        				<button type="submit" class="btn btn-success" id="btnSubmit" >Aceptar invitación</button>
+        				<input type="text" value="${convite.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
+        			</form>
+        			<form action="RechazaInvitacionServlet">
+        				<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar invitación</button>
+        				<br>
+        				<input type="text" value="${convite.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
+        			</form>
+				</c:if>
+				<c:if test="${esAsistenteConfirmado && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
+        			<form action="RechazaInvitacionServlet">
+        				<button class="btn btn-danger" type="submit" id="btnSubmit2">Desapuntarse del convite</button>
+        				<br>
+        				<input type="text" value="${convite.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
+        			</form>
+				</c:if>
 				<br>
 			</c:forEach>
-			<br>
-			<c:if test="${null!=conviteFin && conviteFin== 1}">
+			<c:if test="${!(esAnfitrion || esAsistenteConfirmado || esInvitadoPendiente || esInscritoPendiente) && null!=conviteFin && conviteFin==0}">
+					<form action="">
+        				<button type="submit" class="btn btn-success" id="btnSubmit" >Inscribirse al convite</button>
+        				<input type="text" value="${convite.idConvite}" name="idConvite" id="idConvite" style="visibility: hidden;">
+        			</form>
+			</c:if>
+			<c:if test="${esAnfitrion && null!=conviteFin && conviteFin==0}">
+					<form action="">
+						<button class="btn btn-success" type="submit" id="btnSubmit">Añadir invitado</button>
+						<br> <input type="text" value="${convite.idConvite}"
+							name="idConvite" id="idConvite" style="visibility: hidden;">
+					</form>
+				</c:if>
+			<c:if test="${(esAnfitrion || esAsistenteConfirmado) && null!=conviteFin && conviteFin==1}">
 				<form action="">
 					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar Convite</button>
 					<br> <input type="text" value="${convitei.idConvite}"
 						name="idConvite" id="idConvite" style="visibility: hidden;">
-
 				</form>
 			</c:if>
 		</div>

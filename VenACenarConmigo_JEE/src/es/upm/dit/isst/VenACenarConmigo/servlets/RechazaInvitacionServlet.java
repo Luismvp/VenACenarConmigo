@@ -35,7 +35,7 @@ public class RechazaInvitacionServlet extends HttpServlet {
 		AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistenteRechaza);
 		asistente = null;
 		asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
-		for (int i = 0; i < asistente.size(); i++) {
+		for (int i = 1; i < asistente.size(); i++) {
 			log("" + asistente.get(i).getIdAsistente());
 			if (asistente.get(i).getIdConvite() == idConvite
 					&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {

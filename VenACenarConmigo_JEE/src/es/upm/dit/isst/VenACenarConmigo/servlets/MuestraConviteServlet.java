@@ -51,13 +51,37 @@ public class MuestraConviteServlet extends HttpServlet {
 			req.getSession().setAttribute("conviteFin", conviteFin);
 			log("no ha funcionado");
 		}
+		
 		String email = (String)req.getSession().getAttribute("email");
 		boolean esAnfitrion = false;
+		boolean esAsistenteConfirmado = false;
+		boolean esInvitadoPendiente = false;
+		boolean esInscritoPendiente = false;
 		if (convite.getEmailAnfitrion().equals(email)) {
 			esAnfitrion = true;
+		} else {
+			for (int i = 0; i < asistentes2.size(); i++) {
+				if (asistentes2.get(i).getEmailUsuarioAsistente().equals(email)) {
+					if (asistentes2.get(i).getConfirmado()) {
+						esAsistenteConfirmado = true;
+						break;
+					} else {
+						if (asistentes2.get(i).getInvitacionInscripcion() == 1) {
+							esInvitadoPendiente = true;
+							break;
+						} else {
+							esInscritoPendiente = true;
+							break;
+						}
+					}
+				}
+			}
 		}
-		req.getSession().setAttribute("esAnfitrion", esAnfitrion);
 		
+		req.getSession().setAttribute("esAnfitrion", esAnfitrion);
+		req.getSession().setAttribute("esAsistenteConfirmado", esAsistenteConfirmado);
+		req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
+		req.getSession().setAttribute("esInscritoPendiente", esInscritoPendiente);
 		resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
 	}
 }
