@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 		log(email);
 		String password = req.getParameter("password");
 		Usuario usuario = UsuarioDAOImplementation.getInstance().loginUsuario(email, password);
-		}
+		BufferedImage fotoPerfil = null;
 		List<AsistenciaConvite> asistenciaConvite = new ArrayList<>();
 		if (null == req.getAttribute("asistenciaConvite")) {
 			asistenciaConvite = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();

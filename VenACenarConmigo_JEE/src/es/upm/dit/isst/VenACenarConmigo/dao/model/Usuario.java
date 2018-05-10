@@ -26,14 +26,14 @@ public class Usuario implements Serializable {
 	private int privacidad1;
 	private int privacidad2;
 	private int privacidad3;
-	@Lob
-	private byte[] foto;
 	
-	public byte[] getFoto() {
-		return foto;
+	private String nombreFoto;
+	
+	public String getNombreFoto() {
+		return nombreFoto;
 	}
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
+	public void setNombreFoto(String foto) {
+		this.nombreFoto = foto;
 	}
 	public int getPrivacidad1() {
 		return privacidad1;
