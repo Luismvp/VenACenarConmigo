@@ -58,6 +58,7 @@
 			<th>temas de conversación</th>
 			<th>ciudad</th>
 			<th>área</th>
+			<th>descripción</th>
 		</tr>
 		<c:forEach items="${convite_list}" var="convitei">
 			<tr>
@@ -70,9 +71,9 @@
 				<td>${convitei.menu}</td>
 				<td>${convitei.maxInvitados}</td>
 				<td>${convitei.precioInvitado}</td>
-				<td>${convitei.temasConversacion}</td>
 				<td>${convitei.ciudad}</td>
 				<td>${convitei.area}</td>
+				<td>${convitei.descripcion}</td>
 			</tr>
 		</c:forEach>
 	</table>

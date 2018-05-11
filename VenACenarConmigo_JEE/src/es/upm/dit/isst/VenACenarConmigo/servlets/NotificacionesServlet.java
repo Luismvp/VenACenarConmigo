@@ -55,7 +55,6 @@ public class NotificacionesServlet extends HttpServlet {
 		}
 		if (!asistenciaConvite3.isEmpty()) {
 			for (int i = 0; i < asistenciaConvite3.size(); i++) {
-
 				convitesConfirmados.add((Convite) ConviteDAOImplementation.getInstance()
 						.readConvite(asistenciaConvite3.get(i).getIdConvite()));
 			}
@@ -67,6 +66,5 @@ public class NotificacionesServlet extends HttpServlet {
 			req.getSession().setAttribute("convitesConfirmados", convitesConfirmados);
 		}
 		resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
-
 	}
 }

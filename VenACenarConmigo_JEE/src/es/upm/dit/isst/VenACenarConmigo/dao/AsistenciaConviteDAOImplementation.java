@@ -39,8 +39,6 @@ public class AsistenciaConviteDAOImplementation implements AsistenciaConviteDAO 
 		return asistenciaConvite;
 	}
 
-	
-
 	// Crear fila en la tabla AsistenciaConvite
 	@Override
 	public void createAsistenciaConvite(AsistenciaConvite asistenciaConvite) {

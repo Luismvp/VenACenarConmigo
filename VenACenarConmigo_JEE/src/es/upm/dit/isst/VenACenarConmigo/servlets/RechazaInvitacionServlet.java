@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
@@ -32,10 +33,13 @@ public class RechazaInvitacionServlet extends HttpServlet {
 					asistenteRechaza = asistente.get(i);
 				}
 			}
-			AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistenteRechaza);
-			asistente = null;
-			asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
-			for (int i = 0; i < asistente.size(); i++) {
+		AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistenteRechaza);
+		asistente = null;
+		asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
+		for (int i = 1; i < asistente.size(); i++) {
+			log("" + asistente.get(i).getIdAsistente());
+			if (asistente.get(i).getIdConvite() == idConvite
+					&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
 				log("" + asistente.get(i).getIdAsistente());
 				if (asistente.get(i).getIdConvite() == idConvite
 						&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
@@ -158,6 +162,22 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			req.getSession().setAttribute("ultimoInvitado", ultimoAsistente);
 			req.getSession().setAttribute("lista_invitados", null);
 			req.getSession().setAttribute("lista_invitados", asistente2);
+			resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
+		}
+		boolean enNotificaciones = Boolean.getBoolean(req.getParameter("enNotificaciones"));
+		
+		if (enNotificaciones) {
+			resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
+		} else {
+			List<AsistenciaConvite> asistentes2 = new ArrayList();
+			for (int i = 0; i < asistenciaConvite.size(); i++) {
+				if (asistenciaConvite.get(i).getIdConvite() == idConvite) {
+					asistentes2.add(asistenciaConvite.get(i));
+				}
+			}
+			boolean esInvitadoPendiente = false;
+			req.getSession().setAttribute("lista_invitados", asistentes2);
+			req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
 			resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
 		}
 	}

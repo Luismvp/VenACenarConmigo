@@ -97,7 +97,7 @@ a {
 			<p style="text-align: center">
 				<a href="GestionaConvitesServlet"
 					class="btn btn-success fontLobster" style="font-size: larger"
-					role="button">Gestionar convites</a>
+					role="button">Gestionar mis convites</a>
 			</p>
 		</div>
 	</div>

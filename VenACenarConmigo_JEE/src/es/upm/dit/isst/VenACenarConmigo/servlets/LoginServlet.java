@@ -75,6 +75,7 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("usuario", usuario);
 			req.getSession().setAttribute("email", null);
 			req.getSession().setAttribute("email", email);
+
 			req.getSession().setAttribute("numero_notificaciones", null);
 			req.getSession().setAttribute("numero_notificaciones", numeroNotificaciones);
 			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");

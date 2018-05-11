@@ -15,19 +15,17 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
 <style>
-body {
-	padding-left: 100px;
-	padding-right: 100px;
-}
-
-a {
-	color: whitesmoke;
-}
-
-label {
-	text-align: left;
-}
-
+ 	body{
+            padding-left: 100px;
+            padding-right: 100px;
+            margin-top:70px;
+        }
+    a{
+            color: whitesmoke;
+    }   
+    label{
+            text-align: left;
+    }
 .convites {
 	margin-top: 70px;
 }
@@ -36,6 +34,9 @@ label {
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
 	<div class="convites">
+	<c:if test="${empty convites_anfitrion}">
+		<h2>No tienes convites creados en este momento</h2>
+	</c:if>
 		<c:forEach items="${convites_anfitrion}" var="convitea">
 			<h2>${convitea.nombre}</h2>
 			<h4>Fecha: ${convitea.fecha}</h4>

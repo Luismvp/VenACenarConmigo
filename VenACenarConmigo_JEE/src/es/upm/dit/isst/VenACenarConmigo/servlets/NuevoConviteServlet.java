@@ -29,22 +29,21 @@ public class NuevoConviteServlet extends HttpServlet {
 			horaMinComienzo = horaComienzo.split(":");
 		}
 		String horaFin = req.getParameter("horaFin");
-		if (!horaFin.isEmpty()) {
+                if (!horaFin.isEmpty()) {
 			horaMinFin = horaFin.split(":");
 		}
-		String restaurante = "no aplica";
+		String restaurante = "No aplica";
 		if (!req.getParameter("restaurante").isEmpty()) {
 			restaurante = req.getParameter("restaurante");
-		} else {
-			restaurante = "";
-		}
+		} 	
 		String menu = req.getParameter("menu");
-		String temas = req.getParameter("temas");
 		String numInvitados = req.getParameter("numInvitados");
 		String precioInvitado = req.getParameter("precioInvitado");
 		String ciudad = req.getParameter("ciudad");
-		String area = req.getParameter("area");
+		String area = req.getParameter("area");	
+		String descripcion = req.getParameter("descripcion");	
 		String emailAnfitrion = (String) req.getSession().getAttribute("email");
+
 		int numInvitados2 = 1;
 		for (int i = 1; i < 16; i++) {
 			String j = Integer.toString(i);
@@ -74,7 +73,6 @@ public class NuevoConviteServlet extends HttpServlet {
 		convite.setHoraFin(horaFin);
 		convite.setRestaurante(restaurante);
 		convite.setMenu(menu);
-		convite.setTemasConversacion(temas);
 		convite.setMaxInvitados(numInvitados2);
 		convite.setPrecioInvitado(precioInvitado);
 		convite.setCiudad(ciudad);

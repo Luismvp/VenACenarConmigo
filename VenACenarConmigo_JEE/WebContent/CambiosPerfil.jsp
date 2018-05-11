@@ -18,6 +18,7 @@
 body {
 	padding-left: 100px;
 	padding-right: 100px;
+	padding-top:70px;
 }
 
 a {
@@ -27,16 +28,14 @@ a {
 label {
 	text-align: left;
 }
-form{
-	padding-top:70px;
-}
 </style>
 </head>
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
+	<h2 align="center">Rellena los campos que desees modificar</h2>
 	<form action="CambiosPerfilServlet">
 		<div class="form-group" id="nombre-group">
-			<label for="nombre">nombre</label> <br> <input type="text"
+			<label for="nombre">Nombre</label> <br> <input type="text"
 				name="nombre" class="form-control" id="nombre"
 				placeholder="introduce tu nombre">
 		</div>

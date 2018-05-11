@@ -50,9 +50,9 @@ public class Convite implements Serializable{
 	private String menu;
 	private int maxInvitados;
 	private String precioInvitado;
-	private String temasConversacion;
 	private String ciudad;
 	private String area;
+	private String descripcion;
 
 	public int getMaxInvitados() {
 		return maxInvitados;
@@ -108,18 +108,7 @@ public class Convite implements Serializable{
 	public void setMenu(String menu) {
 		this.menu = menu;
 	}
-	/**
-	 * @return the temasConversacion
-	 */
-	public String getTemasConversacion() {
-		return temasConversacion;
-	}
-	/**
-	 * @param temasConversacion the temasConversacion to set
-	 */
-	public void setTemasConversacion(String temasConversacion) {
-		this.temasConversacion = temasConversacion;
-	}
+	
 	/**
 	 * @return the precioInvitado
 	 */
@@ -156,5 +145,18 @@ public class Convite implements Serializable{
 	 */
 	public void setArea(String area) {
 		this.area = area;
+	}
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 }
