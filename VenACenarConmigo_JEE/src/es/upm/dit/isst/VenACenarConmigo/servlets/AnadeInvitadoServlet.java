@@ -31,7 +31,7 @@ public class AnadeInvitadoServlet extends HttpServlet {
 		}
 		Convite convite = ConviteDAOImplementation.getInstance().readConvite(idConvite);
 		AsistenciaConvite invitado = new AsistenciaConvite();
-		invitado.setInvitacionInscripcion(2);
+		invitado.setInvitacionInscripcion(1);
 		invitado.setIdConvite(idConvite);
 		invitado.setEmailAnfitrion(convite.getEmailAnfitrion());
 		invitado.setConfirmado(false);
