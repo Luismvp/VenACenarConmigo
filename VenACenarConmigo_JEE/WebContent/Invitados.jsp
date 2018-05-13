@@ -32,65 +32,66 @@ a {
 label {
 	text-align: left;
 }
-form{
-	margin-top:70px;
-	text-align:center;
+
+form {
+	margin-top: 70px;
+	text-align: center;
 }
 </style>
 </head>
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
 	<form action="InvitadosServlet">
-	<c:choose>
-		<c:when test="${convite.maxInvitados == 1}">
-			<%@include file="formularios/Invitados1.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados == 2}">
-			<%@include file="formularios/Invitados2.jsp" %>	
-		</c:when>
-		<c:when test="${convite.maxInvitados ==3}">
-			<%@include file="formularios/Invitados3.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==4}">
-			<%@include file="formularios/Invitados4.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==5}">
-			<%@include file="formularios/Invitados5.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==6}">
-		<%@include file="formularios/Invitados6.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==7}">
-		<%@include file="formularios/Invitados7.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==8}">
-		<%@include file="formularios/Invitados8.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==9}">
-		<%@include file="formularios/Invitados9.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==10}">
-		<%@include file="formularios/Invitados10.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==11}">
-		<%@include file="formularios/Invitados11.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==12} ">
-		<%@include file="formularios/Invitados12.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==13}">
-		<%@include file="formularios/Invitados13.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==14}">
-		<%@include file="formularios/Invitados14.jsp" %>
-		</c:when>
-		<c:when test="${convite.maxInvitados ==15}">
-		<%@include file="formularios/Invitados15.jsp" %>	
-		</c:when>
-	</c:choose>
-	<button type="submit" class="btn btn-success col-xs-12" id="btnSubmit">
-		Enviar <span class="glyphicon glyphicon-arrow-right"></span>
-	</button>
+		<c:choose>
+			<c:when test="${convite.maxInvitados == 1}">
+				<%@include file="formularios/Invitados1.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados == 2}">
+				<%@include file="formularios/Invitados2.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==3}">
+				<%@include file="formularios/Invitados3.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==4}">
+				<%@include file="formularios/Invitados4.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==5}">
+				<%@include file="formularios/Invitados5.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==6}">
+				<%@include file="formularios/Invitados6.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==7}">
+				<%@include file="formularios/Invitados7.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==8}">
+				<%@include file="formularios/Invitados8.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==9}">
+				<%@include file="formularios/Invitados9.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==10}">
+				<%@include file="formularios/Invitados10.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==11}">
+				<%@include file="formularios/Invitados11.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==12} ">
+				<%@include file="formularios/Invitados12.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==13}">
+				<%@include file="formularios/Invitados13.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==14}">
+				<%@include file="formularios/Invitados14.jsp"%>
+			</c:when>
+			<c:when test="${convite.maxInvitados ==15}">
+				<%@include file="formularios/Invitados15.jsp"%>
+			</c:when>
+		</c:choose>
+		<button type="submit" class="btn btn-success col-xs-12" id="btnSubmit">
+			Enviar <span class="glyphicon glyphicon-arrow-right"></span>
+		</button>
 
 	</form>
 </body>

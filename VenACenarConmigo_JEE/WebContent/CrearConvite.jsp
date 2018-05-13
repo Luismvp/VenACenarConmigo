@@ -47,14 +47,24 @@
             <input type="text" name="fecha" class="form-control" id="fecha" placeholder="dd/mm/aaaa">
         </div>
         <div class="form-group" id="time-group">
-            <label for="horaComienzo">Hora de inicio del convite: </label>
+            <label for="horaComienzo">Hora de inicio: </label>
             <br>
             <input type="text" name="horaComienzo" class="form-control" id="horaComienzo" placeholder="hh:mm">
         </div>
         <div class="form-group" id="timeEnd-group">
-            <label for="horaFin">Hora de finalización del convite: </label>
+            <label for="horaFin">Hora de finalización: </label>
             <br>
             <input type="text" name="horaFin" class="form-control" id="horaFin" placeholder="hh:mm">
+        </div>
+	<div class="form-group" id="ciudad-group">
+            <label for="ciudad">Ciudad:</label>
+            <br>
+            <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="introduce la ciudad donde se celebrará el convite">
+        </div>
+        <div class="form-group" id="distrito-group">
+            <label for="area">Distrito:</label>
+            <br>
+            <input type="text" name="area" class="form-control" id="area" placeholder="introduce el distrito donde se celebrará el convite">
         </div>
         <div class="form-group" id="rest-group">
             <label for="restaurante">Nombre del restaurante: </label>
@@ -80,19 +90,9 @@
             <input type="text" name="precioInvitado"  min="0" class="form-control" id="precioInvitado" placeholder="introduce el precio de la comida por invitado">
         </div>
         <div class="form-group" id="descripcion-group">
-            <label for="descripcion">Descripción de la temática del convite:</label>
+            <label for="descripcion">Descripción temática:</label>
             <br>
             <textarea cols="152" rows="7" placeholder="Introduce una descripción de la temática del convite" id="descripcion" name="descripcion"></textarea>
-        </div>
-        <div class="form-group" id="ciudad-group">
-            <label for="ciudad">Ciudad:</label>
-            <br>
-            <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="introduce la ciudad donde se celebrará el convite">
-        </div>
-        <div class="form-group" id="distrito-group">
-            <label for="area">Distrito:</label>
-            <br>
-            <input type="text" name="area" class="form-control" id="area" placeholder="introduce el distrito donde se celebrará el convite">
         </div>
         <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
         </fieldset>

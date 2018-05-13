@@ -49,9 +49,8 @@
 			<th>id del convite</th>
 			<th>email anfitrion</th>
 			<th>nombre convite</th>
-			<th>fecha del convite</th>
-			<th>hora de comienzo</th>
-			<th>hora del fin</th>
+			<th>Fecha y hora de inicio </th>
+			<th>Fecha y hora de fin </th>
 			<th>restaurante</th>
 			<th>menu</th>
 			<th>máximo de invitados</th>
@@ -66,14 +65,12 @@
 				<td>${convitei.idConvite}</td>
 				<td>${convitei.emailAnfitrion}</td>
 				<td>${convitei.nombre}</td>
-				<td>${convitei.fecha}</td>
-				<td>${convitei.horaComienzo}</td>
-				<td>${convitei.horaFin}</td>
+				<td>${convitei.fechaYHoraComienzo}</td>
+				<td>${convitei.fechaYHoraFin}</td>
 				<td>${convitei.restaurante}</td>
 				<td>${convitei.menu}</td>
 				<td>${convitei.maxInvitados}</td>
 				<td>${convitei.precioInvitado}</td>
-				<td>${convitei.temasConversacion}</td>
 				<td>${convitei.ciudad}</td>
 				<td>${convitei.area}</td>
 				<td>${convitei.descripcion}</td>

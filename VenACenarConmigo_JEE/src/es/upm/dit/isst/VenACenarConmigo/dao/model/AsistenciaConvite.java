@@ -8,16 +8,15 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class AsistenciaConvite implements Serializable {
-	//ToDo:Revisar relaciones
 	@Id
 	private int idAsistente;
 	private String emailAnfitrion;
 	private int idConvite;
 	private String emailUsuarioAsistente;
+	// Invitacion <=> 1, Inscripcion <=> 2
 	private int invitacionInscripcion;
 	private Boolean confirmado;
 	private int numeroInvitado;
-	
 	
 	public int getIdAsistente() {
 		return idAsistente;

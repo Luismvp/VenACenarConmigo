@@ -1,11 +1,10 @@
 package es.upm.dit.isst.VenACenarConmigo.dao.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
 @Entity
 public class Convite implements Serializable{
 	@Id
@@ -18,14 +17,39 @@ public class Convite implements Serializable{
 	}
 	private String emailAnfitrion;
 	private String nombre;
-	private String fecha;
-	private String horaComienzo;
-	private String horaFin;
+	private Calendar fechaYHoraComienzo;
+	private Calendar fechaYHoraFin;
+	public Calendar getFechaYHoraFin() {
+		return fechaYHoraFin;
+	}
+	public void setFechaYHoraFin(Calendar fechaYHoraFin) {
+		this.fechaYHoraFin = fechaYHoraFin;
+	}
+	String fecha;
+	String horaComienzo;
+	String horaFin;
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	public String getHoraComienzo() {
+		return horaComienzo;
+	}
+	public void setHoraComienzo(String horaComienzo) {
+		this.horaComienzo = horaComienzo;
+	}
+	public String getHoraFin() {
+		return horaFin;
+	}
+	public void setHoraFin(String horaFin) {
+		this.horaFin = horaFin;
+	}
 	private String restaurante;
 	private String menu;
 	private int maxInvitados;
 	private String precioInvitado;
-	private String temasConversacion;
 	private String ciudad;
 	private String area;
 	private String descripcion;
@@ -54,41 +78,11 @@ public class Convite implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * @return the fecha
-	 */
-	public String getFecha() {
-		return fecha;
+	public Calendar getFechaYHoraComienzo() {
+		return fechaYHoraComienzo;
 	}
-	/**
-	 * @param fecha the fecha to set
-	 */
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-	/**
-	 * @return the horaCominezo
-	 */
-	public String getHoraComienzo() {
-		return horaComienzo;
-	}
-	/**
-	 * @param horaCominezo the horaCominezo to set
-	 */
-	public void setHoraComienzo(String horaCominezo) {
-		this.horaComienzo = horaCominezo;
-	}
-	/**
-	 * @return the horaFin
-	 */
-	public String getHoraFin() {
-		return horaFin;
-	}
-	/**
-	 * @param horaFin the horaFin to set
-	 */
-	public void setHoraFin(String horaFin) {
-		this.horaFin = horaFin;
+	public void setFechaYHoraComienzo(Calendar fechaYHora) {
+		this.fechaYHoraComienzo = fechaYHora;
 	}
 	/**
 	 * @return the restaurante
@@ -114,18 +108,7 @@ public class Convite implements Serializable{
 	public void setMenu(String menu) {
 		this.menu = menu;
 	}
-	/**
-	 * @return the temasConversacion
-	 */
-	public String getTemasConversacion() {
-		return temasConversacion;
-	}
-	/**
-	 * @param temasConversacion the temasConversacion to set
-	 */
-	public void setTemasConversacion(String temasConversacion) {
-		this.temasConversacion = temasConversacion;
-	}
+	
 	/**
 	 * @return the precioInvitado
 	 */
