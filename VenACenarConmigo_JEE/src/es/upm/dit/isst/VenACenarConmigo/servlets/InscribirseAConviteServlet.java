@@ -46,7 +46,7 @@ public class InscribirseAConviteServlet extends HttpServlet {
 		
 		List<AsistenciaConvite> asistentes = AsistenciaConviteDAOImplementation.getInstance()
 				.readAllAsistenciaConvite();
-		List<AsistenciaConvite> asistentes2 = new ArrayList();
+		List<AsistenciaConvite> asistentes2 = new ArrayList<>();
 		for (int i = 0; i < asistentes.size(); i++) {
 			if (asistentes.get(i).getIdConvite() == idConvite) {
 				asistentes2.add(asistentes.get(i));

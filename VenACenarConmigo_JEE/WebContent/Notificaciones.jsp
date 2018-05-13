@@ -48,7 +48,7 @@ label {
 				<h4>Ciudad: ${convitei.ciudad}</h4>
 				<h4>Área: ${convitei.area}</h4>
 				<h4>Precio por invitado: ${convitei.precioInvitado} €</h4>
-				<h4>Descripción: ${convitei.temasConversacion}</h4>
+				<h4>Descripción: ${convitei.descripcion}</h4>
 				<form action="AceptaInvitacionServlet">
 					<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
 						invitación</button>
@@ -63,6 +63,9 @@ label {
 				</form>
 			</div>
 			<br>
+		</c:forEach>
+		<c:forEach items="${inscripcionesAceptadas}" var="asistenciai">
+			<h3>Tu inscripción al convite ${asistenciai.nombre} ha sido aceptada!</h3>
 		</c:forEach>
 		<c:forEach items="${convitesConfirmados}" var="convitec">
 			<h3>Has confirmado tu asistencia al evento ${convitec.nombre}</h3>

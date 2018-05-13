@@ -33,23 +33,24 @@ public class RechazaInvitacionServlet extends HttpServlet {
 					asistenteRechaza = asistente.get(i);
 				}
 			}
-		AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistenteRechaza);
-		asistente = null;
-		asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
-		for (int i = 1; i < asistente.size(); i++) {
-			log("" + asistente.get(i).getIdAsistente());
-			if (asistente.get(i).getIdConvite() == idConvite
-					&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
+			AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistenteRechaza);
+			asistente = null;
+			asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
+			for (int i = 1; i < asistente.size(); i++) {
 				log("" + asistente.get(i).getIdAsistente());
 				if (asistente.get(i).getIdConvite() == idConvite
 						&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
 					log("" + asistente.get(i).getIdAsistente());
-					AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistente.get(i));
-					asistente.get(i).setIdAsistente(asistente.get(i).getIdAsistente() - 1);
-					asistente.get(i).setNumeroInvitado(asistente.get(i).getNumeroInvitado() - 1);
-					AsistenciaConviteDAOImplementation.getInstance().createAsistenciaConvite(asistente.get(i));
-					asistente.clear();
-					asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
+					if (asistente.get(i).getIdConvite() == idConvite
+							&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
+						log("" + asistente.get(i).getIdAsistente());
+						AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistente.get(i));
+						asistente.get(i).setIdAsistente(asistente.get(i).getIdAsistente() - 1);
+						asistente.get(i).setNumeroInvitado(asistente.get(i).getNumeroInvitado() - 1);
+						AsistenciaConviteDAOImplementation.getInstance().createAsistenciaConvite(asistente.get(i));
+						asistente.clear();
+						asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
+					}
 				}
 			}
 			for (int i = 1; i < asistente.size(); i++) {
@@ -86,8 +87,8 @@ public class RechazaInvitacionServlet extends HttpServlet {
 				req.getSession().setAttribute("numero_notificaciones", null);
 				req.getSession().setAttribute("numero_notificaciones", asistenciaConvite2.size());
 			}
-			List<Convite> convites = new ArrayList();
-			List<Convite> convitesConfirmados = new ArrayList();
+			List<Convite> convites = new ArrayList<>();
+			List<Convite> convitesConfirmados = new ArrayList<>();
 			if (!asistenciaConvite2.isEmpty()) {
 				for (int i = 0; i < asistenciaConvite2.size(); i++) {
 					convites.add((Convite) ConviteDAOImplementation.getInstance()
@@ -116,7 +117,6 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			if (!convitesConfirmados.isEmpty()) {
 				req.getSession().setAttribute("convitesConfirmados", convitesConfirmados);
 			}
-			resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
 
 		} else {
 			int idAsistente = Integer.parseInt((String) req.getParameter("idAsistente"));
@@ -127,6 +127,7 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
 			for (int i = 0; i < asistente.size(); i++) {
 				log("" + asistente.get(i).getIdAsistente());
+				
 				if (i != 0) {
 					if (asistente.get(i).getIdConvite() == idConvite
 							&& asistente.get(i).getIdAsistente() - asistente.get(i - 1).getIdAsistente() == 2) {
@@ -162,22 +163,26 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			req.getSession().setAttribute("ultimoInvitado", ultimoAsistente);
 			req.getSession().setAttribute("lista_invitados", null);
 			req.getSession().setAttribute("lista_invitados", asistente2);
-			resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
 		}
 		boolean enNotificaciones = Boolean.getBoolean(req.getParameter("enNotificaciones"));
-		
+		List<AsistenciaConvite> asistenciaConvite = AsistenciaConviteDAOImplementation.getInstance()
+				.readAllAsistenciaConvite();
 		if (enNotificaciones) {
 			resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
 		} else {
-			List<AsistenciaConvite> asistentes2 = new ArrayList();
+			List<AsistenciaConvite> asistentes2 = new ArrayList<>();
 			for (int i = 0; i < asistenciaConvite.size(); i++) {
 				if (asistenciaConvite.get(i).getIdConvite() == idConvite) {
 					asistentes2.add(asistenciaConvite.get(i));
 				}
 			}
 			boolean esInvitadoPendiente = false;
+			
 			req.getSession().setAttribute("lista_invitados", asistentes2);
 			req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
+			req.getSession().setAttribute("esInscritoPendiente", false);
+			req.getSession().setAttribute("esAsistenteConfirmado", false);
+			req.getSession().setAttribute("conviteFin", 0);
 			resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
 		}
 	}

@@ -29,19 +29,19 @@ public class NuevoConviteServlet extends HttpServlet {
 			horaMinComienzo = horaComienzo.split(":");
 		}
 		String horaFin = req.getParameter("horaFin");
-                if (!horaFin.isEmpty()) {
+		if (!horaFin.isEmpty()) {
 			horaMinFin = horaFin.split(":");
 		}
 		String restaurante = "No aplica";
 		if (!req.getParameter("restaurante").isEmpty()) {
 			restaurante = req.getParameter("restaurante");
-		} 	
+		}
 		String menu = req.getParameter("menu");
 		String numInvitados = req.getParameter("numInvitados");
 		String precioInvitado = req.getParameter("precioInvitado");
 		String ciudad = req.getParameter("ciudad");
-		String area = req.getParameter("area");	
-		String descripcion = req.getParameter("descripcion");	
+		String area = req.getParameter("area");
+		String descripcion = req.getParameter("descripcion");
 		String emailAnfitrion = (String) req.getSession().getAttribute("email");
 
 		int numInvitados2 = 1;
@@ -53,14 +53,21 @@ public class NuevoConviteServlet extends HttpServlet {
 		}
 		Calendar fechaYHoraComienzo = Calendar.getInstance();
 		if (null != anoMesDia[0]) {
-			fechaYHoraComienzo.set(Integer.parseInt(anoMesDia[2]), (Integer.parseInt(anoMesDia[1])-1),
+			fechaYHoraComienzo.set(Integer.parseInt(anoMesDia[2]), (Integer.parseInt(anoMesDia[1]) - 1),
 					Integer.parseInt(anoMesDia[0]), Integer.parseInt(horaMinComienzo[0]),
 					Integer.parseInt(horaMinComienzo[1]));
 		}
 		Calendar fechaYHoraFin = Calendar.getInstance();
 		if (null != anoMesDia[0]) {
-			fechaYHoraFin.set(Integer.parseInt(anoMesDia[2]), (Integer.parseInt(anoMesDia[1])-1),
-					Integer.parseInt(anoMesDia[0]), Integer.parseInt(horaMinFin[0]), Integer.parseInt(horaMinFin[1]));
+			if (Integer.parseInt(horaMinFin[0]) > Integer.parseInt(horaMinComienzo[0])) {
+				fechaYHoraFin.set(Integer.parseInt(anoMesDia[2]), (Integer.parseInt(anoMesDia[1]) - 1),
+						Integer.parseInt(anoMesDia[0]), Integer.parseInt(horaMinFin[0]),
+						Integer.parseInt(horaMinFin[1]));
+			}else {
+				fechaYHoraFin.set(Integer.parseInt(anoMesDia[2]), (Integer.parseInt(anoMesDia[1]) - 1),
+						Integer.parseInt(anoMesDia[0])+1, Integer.parseInt(horaMinFin[0]),
+						Integer.parseInt(horaMinFin[1]));
+			}
 		}
 		int IdConvite = ConviteDAOImplementation.getInstance().readAllConvite().size() + 1;
 		Convite convite = new Convite();
@@ -78,6 +85,7 @@ public class NuevoConviteServlet extends HttpServlet {
 		convite.setCiudad(ciudad);
 		convite.setArea(area);
 		convite.setEmailAnfitrion(emailAnfitrion);
+		convite.setDescripcion(descripcion);
 
 		ConviteDAOImplementation.getInstance().createConvite(convite);
 		req.getSession().setAttribute("convite", convite);

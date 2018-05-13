@@ -43,7 +43,7 @@
 			<h4>Ciudad: ${convitea.ciudad}</h4>
 			<h4>Área: ${convitea.area}</h4>
 			<h4>Precio por invitado: ${convitea.precioInvitado} €</h4>
-			<h4>Descripción: ${convitea.temasConversacion}</h4>
+			<h4>Descripción: ${convitea.descripcion}</h4>
 			<form action="MuestraConviteServlet">
 				<button type="submit" class="btn btn-success" id="btnSubmit">Entrar
 					en el convite</button>

@@ -26,7 +26,7 @@ public class MuestraConviteServlet extends HttpServlet {
 		Convite convite = ConviteDAOImplementation.getInstance().readConvite(idConvite);
 		List<AsistenciaConvite> asistentes = AsistenciaConviteDAOImplementation.getInstance()
 				.readAllAsistenciaConvite();
-		List<AsistenciaConvite> asistentes2 = new ArrayList();
+		List<AsistenciaConvite> asistentes2 = new ArrayList<>();
 		int conviteFin = 0;
 		int ultimoInvitado=0;
 		for (int i = 0; i < asistentes.size(); i++) {
@@ -64,7 +64,9 @@ public class MuestraConviteServlet extends HttpServlet {
 		} else {
 			for (int i = 0; i < asistentes2.size(); i++) {
 				if (asistentes2.get(i).getEmailUsuarioAsistente().equals(email)) {
+					log("" + asistentes2.get(i).getConfirmado());
 					if (asistentes2.get(i).getConfirmado()) {
+				
 						esAsistenteConfirmado = true;
 						break;
 					} else {
