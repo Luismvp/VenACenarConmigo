@@ -1,66 +1,70 @@
 package es.upm.dit.isst.VenACenarConmigo.dao.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
 @Entity
 public class Convite implements Serializable{
 	@Id
-	private int iDConvite;
-	@ManyToOne
-	private Usuario anfitrion;
-	@ManyToMany
-	private List<Usuario> invitados;
+	private int idConvite;
+	public int getIdConvite() {
+		return idConvite;
+	}
+	public void setIdConvite(int idConvite) {
+		this.idConvite = idConvite;
+	}
+	private String emailAnfitrion;
 	private String nombre;
-	private String fecha;
-	private String horaCominezo;
-	private String horaFin;
+	private Calendar fechaYHoraComienzo;
+	private Calendar fechaYHoraFin;
+	public Calendar getFechaYHoraFin() {
+		return fechaYHoraFin;
+	}
+	public void setFechaYHoraFin(Calendar fechaYHoraFin) {
+		this.fechaYHoraFin = fechaYHoraFin;
+	}
+	String fecha;
+	String horaComienzo;
+	String horaFin;
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	public String getHoraComienzo() {
+		return horaComienzo;
+	}
+	public void setHoraComienzo(String horaComienzo) {
+		this.horaComienzo = horaComienzo;
+	}
+	public String getHoraFin() {
+		return horaFin;
+	}
+	public void setHoraFin(String horaFin) {
+		this.horaFin = horaFin;
+	}
 	private String restaurante;
 	private String menu;
-	private String temasConversacion;
-	private Integer maxInvitados;
-	private Integer precioInvitado;
-	private String descripcion;
+	private int maxInvitados;
+	private String precioInvitado;
 	private String ciudad;
 	private String area;
-	/**
-	 * @return the iDConvite
-	 */
-	public int getiDConvite() {
-		return iDConvite;
+	private String descripcion;
+
+	public int getMaxInvitados() {
+		return maxInvitados;
 	}
-	/**
-	 * @param iDConvite the iDConvite to set
-	 */
-	public void setiDConvite(int iDConvite) {
-		this.iDConvite = iDConvite;
+	public void setMaxInvitados(int maxInvitados) {
+		this.maxInvitados = maxInvitados;
 	}
-	/**
-	 * @return the anfitrion
-	 */
-	public Usuario getAnfitrion() {
-		return anfitrion;
+	public String getEmailAnfitrion() {
+		return emailAnfitrion;
 	}
-	/**
-	 * @param anfitrion the anfitrion to set
-	 */
-	public void setAnfitrion(Usuario anfitrion) {
-		this.anfitrion = anfitrion;
-	}
-	/**
-	 * @return the invitados
-	 */
-	public List<Usuario> getInvitados() {
-		return invitados;
-	}
-	/**
-	 * @param invitados the invitados to set
-	 */
-	public void setInvitados(List<Usuario> invitados) {
-		this.invitados = invitados;
+	public void setEmailAnfitrion(String emailAnfitrion) {
+		this.emailAnfitrion = emailAnfitrion;
 	}
 	/**
 	 * @return the nombre
@@ -74,41 +78,11 @@ public class Convite implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * @return the fecha
-	 */
-	public String getFecha() {
-		return fecha;
+	public Calendar getFechaYHoraComienzo() {
+		return fechaYHoraComienzo;
 	}
-	/**
-	 * @param fecha the fecha to set
-	 */
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-	/**
-	 * @return the horaCominezo
-	 */
-	public String getHoraCominezo() {
-		return horaCominezo;
-	}
-	/**
-	 * @param horaCominezo the horaCominezo to set
-	 */
-	public void setHoraCominezo(String horaCominezo) {
-		this.horaCominezo = horaCominezo;
-	}
-	/**
-	 * @return the horaFin
-	 */
-	public String getHoraFin() {
-		return horaFin;
-	}
-	/**
-	 * @param horaFin the horaFin to set
-	 */
-	public void setHoraFin(String horaFin) {
-		this.horaFin = horaFin;
+	public void setFechaYHoraComienzo(Calendar fechaYHora) {
+		this.fechaYHoraComienzo = fechaYHora;
 	}
 	/**
 	 * @return the restaurante
@@ -134,54 +108,20 @@ public class Convite implements Serializable{
 	public void setMenu(String menu) {
 		this.menu = menu;
 	}
-	/**
-	 * @return the temasConversacion
-	 */
-	public String getTemasConversacion() {
-		return temasConversacion;
-	}
-	/**
-	 * @param temasConversacion the temasConversacion to set
-	 */
-	public void setTemasConversacion(String temasConversacion) {
-		this.temasConversacion = temasConversacion;
-	}
-	/**
-	 * @return the maxInvitados
-	 */
-	public Integer getMaxInvitados() {
-		return maxInvitados;
-	}
-	/**
-	 * @param maxInvitados the maxInvitados to set
-	 */
-	public void setMaxInvitados(Integer maxInvitados) {
-		this.maxInvitados = maxInvitados;
-	}
+	
 	/**
 	 * @return the precioInvitado
 	 */
-	public Integer getPrecioInvitado() {
+	public String getPrecioInvitado() {
 		return precioInvitado;
 	}
 	/**
 	 * @param precioInvitado the precioInvitado to set
 	 */
-	public void setPrecioInvitado(Integer precioInvitado) {
+	public void setPrecioInvitado(String precioInvitado) {
 		this.precioInvitado = precioInvitado;
 	}
-	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-	/**
-	 * @param descripcion the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+	
 	/**
 	 * @return the ciudad
 	 */
@@ -205,5 +145,18 @@ public class Convite implements Serializable{
 	 */
 	public void setArea(String area) {
 		this.area = area;
+	}
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 }

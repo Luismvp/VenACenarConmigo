@@ -8,6 +8,7 @@ public interface ConviteDAO {
 	public List <Convite> readAllConvite();
 	public void createConvite (Convite convite);
 	public Convite readConvite (String email);
+	public Convite readConvite (int id);
 	public void updateConvite (Convite convite);
 	public void deleteConvite (Convite convite);
 

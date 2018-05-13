@@ -67,7 +67,7 @@ public class PublicacionesDAOImplementation implements PublicacionesDAO{
 	}
 	//Metodo que actualiza una fila de la tabla Publicaciones
 	@Override
-	public void updateAficion(Publicaciones publicaciones) {
+	public void updatePublicaciones(Publicaciones publicaciones) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {
@@ -82,7 +82,7 @@ public class PublicacionesDAOImplementation implements PublicacionesDAO{
 	}
 	//Metodo que elimina una fila de la tabla Publicaciones
 	@Override
-	public void deleteAficion(Publicaciones publicaciones) {
+	public void deletePublicaciones(Publicaciones publicaciones) {
 		// TODO Auto-generated method stub
 		Session session = SessionFactoryService.get().openSession();
 		try {

@@ -41,16 +41,12 @@ public class RegistroServlet extends HttpServlet {
 			usuario.setEmail(email);
 			usuario.setPassword(password);
 			usuario.setProfesion(profesion);
-			usuario.setDescripcionPersonal(descripcion);
+			usuario.setDescripcion(descripcion);
 			usuario.setValidado(false);
 			usuario.setPrivacidad1(privacidad1);
 			usuario.setPrivacidad2(privacidad1);
 			usuario.setPrivacidad3(privacidad1);
 			UsuarioDAOImplementation.getInstance().createUsuario(usuario);
-//			EmailHandler emailHandler = EmailHandler.getInstance();
-//			emailHandler.sendEmail("Ven A Cenar Conmigo", email, "Validación", "Aquí tienes el enlace"
-//					+ "con el que podrás validar tu cuenta en la red social, Bienvenido a la familia!"
-//					+ "localhost:8080/VenACenarConmigo/ValidarCuenta.jsp");
 			resp.sendRedirect(req.getContextPath() + "/Validacion.jsp");
 		}else {
 			resp.sendRedirect(req.getContextPath() + "/Registro.jsp");

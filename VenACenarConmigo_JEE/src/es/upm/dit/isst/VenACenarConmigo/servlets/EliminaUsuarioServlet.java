@@ -18,7 +18,9 @@ public class EliminaUsuarioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
 		Usuario usuario = UsuarioDAOImplementation.getInstance().readUsuario(email);
+		Usuario usuarioVacion = UsuarioDAOImplementation.getInstance().readUsuario("");
 		UsuarioDAOImplementation.getInstance().deleteUsuario(usuario);
-		resp.sendRedirect(req.getContextPath()+"/borrarUsuarios.jsp");
+		UsuarioDAOImplementation.getInstance().deleteUsuario(usuarioVacion);
+		resp.sendRedirect(req.getContextPath()+"/Login.jsp");
 	}
 }
