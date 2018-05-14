@@ -11,10 +11,18 @@ import javax.persistence.ManyToMany;
 public class AccionUsuario implements Serializable{
 	//ToDo:Revisar relaciones ¿foreingnkey?
 	@Id
+	private int idAccion;
 	private String usuarioEmisor;
 	private String usuarioReceptor;
 	private int seguimientoBloqueoDenuncia;
 	private String comentario;
+	
+	public int getIdAccion() {
+		return idAccion;
+	}
+	public void setIdAccion(int idAccion) {
+		this.idAccion = idAccion;
+	}
 	public String getUsuarioEmisor() {
 		return usuarioEmisor;
 	}

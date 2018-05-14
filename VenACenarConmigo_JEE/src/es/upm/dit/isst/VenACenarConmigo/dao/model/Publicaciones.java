@@ -8,13 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class  Publicaciones implements Serializable{
+public class Publicaciones implements Serializable{
 	@Id
 	private int iDPublicacion;
 	@ManyToOne
 	private Usuario usuario;
 	private String texto;
-	private byte[] adjunto;
+	private String adjunto;
 	private Calendar fecha;
 	/**
 	 * @return the iDPublicacion
@@ -55,13 +55,13 @@ public class  Publicaciones implements Serializable{
 	/**
 	 * @return the adjunto
 	 */
-	public byte[] getAdjunto() {
+	public String getAdjunto() {
 		return adjunto;
 	}
 	/**
 	 * @param adjunto the adjunto to set
 	 */
-	public void setAdjunto(byte[] adjunto) {
+	public void setAdjunto(String adjunto) {
 		this.adjunto = adjunto;
 	}
 	/**

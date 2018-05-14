@@ -15,6 +15,7 @@
             <ul class="nav navbar-nav">
                 <li id="index"><a href="InicioServlet">Inicio</a></li>
                 <li id="perfil"><a href="Perfil.jsp">Mi perfil</a></li>
+                <li id="usuario"><a href="BusquedaUsuarios.jsp">Buscar usuario</a></li>
                 <li id="search"><a href="BuscarConviteServlet">Buscar convite</a></li>
                 <li id="convite"><a href="CrearConvite.jsp">Crear Convite</a></li>
                 <li id="contacto"><a href="contacto.html">Contacto</a></li>
