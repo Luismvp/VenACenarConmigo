@@ -2,11 +2,16 @@ package es.upm.dit.isst.VenACenarConmigo.dao.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 @Entity
 public class Convite implements Serializable{
+
 	@Id
 	private int idConvite;
 	public int getIdConvite() {
@@ -28,6 +33,7 @@ public class Convite implements Serializable{
 	String fecha;
 	String horaComienzo;
 	String horaFin;
+	
 	public String getFecha() {
 		return fecha;
 	}
@@ -159,4 +165,5 @@ public class Convite implements Serializable{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
 }

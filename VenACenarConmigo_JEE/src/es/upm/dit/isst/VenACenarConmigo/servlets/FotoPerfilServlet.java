@@ -22,7 +22,10 @@ public class FotoPerfilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Part filePart = req.getPart("file");
 		String fileName = extractFileName(filePart);
-		String savePath = "/home/isst/eclipse-workspace/VenACenarConmigo/WebContent/images" + File.separator + fileName;
+		//Direccion a piñon del proyecto (cambiar para la foto de perfil)
+		//String savePath = "/home/isst/eclipse-workspace/VenACenarConmigo/WebContent/images" + File.separator + fileName;
+		String savePath = "/home/pegaso/ISST/VenACenarConmigo/VenACenarConmigo_JEE/WebContent/images/" + 
+				"" + File.separator + fileName;
 		File fileSaveDir = new File(savePath);
 		filePart.write(savePath+File.separator);
 		String email = (String) req.getSession().getAttribute("email");

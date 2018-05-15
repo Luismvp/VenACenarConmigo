@@ -62,6 +62,39 @@ label {
 			<h4>Ciudad: ${convite.ciudad}</h4>
 			<h4>Área: ${convite.area}</h4>
 			<h4>Descripción: ${convite.descripcion}</h4>
+
+			<hr>
+
+			<div class="comentarios" id="comentarios-group">
+				<form action="AnadirComentarioEnConviteServlet" >
+					<label for="comentario">¿Tienes algo que decir?</label> 
+					<div class="form-group" id="comentario-group">
+						<br> <input id="comentario" type="comentario"
+							name="comentario" class="form-control" id="comentario"
+							autocomplete="off" placeholder="Introduce un comentario" required>
+					</div>
+					<input type="hidden" value="${convite.idConvite}" name="idConvite"
+						id="idConvite">
+					 <input type="hidden" value="${usuario.email}" name="email" id="email">
+					<button type="submit" class="btn btn-success">
+						Enviar <span class="glyphicon glyphicon-arrow-right"></span>
+					</button>
+					<br>
+				</form>
+				<div>
+					<table>
+						<c:forEach items="${lista_comentarios_convite}" var="comentarioi">
+							<tr>
+								<div>
+									<br>
+									<td>${comentarioi.nombre}: ${comentarioi.comentario}</td>
+								</div>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+
 		</div>
 		<div class="invitados">
 			<h2>Asistentes</h2>
@@ -80,8 +113,8 @@ label {
 								invitación</button>
 							<br> <input type="hidden" value="${convite.idConvite}"
 								name="idConvite" id="idConvite"> <input type="hidden"
-								value="${asistentei.idAsistente}"
-								name="idAsistente" id="idAsistente">
+								value="${asistentei.idAsistente}" name="idAsistente"
+								id="idAsistente">
 						</form>
 					</c:if>
 					<c:if

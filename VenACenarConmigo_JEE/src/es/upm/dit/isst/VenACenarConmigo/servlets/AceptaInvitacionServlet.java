@@ -21,9 +21,10 @@ import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 
 public class AceptaInvitacionServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int idConvite = Integer.parseInt(req.getParameter("idConvite"));
-		String email = (String) req.getSession().getAttribute("email");
+		String email = (String) req.getParameter("email");
+		log("hay idConvite y email");
 		List<AsistenciaConvite> asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
 		AsistenciaConvite asistenteConfirma = new AsistenciaConvite();
 		for (int i = 0; i < asistente.size(); i++) {

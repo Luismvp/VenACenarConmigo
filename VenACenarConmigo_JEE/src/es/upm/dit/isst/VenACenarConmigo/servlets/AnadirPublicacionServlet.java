@@ -24,7 +24,7 @@ import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 @WebServlet("/AnadirPublicacionServlet")
 public class AnadirPublicacionServlet extends HttpServlet {
         @Override
-        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         		Publicaciones publicacion = new Publicaciones();
         		if (req.getPart("file")!= null) {
                 	Part filePart = req.getPart("file");

@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.ComentarioConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.ComentarioConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
 @WebServlet("/MuestraConviteServlet")
 
@@ -22,21 +26,53 @@ public class MuestraConviteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int idConvite = Integer.parseInt(req.getParameter("idConvite"));
+		String email = (String) req.getSession().getAttribute("email");
+		Usuario usuario = UsuarioDAOImplementation.getInstance().readUsuario(email);
+
 		log("" + idConvite);
 		Convite convite = ConviteDAOImplementation.getInstance().readConvite(idConvite);
 		List<AsistenciaConvite> asistentes = AsistenciaConviteDAOImplementation.getInstance()
 				.readAllAsistenciaConvite();
 		List<AsistenciaConvite> asistentes2 = new ArrayList<>();
 		int conviteFin = 0;
-		int ultimoInvitado=0;
+		int ultimoInvitado = 0;
 		for (int i = 0; i < asistentes.size(); i++) {
 			if (asistentes.get(i).getIdConvite() == idConvite) {
 				asistentes2.add(asistentes.get(i));
-				ultimoInvitado=asistentes.get(i).getNumeroInvitado();
+				ultimoInvitado = asistentes.get(i).getNumeroInvitado();
 			}
 		}
-		int numRestante = convite.getMaxInvitados() - asistentes2.size();
 
+		List<ComentarioConvite> comentarios = ComentarioConviteDAOImplementation.getInstance()
+				.readAllComentarioConvite();
+		List<ComentarioConvite> comentariosConvite = new ArrayList<>();
+
+
+//		if (comentarios.size() == 0) {
+//			ComentarioConvite comentarioInicial = new ComentarioConvite();
+//			comentarioInicial.setComentario("¡Nadie ha comentado en este convite, se el primero en hacerlo!");
+//			comentariosConvite.add(comentarioInicial);
+//		}
+		
+		for (int i = comentarios.size() - 1; i >= 0; i--) {
+			// GUardar los comentarios que sean de cada convite en comentariosConvite
+			int idConviteComentarioi = comentarios.get(i).getConvite().getIdConvite();
+			if (idConviteComentarioi != -1 && idConviteComentarioi == convite.getIdConvite()) {
+				comentariosConvite.add(comentarios.get(i));
+			}
+		}
+		if(comentariosConvite.size() ==0) {
+			ComentarioConvite comentarioInicial = new ComentarioConvite();
+			comentarioInicial.setComentario("¡Nadie ha comentado todavía, se el primero en decir algo!");
+			comentarioInicial.setiDComentario(1);
+			comentarioInicial.setNombre("Admin");
+			comentarioInicial.setiDComentario(0);
+			Convite conviteInicial = new Convite();
+			conviteInicial.setIdConvite(-1);
+			comentariosConvite.add(comentarioInicial);
+		}
+		int numRestante = convite.getMaxInvitados() - asistentes2.size();
+		req.getSession().setAttribute("lista_comentarios_convite", comentariosConvite);
 		req.getSession().setAttribute("numeroRestante", numRestante);
 		req.getSession().setAttribute("convite", convite);
 		req.getSession().setAttribute("lista_invitados", asistentes2);
@@ -53,8 +89,6 @@ public class MuestraConviteServlet extends HttpServlet {
 			req.getSession().setAttribute("conviteFin", conviteFin);
 			log("no ha funcionado");
 		}
-		
-		String email = (String)req.getSession().getAttribute("email");
 		boolean esAnfitrion = false;
 		boolean esAsistenteConfirmado = false;
 		boolean esInvitadoPendiente = false;
@@ -66,7 +100,7 @@ public class MuestraConviteServlet extends HttpServlet {
 				if (asistentes2.get(i).getEmailUsuarioAsistente().equals(email)) {
 					log("" + asistentes2.get(i).getConfirmado());
 					if (asistentes2.get(i).getConfirmado()) {
-				
+
 						esAsistenteConfirmado = true;
 						break;
 					} else {
@@ -81,7 +115,7 @@ public class MuestraConviteServlet extends HttpServlet {
 				}
 			}
 		}
-		
+		log("casi al final" );
 		req.getSession().setAttribute("esAnfitrion", esAnfitrion);
 		req.getSession().setAttribute("esAsistenteConfirmado", esAsistenteConfirmado);
 		req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
