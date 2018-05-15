@@ -24,6 +24,7 @@ public class NotificacionesServlet extends HttpServlet {
 				.readAllAsistenciaConvite();
 		List<AsistenciaConvite> asistenciaConvite2 = new ArrayList<>();
 		List<AsistenciaConvite> asistenciaConvite3 = new ArrayList<>();
+		List<AsistenciaConvite> asistenciaConvite4 = new ArrayList<>();
 		for (int i = 0; i < asistenciaConvite.size(); i++) {
 			if (asistenciaConvite.get(i).getInvitacionInscripcion() == 1
 					&& asistenciaConvite.get(i).getConfirmado() == false
@@ -37,11 +38,11 @@ public class NotificacionesServlet extends HttpServlet {
 			req.getSession().removeAttribute("lista_notificaciones");
 			req.getSession().setAttribute("lista_notificaciones", asistenciaConvite2);
 		}
-		List<Convite> convites = new ArrayList();
-		List<Convite> convitesConfirmados = new ArrayList();
+		List<Convite> convites = new ArrayList<>();
+		List<Convite> convitesConfirmados = new ArrayList<>();
+		List<Convite> inscripcionesAceptadas = new ArrayList<>();
 		if (!asistenciaConvite2.isEmpty()) {
 			for (int i = 0; i < asistenciaConvite2.size(); i++) {
-
 				convites.add((Convite) ConviteDAOImplementation.getInstance()
 						.readConvite(asistenciaConvite2.get(i).getIdConvite()));
 			}
@@ -53,10 +54,24 @@ public class NotificacionesServlet extends HttpServlet {
 				asistenciaConvite3.add(asistenciaConvite.get(i));
 			}
 		}
+		for (int i = 0; i < asistenciaConvite.size(); i++) {
+			if (asistenciaConvite.get(i).getInvitacionInscripcion() == 2
+					&& asistenciaConvite.get(i).getConfirmado() == true
+					&& asistenciaConvite.get(i).getEmailUsuarioAsistente().equals(email)) {
+				asistenciaConvite4.add(asistenciaConvite.get(i));
+			}
+		}
 		if (!asistenciaConvite3.isEmpty()) {
 			for (int i = 0; i < asistenciaConvite3.size(); i++) {
 				convitesConfirmados.add((Convite) ConviteDAOImplementation.getInstance()
 						.readConvite(asistenciaConvite3.get(i).getIdConvite()));
+			}
+		}
+		if (!asistenciaConvite4.isEmpty()) {
+			for (int i = 0; i < asistenciaConvite4.size(); i++) {
+				inscripcionesAceptadas.add((Convite) ConviteDAOImplementation.getInstance()
+						.readConvite(asistenciaConvite4.get(i).getIdConvite()));
+				
 			}
 		}
 		if (!convites.isEmpty()) {
@@ -64,6 +79,9 @@ public class NotificacionesServlet extends HttpServlet {
 		}
 		if (!convitesConfirmados.isEmpty()) {
 			req.getSession().setAttribute("convitesConfirmados", convitesConfirmados);
+		}
+		if (!inscripcionesAceptadas.isEmpty()) {
+			req.getSession().setAttribute("inscripcionesAceptadas", inscripcionesAceptadas);
 		}
 		resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
 	}

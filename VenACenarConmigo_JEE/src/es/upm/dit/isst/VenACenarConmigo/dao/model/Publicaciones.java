@@ -1,20 +1,21 @@
 package es.upm.dit.isst.VenACenarConmigo.dao.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class  Publicaciones implements Serializable{
+public class Publicaciones implements Serializable{
 	@Id
 	private int iDPublicacion;
 	@ManyToOne
 	private Usuario usuario;
 	private String texto;
-	//Mirar que tipo de objeto es atributo
 	private String adjunto;
+	private Calendar fecha;
 	/**
 	 * @return the iDPublicacion
 	 */
@@ -63,4 +64,17 @@ public class  Publicaciones implements Serializable{
 	public void setAdjunto(String adjunto) {
 		this.adjunto = adjunto;
 	}
+	/**
+	 * @return the fecha
+	 */
+	public Calendar getFecha() {
+		return fecha;
+	}
+	/**
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(Calendar fecha) {
+		this.fecha = fecha;
+	}
+
 }

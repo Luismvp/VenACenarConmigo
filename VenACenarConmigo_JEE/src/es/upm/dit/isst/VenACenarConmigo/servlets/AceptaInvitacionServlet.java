@@ -47,18 +47,18 @@ public class AceptaInvitacionServlet extends HttpServlet {
 				log("estoy encontrando un false");
 			}
 		}
-		if (null != req.getSession().getAttribute("lista_notificaciones")) {
-			req.getSession().setAttribute("lista_notificaciones", asistenciaConvite2);
+		if (null != req.getSession().getAttribute("Lista_convites")) {
+			req.getSession().setAttribute("Lista_convites", asistenciaConvite2);
 			req.getSession().setAttribute("numero_notificaciones", null);
 			req.getSession().setAttribute("numero_notificaciones", asistenciaConvite2.size());
 		} else {
-			req.getSession().removeAttribute("lista_notificaciones");
-			req.getSession().setAttribute("lista_notificaciones", asistenciaConvite2);
+			req.getSession().removeAttribute("Lista_convites");
+			req.getSession().setAttribute("Lista_convites", asistenciaConvite2);
 			req.getSession().setAttribute("numero_notificaciones", null);
 			req.getSession().setAttribute("numero_notificaciones", asistenciaConvite2.size());
 		}
-		List<Convite> convites = new ArrayList();
-		List<Convite> convitesConfirmados = new ArrayList();
+		List<Convite> convites = new ArrayList<>();
+		List<Convite> convitesConfirmados = new ArrayList<>();
 		if (!asistenciaConvite2.isEmpty()) {
 			for (int i = 0; i < asistenciaConvite2.size(); i++) {
 				convites.add((Convite) ConviteDAOImplementation.getInstance()
@@ -74,7 +74,6 @@ public class AceptaInvitacionServlet extends HttpServlet {
 		}
 		if (!asistenciaConvite3.isEmpty()) {
 			for (int i = 0; i < asistenciaConvite3.size(); i++) {
-
 				convitesConfirmados.add((Convite) ConviteDAOImplementation.getInstance()
 						.readConvite(asistenciaConvite3.get(i).getIdConvite()));
 			}
@@ -87,11 +86,11 @@ public class AceptaInvitacionServlet extends HttpServlet {
 		if (!convitesConfirmados.isEmpty()) {
 			req.getSession().setAttribute("convitesConfirmados", convitesConfirmados);
 		}
-		boolean enNotificaciones = Boolean.getBoolean(req.getParameter("enNotificaciones"));
+		boolean enNotificaciones = Boolean.parseBoolean(req.getParameter("enNotificaciones"));
 		if (enNotificaciones) {
 			resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
 		} else {
-			List<AsistenciaConvite> asistentes2 = new ArrayList();
+			List<AsistenciaConvite> asistentes2 = new ArrayList<>();
 			for (int i = 0; i < asistenciaConvite.size(); i++) {
 				if (asistenciaConvite.get(i).getIdConvite() == idConvite) {
 					asistentes2.add(asistenciaConvite.get(i));
@@ -99,7 +98,9 @@ public class AceptaInvitacionServlet extends HttpServlet {
 			}
 			boolean esInvitadoPendiente = false;
 			boolean esAsistenteConfirmado = true;
+			req.getSession().setAttribute("convite", ConviteDAOImplementation.getInstance().readConvite(idConvite));
 			req.getSession().setAttribute("lista_invitados", asistentes2);
+			req.getSession().setAttribute("conviteFin", 0);
 			req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
 			req.getSession().setAttribute("esAsistenteConfirmado", esAsistenteConfirmado);
 			resp.sendRedirect(req.getContextPath() + "/Convite.jsp");

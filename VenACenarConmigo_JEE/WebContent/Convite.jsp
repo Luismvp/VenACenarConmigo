@@ -18,7 +18,7 @@
 body {
 	padding-left: 100px;
 	padding-right: 100px;
-	margin-top:70px;
+	margin-top: 70px;
 }
 
 a {
@@ -42,16 +42,14 @@ label {
 	margin-left: 600px;
 	max-width: 300px;
 }
-
 </style>
 </head>
 <body>
-<%@include file="templates/navBarLoged.jsp" %>
-	<div class="convite">
-		<input type="hidden" value="false" name="enNotificaciones" id="enNotificaciones">
+	<%@include file="templates/navBarLoged.jsp"%>
+	<div class="convite" style="margin-bottom: 70px">
 		<h1 align="center">${convite.nombre}</h1>
 		<div class="infoconvite">
-			<h2>Datos del convite</h2>
+			<h4>Anfitrión: ${nombre_anfitrion}</h4>
 			<h4>Fecha: ${convite.fecha}</h4>
 			<h4>Hora de comienzo: ${convite.horaComienzo}</h4>
 			<h4>Hora de finalización: ${convite.horaFin}</h4>
@@ -73,62 +71,90 @@ label {
 					<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
 				</h4>
 				<c:if test="${esAnfitrion && null!=conviteFin && conviteFin==0}">
-					<c:if test="${asistentei.invitacionInscripcion == 1 || asistentei.confirmado}">
+					<c:if
+						test="${asistentei.invitacionInscripcion == 1 || asistentei.confirmado}">
 						<form action="RechazaInvitacionServlet">
 							<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
 								invitación</button>
-							<br> <input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
+							<br> <input type="hidden" value="${convite.idConvite}"
+								name="idConvite" id="idConvite"> <input type="hidden"
+								value="${asistentei.idAsistente}"
+								name="idAsistente" id="idAsistente">
+								<input type="hidden" value="false" name="enNotificaciones" id="enNotificaciones">
 						</form>
 					</c:if>
-					<c:if test="${asistentei.invitacionInscripcion == 2 && !asistentei.confirmado}">
+					<c:if
+						test="${asistentei.invitacionInscripcion == 2 && !asistentei.confirmado}">
 						<form action="AceptaInscripcionServlet">
-        					<button type="submit" class="btn btn-success" id="btnSubmit" >Aceptar inscripción</button>
-        					<input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
-        					<input type="hidden" value="${asistentei.emailUsuarioAsistente}" name="emailAsistente" id="emailAsistente">
-        				</form>
-        				<form action="RechazaInscripcionServlet">
-        					<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar inscripción</button>
-        					<br><input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
-        					<input type="hidden" value="${asistentei.emailUsuarioAsistente}" name="emailAsistente" id="emailAsistente">
-        				</form>
+							<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
+								inscripción</button>
+							<input type="hidden" value="${convite.idConvite}"
+								name="idConvite" id="idConvite"> <input type="hidden"
+								value="${asistentei.emailUsuarioAsistente}"
+								name="emailAsistente" id="emailAsistente">
+						</form>
+						<form action="RechazaInscripcionServlet">
+							<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
+								inscripción</button>
+							<br> <input type="hidden" value="${convite.idConvite}"
+								name="idConvite" id="idConvite"> <input type="hidden"
+								value="${asistentei.emailUsuarioAsistente}"
+								name="emailAsistente" id="emailAsistente">
+						</form>
 					</c:if>
 				</c:if>
-				<c:if test="${esInvitadoPendiente && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
+				<c:if
+					test="${esInvitadoPendiente && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
 					<form action="AceptaInvitacionServlet">
-        				<button type="submit" class="btn btn-success" id="btnSubmit" >Aceptar invitación</button>
-        				<input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
-        			</form>
-        			<form action="RechazaInvitacionServlet">
-        				<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar invitación</button>
-        				<br>
-        				<input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
-        			</form>
+						<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
+							invitación</button>
+						<input type="hidden" value="${convite.idConvite}" name="idConvite"
+							id="idConvite">
+						<input type="hidden" value="false" name="enNotificaciones" id="enNotificaciones">
+					</form>
+					<form action="RechazaInvitacionServlet">
+						<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
+							invitación</button>
+						<br> <input type="hidden" value="${convite.idConvite}"
+							name="idConvite" id="idConvite">
+					</form>
 				</c:if>
-				<c:if test="${(esAsistenteConfirmado || esInscritoPendiente) && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
-        			<form action="RechazaInvitacionServlet">
-        				<button class="btn btn-danger" type="submit" id="btnSubmit2">Desapuntarse del convite</button>
-        				<br>
-        				<input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
-        			</form>
+				<c:if
+					test="${(esAsistenteConfirmado || esInscritoPendiente) && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
+					<form action="RechazaInvitacionServlet">
+						<button class="btn btn-danger" type="submit" id="btnSubmit2">Desapuntarse
+							del convite</button>
+						<br> <input type="hidden" value="${convite.idConvite}"
+							name="idConvite" id="idConvite">
+					</form>
 				</c:if>
 				<br>
 			</c:forEach>
-			<c:if test="${numeroRestante > 0 && !(esAnfitrion || esAsistenteConfirmado || esInvitadoPendiente || esInscritoPendiente) && null!=conviteFin && conviteFin==0}">
-					<form action="InscribirseAConviteServlet">
-        				<button type="submit" class="btn btn-success" id="btnSubmit" >Inscribirse al convite</button>
-        				<input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
-        			</form>
+			<c:if
+				test="${numeroRestante > 0 && !(esAnfitrion || esAsistenteConfirmado || esInvitadoPendiente || esInscritoPendiente) && null!=conviteFin && conviteFin==0}">
+				<form action="InscribirseAConviteServlet">
+					<button type="submit" class="btn btn-success" id="btnSubmit">Inscribirse
+						al convite</button>
+					<input type="hidden" value="${convite.idConvite}" name="idConvite"
+						id="idConvite">
+				</form>
 			</c:if>
-			<c:if test="${numeroRestante > 0 && esAnfitrion && null!=conviteFin && conviteFin==0}">
-					<form action="">
-						<button class="btn btn-success" type="submit" id="btnSubmit">Añadir invitado</button>
-						<br> <input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
-					</form>
-				</c:if>
-			<c:if test="${(esAnfitrion || esAsistenteConfirmado) && null!=conviteFin && conviteFin==1}">
+			<c:if
+				test="${numeroRestante > 0 && esAnfitrion && null!=conviteFin && conviteFin==0}">
+				<form action="AnadirInvitadoServlet">
+					<button class="btn btn-success" type="submit" id="btnSubmit">Añadir
+						invitado</button>
+					<br> <input type="hidden" value="${convite.idConvite}"
+						name="idConvite" id="idConvite">
+				</form>
+			</c:if>
+			<c:if
+				test="${(esAnfitrion || esAsistenteConfirmado) && null!=conviteFin && conviteFin==1}">
 				<form action="">
-					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar Convite</button>
-					<br> <input type="hidden" value="${convite.idConvite}" name="idConvite" id="idConvite">
+					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar
+						Convite</button>
+					<br> <input type="hidden" value="${convite.idConvite}"
+						name="idConvite" id="idConvite">
 				</form>
 			</c:if>
 		</div>

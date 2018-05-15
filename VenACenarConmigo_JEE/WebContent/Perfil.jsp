@@ -20,12 +20,15 @@ a {
 
 #foto {
 	float: left;
+	min-width:260px;
 }
 
 #nombre {
 	float: left;
 	margin-left: 150px;
 	margin-top: 70px;
+	min-width:520px;
+	text-align:center;
 }
 
 #userInfo {
@@ -36,6 +39,7 @@ a {
 #publicaciones {
 	float: left;
 	margin-left: 175px;
+	max-width:400px;
 }
 
 .fotoPub {
@@ -43,8 +47,6 @@ a {
 }
 
 .descripPub {
-	float: left;
-	margin-left: 100px;
 	margin-top: 30px;
 }
 
@@ -61,14 +63,20 @@ a {
 	<%@ include file="templates/navBarLoged.jsp"%>
 	<div class="container" style="margin-left: 100px">
 		<div id="foto">
-			<img src="cubiertos_icono.png"
-				style="margin-top: 20px; border: 2px groove #e7e5dd;">
+			<c:if test="${usuario.nombreFoto == null }">
+				<img src="cubiertos_icono.png"
+					style="margin-top: 30px; border: 2px groove #e7e5dd; width:260px; height:300px;">
+			</c:if>
+			<c:if test="${usuario.nombreFoto != null }">
+				<img src="images/${usuario.nombreFoto}"
+					style="margin-top: 60px; border: 2px groove #e7e5dd; width:260px; height:300px;">
+			</c:if>
 			<p style="text-align: center">
 				<a href="NuevaFoto.jsp" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Editar Foto</a>
 			</p>
-</form>
-			
+			</form>
+
 		</div>
 		<div id="nombre">
 			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
@@ -93,45 +101,44 @@ a {
 		</div>
 	</div>
 	<div class="container" style="margin-top: 50px; margin-left: 100px">
-    <div id="userInfo">
-        <h3>${usuario.nombre }</h3>
-        <h3>${usuario.apellidos }</h3>
-        <h3>Nacid@ el ${usuario.nacimiento }</h3>
-        <h3>${usuario.email }</h3>
-        <h3>Teléfono móvil: ${usuario.telefono }</h3>
-        <h3>Ciudad: ${usuario.ciudad }</h3>
-        <h3>Ocupación: ${usuario.profesion}</h3>
-        <h3>Descripción personal:</h3>
-        <h4> ${usuario.descripcion}</h4>
-    </div>
-    <div id="publicaciones" style="margin-top: 15px">
-        <p style="text-align: center"><a href="" class="btn btn-success fontLobster" style="font-size: larger "  role="button">Añadir publicación</a></p>
-        <h3>Historial de publicaciones:</h3>
-            <div class="publicacion">
-                <div class="fotoPub">
-                    <img src="cubiertos_icono.png" height="150" width="150" style="margin-top: 20px; border: 2px groove #e7e5dd;">
-                </div>
-                <div class="descripPub">
-                    <p>Lorep ipsum dolor amet</p>
-                </div>
-            </div>
-            <div class="publicacion-next">
-                <div class="fotoPub">
-                    <img src="cubiertos_icono.png" height="150" width="150" style="margin-top: 20px; border: 2px groove #e7e5dd;">
-                </div>
-                <div class="descripPub">
-                    <p>Lorep ipsum dolor amet</p>
-                </div>
-            </div>
-            <div class="publicacion-next2">
-                <div class="fotoPub">
-                    <img src="cubiertos_icono.png" height="150" width="150" style="margin-top: 20px; border: 2px groove #e7e5dd;">
-                </div>
-                <div class="descripPub">
-                    <p>Lorep ipsum dolor amet</p>
-                </div>
-            </div>
-    </div>
-</div>
+		<div id="userInfo">
+			<h3>${usuario.nombre }</h3>
+			<h3>${usuario.apellidos }</h3>
+			<h3>Nacid@ el ${usuario.nacimiento }</h3>
+			<h3>${usuario.email }</h3>
+			<h3>Teléfono móvil: ${usuario.telefono }</h3>
+			<h3>Ciudad: ${usuario.ciudad }</h3>
+			<h3>Ocupación: ${usuario.profesion}</h3>
+			<h3>Descripción personal:</h3>
+			<h4>${usuario.descripcion}</h4>
+		</div>
+		<div id="publicaciones" style="margin-top: 15px">
+			<p style="text-align: center">
+				<a href="AnadirPublicacion.jsp" class="btn btn-success fontLobster"
+					style="font-size: larger" role="button">Añadir publicación</a>
+			</p>
+			<h3>Historial de publicaciones:</h3>
+			<table>
+				<c:forEach items="${lista_publicaciones_usuario}" var="publicacioni">
+					<tr>
+						<td>
+							<div class="publicacion">
+								<div class="fotoPub">
+									<c:if test="${publicacioni.adjunto != null }">
+									<img src="imagen_public/${publicacioni.adjunto }" height="150" width="150"
+										style="margin-top: 20px; border: 2px groove #e7e5dd;">
+									</c:if>
+								</div>
+								<div class="descripPub" <c:if test="${publicacioni.adjunto != null }">style="margin-left: 160px;"</c:if>>
+									<br>
+									<p>${publicacioni.texto}</p>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

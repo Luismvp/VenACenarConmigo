@@ -18,7 +18,6 @@ public class AsistenciaConvite implements Serializable {
 	private Boolean confirmado;
 	private int numeroInvitado;
 	
-	
 	public int getIdAsistente() {
 		return idAsistente;
 	}
