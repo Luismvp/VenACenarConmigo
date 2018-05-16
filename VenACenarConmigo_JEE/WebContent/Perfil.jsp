@@ -39,6 +39,7 @@ a {
 #publicaciones {
 	float: left;
 	margin-left: 175px;
+	max-width:400px;
 }
 
 .fotoPub {
@@ -46,8 +47,6 @@ a {
 }
 
 .descripPub {
-	float: left;
-	margin-left: 100px;
 	margin-top: 30px;
 }
 
@@ -80,7 +79,7 @@ a {
 
 		</div>
 		<div id="nombre">
-			<h1>${usuario.nombre}${usuario.apellidos}</h1>
+			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
 			<br>
 			<p style="text-align: center">
 				<a href="CambiosPerfil.jsp" class="btn btn-success fontLobster"
@@ -125,11 +124,13 @@ a {
 						<td>
 							<div class="publicacion">
 								<div class="fotoPub">
-									<img src="cubiertos_icono.png" height="150" width="150"
+									<c:if test="${publicacioni.adjunto != null }">
+									<img src="imagen_public/${publicacioni.adjunto }" height="150" width="150"
 										style="margin-top: 20px; border: 2px groove #e7e5dd;">
+									</c:if>
 								</div>
-								<div class="descripPub" height="150" width="150"
-									style="margin-left: 20px;">
+								<div class="descripPub" <c:if test="${publicacioni.adjunto != null }">style="margin-left: 160px;"</c:if>>
+									<br>
 									<p>${publicacioni.texto}</p>
 								</div>
 							</div>

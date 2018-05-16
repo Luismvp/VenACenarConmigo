@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
 public class AccionUsuarioDAOImplementation implements AccionUsuarioDAO{
 	private static AccionUsuarioDAOImplementation instance = null;
@@ -13,6 +14,48 @@ public class AccionUsuarioDAOImplementation implements AccionUsuarioDAO{
 			instance = new AccionUsuarioDAOImplementation();
 		}
 		return instance;
+	}
+	@Override
+	public AccionUsuario buscarSeguimiento(String usuarioEmisor, String usuarioReceptor) {
+		// TODO Auto-generated method stub
+		AccionUsuario accion =null;
+		Session session =  SessionFactoryService.get().openSession();	
+		try {
+			session.beginTransaction();
+			accion = (AccionUsuario) session.createQuery("select a from AccionUsuario a "
+					+ "where a.usuarioEmisor= :usuarioEmisor and u.usuarioReceptor= :usuarioReceptor and a.seguimientoBloqueoDenuncia= :seguimientoBloqueoDenuncia")
+					.setParameter("usuarioEmisor", usuarioEmisor)
+					.setParameter("usuarioReceptor", usuarioReceptor)
+					.setParameter("seguimientoBloqueoDenuncia", 1)
+					.uniqueResult();
+			session.getTransaction().commit();
+		}catch(Exception e){
+			
+		}finally {
+			session.close();
+		}
+		return accion;
+	}
+	@Override
+	public AccionUsuario buscarBloqueo(String usuarioEmisor, String usuarioReceptor) {
+		// TODO Auto-generated method stub
+		AccionUsuario accion =null;
+		Session session =  SessionFactoryService.get().openSession();	
+		try {
+			session.beginTransaction();
+			accion = (AccionUsuario) session.createQuery("select a from AccionUsuario a "
+					+ "where a.usuarioEmisor= :usuarioEmisor and u.usuarioReceptor= :usuarioReceptor and a.seguimientoBloqueoDenuncia= :seguimientoBloqueoDenuncia")
+					.setParameter("usuarioEmisor", usuarioEmisor)
+					.setParameter("usuarioReceptor", usuarioReceptor)
+					.setParameter("seguimientoBloqueoDenuncia", 2)
+					.uniqueResult();
+			session.getTransaction().commit();
+		}catch(Exception e){
+			
+		}finally {
+			session.close();
+		}
+		return accion;
 	}
 	//Metodo que permite obtener una lista con todas las filas de la tabla AccionUsuario
 	@Override
@@ -50,13 +93,13 @@ public class AccionUsuarioDAOImplementation implements AccionUsuarioDAO{
 	}
 	//Buscar fila en la tabla AccionUsuario a traves del email de usuario
 	@Override
-	public AccionUsuario readAccionUsuario(String email) {
+	public AccionUsuario readAccionUsuario(int id) {
 		// TODO Auto-generated method stub
 		AccionUsuario accionUsuario = null;
 		Session session = SessionFactoryService.get().openSession();
 		try {
 			session.beginTransaction();
-			accionUsuario = session.get(AccionUsuario.class, email);
+			accionUsuario = session.get(AccionUsuario.class, id);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			

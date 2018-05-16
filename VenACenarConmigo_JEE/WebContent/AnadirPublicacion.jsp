@@ -36,15 +36,15 @@ label {
 		<h1>Añade una publicación:</h1>
 		<form action="AnadirPublicacionServlet" method="post"
 			enctype="multipart/form-data">
-			<input type="file" name="file" />
+			<input type="file" name="file" class="btn btn-success" />
 			<h2>Introduce un comentario:</h2>
 			<div class="form-group" id="comentario-group">
-				<br> <input id= "comentario" type="comentario" name="comentario"
+				<br> <textarea id= "comentario" type="comentario" name="comentario"
 					class="form-control" id="comentario" autocomplete="off"
-					placeholder="Introduce un comentario" required>
+					placeholder="Introduce un comentario" cols="100" rows="8" required></textarea>
 			</div>
 			<br> <br>
-			<button>Enviar</button>
+			<button type="submit" class="btn btn-success">Enviar</button>
 		</form>
 	</div>
 </body>

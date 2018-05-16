@@ -120,6 +120,7 @@ public class MuestraConviteServlet extends HttpServlet {
 		req.getSession().setAttribute("esAsistenteConfirmado", esAsistenteConfirmado);
 		req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
 		req.getSession().setAttribute("esInscritoPendiente", esInscritoPendiente);
+		req.getSession().setAttribute("conviteFin", 0);
 		resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
 	}
 }
