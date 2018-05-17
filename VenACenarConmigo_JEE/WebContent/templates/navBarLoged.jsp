@@ -13,7 +13,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li id="index"><a href="InicioServlet">Inicio</a></li>
+                <li id="index"><a href="MuestraConviteInicioServlet">Inicio</a></li>
                 <li id="perfil"><a href="Perfil.jsp">Mi perfil</a></li>
                 <li id="usuario"><a href="BusquedaUsuarios.jsp">Buscar usuario</a></li>
                 <li id="search"><a href="BuscarConviteServlet">Buscar convite</a></li>
