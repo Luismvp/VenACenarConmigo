@@ -21,8 +21,9 @@ public class FotoPerfilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Part filePart = req.getPart("file");
 		String fileName = extractFileName(filePart);
-		//Direccion a piñon del proyecto (cambiar para la foto de perfil)
+		//Direccion de las imágenes del proyecto (cambiar para la foto de perfil)
 		//String savePath = "/home/isst/eclipse-workspace/VenACenarConmigo/WebContent/images" + File.separator + fileName;
+    	//Si usas la máquina virtual, comenta esta linea y descomenta la de arriba
 		String savePath = "/home/pegaso/ISST/VenACenarConmigo/VenACenarConmigo_JEE/WebContent/images/" + 
 				"" + File.separator + fileName;
 		File fileSaveDir = new File(savePath);
