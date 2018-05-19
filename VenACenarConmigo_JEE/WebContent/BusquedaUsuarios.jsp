@@ -34,19 +34,29 @@ label {
 	<%@include file="templates/navBarLoged.jsp"%>
 	<h2>Busca un usuario</h2>
 	<p>
-		Para llevar a cabo una busqueda simple busca por medio de su
-		nombre/nombre y apellidos, si quieres<br>una búsqueda más exacta
-		busca a través de su email de usuario
+		Para llevar a cabo una búsqueda exacta, introduce el email del usuario. <br>
+		También puedes realizar una búsqueda más aproximada, introduciendo su nombre y apellidos.
 	</p>
-	<br>
-	<p>el formato de búsqueda en el caso de buscar por medio de nombre
-		y apellidos es: nombre/apellidos</p>
 	<hr>
+	<h3>Búsqueda por email:</h3>
 	<form action="BuscarUsuarioServlet">
 		<div class="form-group" id="usuario-group">
-			<label for="usuario">Usuario:</label> <br> <input type="text"
-				name="usuario" class="form-control" id="usuario"
-				placeholder="introduce el nombre o el email del usuario que estás buscando">
+			<label for="email_usuario">Email del usuario:</label> <br> <input type="text"
+				name="email_usuario" class="form-control" id="email_usuario"
+				placeholder="introduce el email del usuario que estás buscando">
+		</div>
+		<button type="submit" class="btn btn-success">Buscar usuario <span class="glyphicon glyphicon-search"></span></button>
+	</form>
+	<hr>
+	<h3>Búsqueda por nombre y apellidos:</h3>
+	<form action="BuscarUsuarioServlet">
+		<div class="form-group" id="usuario-group">
+			<label for="nombre_usuario">Nombre del usuario:</label> <br> <input type="text"
+				name="nombre_usuario" class="form-control" id="nombre_usuario"
+				placeholder="introduce el nombre del usuario que estás buscando"><br>
+			<label for="apellidos_usuario">Apellidos del usuario:</label> <br> <input type="text"
+				name="apellidos_usuario" class="form-control" id="apellidos_usuario"
+				placeholder="introduce los apellidos del usuario que estás buscando">
 		</div>
 		<button type="submit" class="btn btn-success">Buscar usuario <span class="glyphicon glyphicon-search"></span></button>
 	</form>

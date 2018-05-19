@@ -46,7 +46,7 @@ label {
 </head>
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
-	<div class="convite">
+	<div class="convite" style="margin-bottom: 70px">
 		<input type="hidden" value="false" name="enNotificaciones"
 			id="enNotificaciones">
 		<h1 align="center">${convite.nombre}</h1>
@@ -63,34 +63,33 @@ label {
 			<h4>Área: ${convite.area}</h4>
 			<h4>Descripción: ${convite.descripcion}</h4>
 
-
 			<hr>
 
 			<div class="comentarios" id="comentarios-group">
-				<form action="AnadirComentarioEnConviteServlet">
-					<label for="comentario">¿Tienes algo que decir?</label>
+				<form action="AnadirComentarioEnConviteServlet" >
+					<label for="comentario">¿Tienes algo que decir?</label> 
 					<div class="form-group" id="comentario-group">
 						<br> <input id="comentario" type="comentario"
 							name="comentario" class="form-control" id="comentario"
 							autocomplete="off" placeholder="Introduce un comentario" required>
 					</div>
 					<input type="hidden" value="${convite.idConvite}" name="idConvite"
-						id="idConvite"> <input type="hidden"
-						value="${usuario.email}" name="email" id="email">
+						id="idConvite">
+					 <input type="hidden" value="${usuario.email}" name="email" id="email">
 					<button type="submit" class="btn btn-success">
 						Enviar <span class="glyphicon glyphicon-arrow-right"></span>
 					</button>
+					<br>
 				</form>
-				<br>
 				<div>
-					<table >
+					<table>
 						<c:forEach items="${lista_comentarios_convite}" var="comentarioi">
 							<tr>
-								<td style="border-radius:0.5em; background-color: #FAFAFA; min-width: 500px;">${comentarioi.nombre}:<br>
-									${comentarioi.comentario}
-								</td>
+								<div>
+									<br>
+									<td>${comentarioi.nombre}: ${comentarioi.comentario}</td>
+								</div>
 							</tr>
-							<tr><td><br></td></tr>
 						</c:forEach>
 					</table>
 				</div>
@@ -184,7 +183,7 @@ label {
 			</c:if>
 			<c:if
 				test="${(esAnfitrion || esAsistenteConfirmado) && null!=conviteFin && conviteFin==1}">
-				<form action="PaginaValoraConviteServlet">
+				<form action="">
 					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar
 						Convite</button>
 					<br> <input type="hidden" value="${convite.idConvite}"
@@ -192,9 +191,6 @@ label {
 				</form>
 			</c:if>
 		</div>
-	</div>
-	<div style="clear: both; margin-top:10%;  text-align: center;">
-		<p> Todos los derechos reservados </p>
 	</div>
 </body>
 </html>

@@ -17,16 +17,20 @@ import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 public class ValidacionServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String email = req.getParameter("email");
-		String password = req.getParameter("password");
-		Usuario usuario = UsuarioDAOImplementation.getInstance().readUsuario(email);
-		if(usuario.getPassword().equals(password)) {
-			usuario.setValidado(true);
-			UsuarioDAOImplementation.getInstance().updateUsuario(usuario);
-			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
-		}else {
-			req.getSession().setAttribute("error", "La contraseña introducida no coincide con la del email.");
-			resp.sendRedirect(req.getContextPath() + "/ValidarCuenta.jsp");
+		int idConvite = Integer.parseInt(req.getParameter("idConvite"));
+		String email = (String) req.getSession().getAttribute("email");
+		String[] inv = new String[15];
+		String emailAnfitrion;
+		for(int i = 1;i <= 15;i++ ) {
+			if(req.getParameter("caras"+i)!=null) {
+				inv[i-1]=req.getParameter("caras"+i);
+			}else {
+				inv[i-1]="0";
+			}
 		}
+		if(req.getParameter("carasAnfi")!=null) {
+			
+		}
+		
 	}	
 }

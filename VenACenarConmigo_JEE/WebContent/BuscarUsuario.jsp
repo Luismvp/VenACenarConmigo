@@ -28,16 +28,40 @@
 </head>
 <body>
 <%@include file="templates/navBarLoged.jsp" %>
-	<c:forEach items="${usuario_list}" var="usuarioi">
+	<c:forEach items="${index_list}" var="indexi">
         <div>
-		<h2>${usuarioi.nombre} ${usuarioi.apellidos}</h2>
-		<h4>Ciudad: ${usuarioi.ciudad}</h4>
-		<h4>Descripción: ${usuarioi.descripcion}</h4>
+		<h2>${usuario_list.get(indexi).nombre} ${usuario_list.get(indexi).apellidos}</h2>
+		<h4>Ciudad: ${usuario_list.get(indexi).ciudad}</h4>
+		<h4>Descripción: ${usuario_list.get(indexi).descripcion}</h4>
 	    </div>
-	    <form action="MuestraUsuarioServlet">
-	    	<input type="hidden" value="${usuarioi.email}" name="email">
-        	<button type="submit" class="btn btn-success">Ver perfil</button>
-        </form>
+		<c:choose>
+			<c:when test="${botones.get(indexi) == 1}">
+				<form action="MuestraUsuarioServlet">
+	    			<input type="hidden" value="${usuario_list.get(indexi).email}" name="email">
+        			<button type="submit" class="btn btn-success">Ver perfil</button>
+        		</form>
+			</c:when>
+			<c:when test="${botones.get(indexi) == 2}">
+				<form action="SeguirUsuarioServlet">
+	    			<input type="hidden" value="${usuario_list.get(indexi).email}" name="email">
+	    			<input type="hidden" value="true" name="enBusqueda">
+	    			<input type="hidden" value="${indexi}" name="index">
+        			<button type="submit" class="btn btn-success">
+						Seguir <span class="glyphicon glyphicon-ok"></span>
+					</button>
+        		</form>
+			</c:when>
+			<c:when test="${botones.get(indexi) == 3}">
+				<form action="">
+	    			<input type="hidden" value="${usuario_list.get(indexi).email}" name="email">
+	    			<input type="hidden" value="true" name="enBusqueda">
+	    			<input type="hidden" value="${indexi}" name="index">
+        			<button type="submit" class="btn btn-success">
+						Dejar de seguir <span class="glyphicon glyphicon-ok"></span>
+					</button>
+        		</form>
+			</c:when>
+		</c:choose>
     </c:forEach>
 </body>
 </html>

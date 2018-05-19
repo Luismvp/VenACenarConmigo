@@ -59,7 +59,7 @@ public class NuevoConviteServlet extends HttpServlet {
 		}
 		Calendar fechaYHoraFin = Calendar.getInstance();
 		if (null != anoMesDia[0]) {
-			if (Integer.parseInt(horaMinFin[0]) > Integer.parseInt(horaMinComienzo[0])) {
+			if (Integer.parseInt(horaMinFin[0]) >= Integer.parseInt(horaMinComienzo[0])) {
 				fechaYHoraFin.set(Integer.parseInt(anoMesDia[2]), (Integer.parseInt(anoMesDia[1]) - 1),
 						Integer.parseInt(anoMesDia[0]), Integer.parseInt(horaMinFin[0]),
 						Integer.parseInt(horaMinFin[1]));

@@ -44,7 +44,29 @@ public class SeguirUsuarioServlet extends HttpServlet {
 			seguimiento.setSeguimientoBloqueoDenuncia(seguimientoBloqueoDenuncia);
 			AccionUsuarioDAOImplementation.getInstance().createAccionUsuario(seguimiento);
 		}
-		req.getSession().setAttribute("seguimiento", seguimiento);
-		resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
+		Boolean enBusqueda = Boolean.parseBoolean(req.getParameter("enBusqueda"));
+		if (enBusqueda) {
+			int index = Integer.parseInt(req.getParameter("index"));
+			List<Integer> botones = (List<Integer>) req.getSession().getAttribute("botones");
+			List<Integer> privacidades = (List<Integer>) req.getSession().getAttribute("privacidades");
+			List<Integer> relaciones = (List<Integer>) req.getSession().getAttribute("relaciones");
+			if (relaciones.get(index) == 4) {
+				relaciones.set(index, 3);
+			} else {
+				relaciones.set(index, 2);
+			}
+			if (privacidades.get(index) == 3 && relaciones.get(index) == 2) {
+		    	botones.set(index, 3);
+			} else {
+				botones.set(index, 1);
+			}
+			
+			req.getSession().setAttribute("relaciones", relaciones);
+			req.getSession().setAttribute("botones", botones);
+			resp.sendRedirect(req.getContextPath() + "/BuscarUsuario.jsp");
+		} else {
+			req.getSession().setAttribute("seguimiento", seguimiento);
+			resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
+		}
 	}
 }
