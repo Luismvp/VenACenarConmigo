@@ -40,15 +40,15 @@ public class AnadeInvitadoServlet extends HttpServlet {
 		invitado.setNumeroInvitado(asistente2.size()+1);
 		
 		AsistenciaConviteDAOImplementation.getInstance().createAsistenciaConvite(invitado);
-		List<AsistenciaConvite> asistente_now = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
-		List<AsistenciaConvite> asistente3 = new ArrayList<>();
-		for(AsistenciaConvite i:asistente_now) {
+		asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
+		asistente2.clear();
+		for(AsistenciaConvite i:asistente) {
 			if(i.getIdConvite()==idConvite) {
-				asistente3.add(i);
+				asistente2.add(i);
 			}
 		}
-		req.getSession().setAttribute("ultimoInvitado", asistente3.size());
-		req.getSession().setAttribute("lista_invitados", asistente3);
+		req.getSession().setAttribute("ultimoInvitado", asistente2.size());
+		req.getSession().setAttribute("lista_invitados", asistente2);
 		resp.sendRedirect(req.getContextPath()+"/Convite.jsp");
 	}
 }

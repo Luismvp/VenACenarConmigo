@@ -45,7 +45,8 @@
 			<h4>Precio por invitado: ${convitea.precioInvitado} €</h4>
 			<h4>Descripción: ${convitea.descripcion}</h4>
 			<form action="MuestraConviteServlet">
-				<button type="submit" class="btn btn-success" id="btnSubmit">Ver detalles</button>
+				<button type="submit" class="btn btn-success" id="btnSubmit">Entrar
+					en el convite</button>
 				<br>
 				<input type="text" style="visibility: hidden"
 					value="${convitea.idConvite}" name="idConvite" id="idConvite">

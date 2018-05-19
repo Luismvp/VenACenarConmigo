@@ -44,7 +44,6 @@ public class SeguirUsuarioServlet extends HttpServlet {
 			seguimiento.setSeguimientoBloqueoDenuncia(seguimientoBloqueoDenuncia);
 			AccionUsuarioDAOImplementation.getInstance().createAccionUsuario(seguimiento);
 		}
-		
 		Boolean enBusqueda = Boolean.parseBoolean(req.getParameter("enBusqueda"));
 		if (enBusqueda) {
 			int index = Integer.parseInt(req.getParameter("index"));

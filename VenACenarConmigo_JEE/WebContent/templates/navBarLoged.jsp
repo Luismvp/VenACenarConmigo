@@ -17,7 +17,7 @@
                 <li id="perfil"><a href="Perfil.jsp">Mi perfil</a></li>
                 <li id="usuario"><a href="BusquedaUsuarios.jsp">Buscar usuario</a></li>
                 <li id="search"><a href="BuscarConviteServlet">Buscar convite</a></li>
-                <li id="convite"><a href="CrearConvite.jsp">Crear convite</a></li>
+                <li id="convite"><a href="CrearConvite.jsp">Crear Convite</a></li>
                 <li id="contacto"><a href="contacto.html">Contacto</a></li>
                 <li id="notificac"><a href="NotificacionesServlet">Notificaciones<span class="badge"><c:if test="${numero_notificaciones != 0}">${numero_notificaciones}</c:if></span></a></li>
                 <li id="login"><a href="LogoutServlet">Logout</a></li>

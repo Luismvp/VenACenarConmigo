@@ -32,7 +32,6 @@ a {
 
 #convites {
 	float: left;
-	margin-top: 50px;
 }
 
 #userInfo {
@@ -84,7 +83,6 @@ a {
 			<c:if test="${seguimiento ==null }">
 				<form action="SeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
-					<input type="hidden" value="false" name="enBusqueda">
 					<button type="submit" class="btn btn-success">
 						Seguir <span class="glyphicon glyphicon-ok"></span>
 					</button>
@@ -106,7 +104,7 @@ a {
 			</form>
 		</div>
 	</div>
-
+	<hr>
 	<div class="container" style="margin-top: 50px; margin-left: 100px">
 		<div id="userInfo">
 			<h3>${usuario_visitado.nombre }</h3>
@@ -118,6 +116,7 @@ a {
 			<h3>Ocupación: ${usuario_visitado.profesion}</h3>
 			<h3>Descripción personal:</h3>
 			<h4>${usuario_visitado.descripcion}</h4>
+			<hr>
 			<div id="convites">
 				<h3>Convites del usuario:</h3>
 				<c:if test="${convite_list.isEmpty()}">
@@ -169,6 +168,9 @@ a {
 				</c:forEach>
 			</table>
 		</div>
+	</div>
+	<div style="clear: both; margin-top:10%;  text-align: center;">
+		<p> Todos los derechos reservados </p>
 	</div>
 </body>
 </html>

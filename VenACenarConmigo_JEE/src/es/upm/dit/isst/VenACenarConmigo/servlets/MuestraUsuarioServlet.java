@@ -57,14 +57,10 @@ public class MuestraUsuarioServlet extends HttpServlet {
 		if (null != seguimiento) {
 			req.getSession().setAttribute("seguimiento", seguimiento);
 		}
-		
-		if(emailUsuario.equals(emailUsuario2)) {
-			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
-		} else {
-			req.getSession().setAttribute("convite_list", convitesUsuario);
-			req.getSession().setAttribute("usuario_visitado", usuarioVisitado);
-			req.getSession().setAttribute("publicaciones", publicacionesUsuario);
-			resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
-		}
+
+		req.getSession().setAttribute("convite_list", convitesUsuario);
+		req.getSession().setAttribute("usuario_visitado", usuarioVisitado);
+		req.getSession().setAttribute("publicaciones", publicacionesUsuario);
+		resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 	}
 }

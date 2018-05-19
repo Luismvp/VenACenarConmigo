@@ -42,6 +42,12 @@ a {
 	max-width:400px;
 }
 
+#valoracion {
+	float: left;
+	margin-left: 175px;
+	max-width:400px;
+}
+
 .fotoPub {
 	float: left;
 }
@@ -82,11 +88,11 @@ a {
 			<h1>${usuario.nombre} ${usuario.apellidos}</h1>
 			<br>
 			<p style="text-align: center">
-				<a href="CambiosPerfil.jsp" class="btn btn-success fontLobster"
+				<a href="PaginaEditarPerfilServlet" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Editar Perfil</a>
 			</p>
 			<p style="text-align: center">
-				<a href="Privacidad.jsp" class="btn btn-success fontLobster"
+				<a href="PaginaPrivacidadServlet" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Opciones de privacidad</a>
 			</p>
 			<p style="text-align: center">
@@ -100,7 +106,7 @@ a {
 			</p>
 		</div>
 	</div>
-	<div class="container" style="margin-top: 50px; margin-left: 100px">
+	<div class="container" style="margin-top: 10px; margin-left: 100px">
 		<div id="userInfo">
 			<h3>${usuario.nombre }</h3>
 			<h3>${usuario.apellidos }</h3>
@@ -112,12 +118,15 @@ a {
 			<h3>Descripción personal:</h3>
 			<h4>${usuario.descripcion}</h4>
 		</div>
+		<div id="valoracion" style="margin-top: 15px">
+			<h3>Valoración media recibida: ${valoracion_media}</h3>
+		</div>
 		<div id="publicaciones" style="margin-top: 15px">
+			<h3>Historial de publicaciones:</h3>
 			<p style="text-align: center">
 				<a href="AnadirPublicacion.jsp" class="btn btn-success fontLobster"
 					style="font-size: larger" role="button">Añadir publicación</a>
 			</p>
-			<h3>Historial de publicaciones:</h3>
 			<table>
 				<c:forEach items="${lista_publicaciones_usuario}" var="publicacioni">
 					<tr>
@@ -131,7 +140,9 @@ a {
 								</div>
 								<div class="descripPub" <c:if test="${publicacioni.adjunto != null }">style="margin-left: 160px;"</c:if>>
 									<br>
-									<p>${publicacioni.texto}</p>
+									<p>[${publicacioni.fecha.getTime().toString().substring(8,10)}/${publicacioni.fecha.getTime().toString().substring(4,7)}/${publicacioni.fecha.getTime().toString().substring(25)}
+									${publicacioni.fecha.getTime().toString().substring(11,19)}]:
+									${publicacioni.texto}</p>
 								</div>
 							</div>
 						</td>

@@ -99,6 +99,26 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<table border="1">
+		<tr>
+			<th>id de la Valoración</th>
+			<th>email valorador</th>
+			<th>email valorado</th>
+			<th>id del convite</th>
+			<th>puntuación</th>
+			<th>comentario</th>
+		</tr>
+		<c:forEach items="${valoracion_list}" var="valoracioni">
+			<tr>
+				<td>${valoracioni.idValoracion}</td>
+				<td>${valoracioni.usuarioValorador}</td>
+				<td>${valoracioni.usuarioValorado}</td>
+				<td>${valoracioni.convite}</td>
+				<td>${valoracioni.puntuacion}</td>
+				<td>${valoracioni.comentario}</td>
+			</tr>
+		</c:forEach>
+	</table>
 	<a href="LogoutServlet">Logout</a>
 </body>
 </html>

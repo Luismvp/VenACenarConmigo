@@ -16,10 +16,12 @@
 		<property name = "show_sql" > true </property>
 		<property name = "hbm2ddl.auto" > update </property>
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Aficion" />
+		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Valoracion" />
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Convite" />
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite" />
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario" />
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones" />
 		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario" />
+		<mapping class = "es.upm.dit.isst.VenACenarConmigo.dao.model.ComentarioConvite" />
 	</session-factory>
 </hibernate-configuration>

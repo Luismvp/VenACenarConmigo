@@ -2,6 +2,7 @@ package es.upm.dit.isst.VenACenarConmigo.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,7 +23,17 @@ public class BuscarConviteServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = (String) req.getSession().getAttribute("email");
+		Calendar now = Calendar.getInstance();
+		String mes = getNumeroMes(now.getTime().toString().substring(4,7));
+		String fecha_actual = now.getTime().toString().substring(8,10)+"/"+mes+"/"+now.getTime().toString().substring(25);
+		String hora_actual = now.getTime().toString().substring(11,17);
 		List<Convite> convites = ConviteDAOImplementation.getInstance().readAllConvite();
+		// Quitamos los convites que ya se han celebrado (o ya han empezado)
+		for (int i = 0; i < convites.size(); i++) {
+			if (conviteAnteriorAFecha(convites.get(i), fecha_actual, hora_actual)) {
+				convites.remove(i);
+			}
+		}
 		List<Convite> convites_ordenados = convites;
 		convites_ordenados = ordenarPorFecha(convites);
 		int selectedFilter = 0;
@@ -107,6 +118,105 @@ public class BuscarConviteServlet extends HttpServlet{
 			}
 		}
 		return lista;
+	}
+	
+	//Formato fecha => dd/mm/aaaa  Formato hora => hh:mm
+	private boolean conviteAnteriorAFecha (Convite conv, String fecha, String hora) {
+		String fecha_conv = conv.getFecha();
+		String hora_conv = conv.getHoraComienzo();
+		int año = Integer.parseInt(fecha.substring(6));
+		int año_conv = Integer.parseInt(fecha_conv.substring(6));
+		
+		if (año_conv > año) {
+			return false;
+		} else if (año_conv < año) {
+			return true;
+		} else {
+			int mes = Integer.parseInt(fecha.substring(3,5));
+			int mes_conv = Integer.parseInt(fecha_conv.substring(3,5));
+			
+			if (mes_conv > mes) {
+				return false;
+			} else if (mes_conv < mes) {
+				return true;
+			} else {
+				int dia = Integer.parseInt(fecha.substring(0,2));
+				int dia_conv = Integer.parseInt(fecha_conv.substring(0,2));
+				
+				if (dia_conv > dia) {
+					return false;
+				} else if (dia_conv < dia) {
+					return true;
+				}
+				else {
+					int hh = Integer.parseInt(hora.substring(0,2));
+					int hh_conv = Integer.parseInt(hora_conv.substring(0,2));
+					
+					if (hh_conv > hh) {
+						return false;
+					} else if (hh_conv < hh) {
+						return true;
+					}
+					else {
+						int mm = Integer.parseInt(hora.substring(3,5));
+						int mm_conv = Integer.parseInt(hora_conv.substring(3));
+						
+						if (mm_conv > mm) {
+							return false;
+						} else if (mm_conv < mm) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
+	private String getNumeroMes (String mes) {
+		String num_mes;
+		switch(mes) {
+		case "Jan":
+			num_mes = "01";
+			break;
+		case "Feb":
+			num_mes = "02";
+			break;
+		case "Mar":
+			num_mes = "03";
+			break;
+		case "Apr":
+			num_mes = "04";
+			break;
+		case "May":
+			num_mes = "05";
+			break;
+		case "Jun":
+			num_mes = "06";
+			break;
+		case "Jul":
+			num_mes = "07";
+			break;
+		case "Aug":
+			num_mes = "08";
+			break;
+		case "Sep":
+			num_mes = "09";
+			break;
+		case "Oct":
+			num_mes = "10";
+			break;
+		case "Nov":
+			num_mes = "11";
+			break;
+		case "Dec":
+			num_mes = "12";
+			break;
+		default:
+			num_mes = "00";
+			break;
+		}
+		return num_mes;
 	}
 	
 	private boolean masRecientePrimero (Convite conv1, Convite conv2) {

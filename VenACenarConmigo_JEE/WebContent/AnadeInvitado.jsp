@@ -39,7 +39,7 @@ h1 {
 	<h1>Añade un invitado al convite:</h1>
 	<form action="AnadeInvitadoServlet">
 		<%@include file="formularios/Invitados1.jsp"%>
-		<button class="btn btn-success" type="submit" id="btnSubmit2">Añadir
+		<button class="btn btn-success" type="submit" id="btnSubmit2">añadir
 			invitado</button>
 		<br> <input type="text" value="${idConvite}"
 			name="idConvite" id="idConvite" style="visibility: hidden;">

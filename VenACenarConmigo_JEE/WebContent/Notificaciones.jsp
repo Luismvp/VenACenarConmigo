@@ -54,14 +54,12 @@ label {
 						invitación</button>
 					<br> <input type="text" value="${convitei.idConvite}"
 						name="idConvite" id="idConvite" style="visibility: hidden;">
-						<input type="hidden" value="true" name="enNotificaciones" id="enNotificaciones">
 				</form>
 				<form action="RechazaInvitacionServlet">
 					<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
 						invitación</button>
 					<br> <input type="text" value="${convitei.idConvite}"
 						name="idConvite" id="idConvite" style="visibility: hidden;">
-						<input type="hidden" value="true" name="enNotificaciones" id="enNotificaciones">
 				</form>
 			</div>
 			<br>

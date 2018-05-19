@@ -32,43 +32,109 @@
 <%@include file="templates/navBarLoged.jsp" %>
 <div id="privacidad">
         <h1>Configuración de privacidad</h1>
-        <h2>Selecciona entre las siguientes opciones de configuración de privacidad aquella que mas se ajuste a tus intereses</h2>
         <form id="loginForm" action="AjustesPrivacidadServlet">
-        <fieldset><br><br>
-            <h4>Estas son las opciones de configuración respecto de la visualización del perfil. Los rangos de privacidad disponibles son:</h4>
-            <p>
+        <fieldset>
+            <h3>¿Quién puede ver mi página de perfil?</h3>
+            <c:choose>
+				<c:when test="${privacidad1 == 2}">
+				<p>
+                <label for="cualquiera1">Cualquier usuario</label>
+                <input type="radio" name="perfil" id="cualquiera1" value="cualquiera1">
                 <br>
-                <label for="cualquiera1">Lo puede ver cualquiera</label>
-                <input type="radio" name="cualquiera1" id="cualquiera1">
+                <label for="mesigue1">Los usuarios que me siguen</label>
+                <input type="radio" name="perfil" id="mesigue1" value="mesigue1" checked>
                 <br>
-                <label for="mesigue1">Lo puede ver quien me sigue</label>
-                <input type="radio" name="mesigue1" id="mesigue1">
+                <label for="sigo1">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="perfil" id="sigo1" value="sigo1">
+            	</p>
+				</c:when>
+				<c:when test="${privacidad1 == 3}">
+				<p>
+                <label for="cualquiera1">Cualquier usuario</label>
+                <input type="radio" name="perfil" id="cualquiera1" value="cualquiera1">
                 <br>
-                <label for="sigo1">Lo puede ver quien me sigue y le sigo</label>
-                <input type="radio" name="sigo1" id="sigo1">
-            </p>
+                <label for="mesigue1">Los usuarios que me siguen</label>
+                <input type="radio" name="perfil" id="mesigue1" value="mesigue1">
+                <br>
+                <label for="sigo1">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="perfil" id="sigo1" value="sigo1" checked>
+            	</p>
+				</c:when>
+				<c:otherwise>
+				<p>
+                <label for="cualquiera1">Cualquier usuario</label>
+                <input type="radio" name="perfil" id="cualquiera1" value="cualquiera1" checked>
+                <br>
+                <label for="mesigue1">Los usuarios que me siguen</label>
+                <input type="radio" name="perfil" id="mesigue1" value="mesigue1">
+                <br>
+                <label for="sigo1">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="perfil" id="sigo1" value="sigo1">
+            	</p>
+				</c:otherwise>
+            </c:choose>
             <br>
-            <h4>Estas son las opciones de configuración respecto de la visualización de proposiciones de convite. Los rangos de privacidad disponibles son:</h4>
-            <p> <br>
-                <label for="cualquiera2">Lo puede ver cualquiera</label>
-                <input type="radio" name="cualquiera2" id="cualquiera2">
+            <h3>¿Quién puede acceder a mis convites?</h3>
+            <c:choose>
+            	<c:when test="${privacidad2 == 2}">
+            	<p>
+                <label for="cualquiera2">Cualquier usuario</label>
+                <input type="radio" name="convites" id="cualquiera2" value="cualquiera2">
                 <br>
-                <label for="mesigue2">Lo puede ver quien me sigue</label>
-                <input type="radio" name="mesigue2" id="mesigue2">
+                <label for="mesigue2">Los usuarios que me siguen</label>
+                <input type="radio" name="convites" id="mesigue2" value="mesigue2" checked>
                 <br>
-                <label for="sigo2">Lo puede ver quien me sigue y le sigo</label>
-                <input type="radio" name="sigo2" id="sigo2">
-            </p>
+                <label for="sigo2">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="convites" id="sigo2" value="sigo2">
+            	</p>
+            	</c:when>
+            	<c:when test="${privacidad2 == 3}">
+            	<p>
+                <label for="cualquiera2">Cualquier usuario</label>
+                <input type="radio" name="convites" id="cualquiera2" value="cualquiera2">
+                <br>
+                <label for="mesigue2">Los usuarios que me siguen</label>
+                <input type="radio" name="convites" id="mesigue2" value="mesigue2">
+                <br>
+                <label for="sigo2">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="convites" id="sigo2" value="sigo2" checked>
+            	</p>
+            	</c:when>
+            	<c:otherwise>
+            	<p>
+                <label for="cualquiera2">Cualquier usuario</label>
+                <input type="radio" name="convites" id="cualquiera2" value="cualquiera2" checked>
+                <br>
+                <label for="mesigue2">Los usuarios que me siguen</label>
+                <input type="radio" name="convites" id="mesigue2" value="mesigue2">
+                <br>
+                <label for="sigo2">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="convites" id="sigo2" value="sigo2">
+            	</p>
+            	</c:otherwise>
+            </c:choose>
             <br>
-            <h4>Estas son las opciones de configuración respecto de la visualización de publicaciones de tu perfil en otros perfiles. Los rangos de privacidad disponibles son:</h4>
-            <p>
+            <h3>¿Quién puede ver mis publicaciones?</h3>
+            <c:choose>
+            	<c:when test="${privacidad3 == 2}">
+            	<p>
+                <label for="mesigue3">Los usuarios que me siguen</label>
+                <input type="radio"  name="publicaciones" id="mesigue3" value="mesigue3">
                 <br>
-                <label for="mesigue3">Lo puede ver quien me sigue</label>
-                <input type="radio"  name="mesigue3" id="mesigue3">
+                <label for="sigo3">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="publicaciones" id="sigo3" value="sigo3" checked>
+            	</p>
+            </c:when>
+            	<c:otherwise>
+            	<p>
+                <label for="mesigue3">Los usuarios que me siguen</label>
+                <input type="radio"  name="publicaciones" id="mesigue3" value="mesigue3" checked>
                 <br>
-                <label for="sigo3">Lo puede ver quien me sigue y le sigo</label>
-                <input type="radio" name="sigo3" id="sigo3">
-            </p>
+                <label for="sigo3">Los usuarios que me siguen, y sólo si yo también les sigo</label>
+                <input type="radio" name="publicaciones" id="sigo3" value="sigo3">
+            	</p>
+            	</c:otherwise>
+            </c:choose>
             <br>
             <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
         </fieldset>
