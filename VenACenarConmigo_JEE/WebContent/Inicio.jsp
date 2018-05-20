@@ -20,8 +20,19 @@
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
 	<div class="inicio" style="margin-bottom: 70px; margin-top: 80px">
-		<h1 align="center">Convites que se celebrarán dentro de poco, no
-			te los pierdas:</h1>
+		<h1 align="center">Convites que se celebrarán en un intervalo de
+			${meses_a_mostrar} meses en ${ciudad_Usuario}, ¡no te los pierdas!</h1>
+
+		<h2>Número de meses a mostrar (<12):</h2>
+		<form action="MuestraConviteInicioServlet">
+			<div class="form-group" >
+				<br> <textarea id= "meses_a_mostrar" name="meses_a_mostrar"
+					class="form-control" id="meses_a_mostrar" 
+					placeholder="Introduce el numero de meses" cols="1" rows="1" ></textarea>
+			</div>
+			<button href="AnadirPublicacion.jsp" class="btn btn-success">Enviar</button>
+		</form>
+
 		<c:choose>
 			<c:when test="${empty lista_convites}">
 				<h2>No hay convites disponibles en este momento</h2>
@@ -38,12 +49,12 @@
 								<h4>Precio por invitado: ${convitei.precioInvitado} €</h4>
 								<h4>Descripción: ${convitei.descripcion}</h4>
 							</div>
-							</tr>
-							<form action="MuestraConviteServlet">
-								<button type="submit" class="btn btn-success" id="btnSubmit">Ver
-									detalles</button>
-							</form>
-						
+						</tr>
+						<form action="MuestraConviteServlet">
+							<button type="submit" class="btn btn-success" id="btnSubmit">Ver
+								detalles</button>
+						</form>
+
 					</c:forEach>
 				</table>
 			</c:otherwise>
