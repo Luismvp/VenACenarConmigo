@@ -28,10 +28,14 @@ public class AnadirPublicacionServlet extends HttpServlet {
         	Publicaciones publicacion = new Publicaciones();
         		Part filePart = req.getPart("file");
         		if (filePart.getSize()!=0) {
-                	filePart = req.getPart("file");
+                	//filePart = req.getPart("file");
                 	String fileName = extractFileName(filePart);
                 	log(fileName);
-            		String savePath = "/home/isst/eclipse-workspace/VenACenarConmigo/WebContent/imagen_public" + File.separator + fileName;
+            		//Direccion de las imágenes del proyecto (cambiar para la foto de perfil)
+            		//String savePath = "/home/isst/eclipse-workspace/VenACenarConmigo/WebContent/imagen_public" + File.separator + fileName;
+            		
+                	//Si usas la máquina virtual, comenta esta linea y descomenta la de arriba
+                	String savePath = "/home/pegaso/ISST/VenACenarConmigo/VenACenarConmigo_JEE/WebContent/imagen_public/" +"" + File.separator + fileName;
             		File fileSaveDir = new File(savePath);
             		filePart.write(savePath+File.separator);
             		publicacion.setAdjunto(fileName);

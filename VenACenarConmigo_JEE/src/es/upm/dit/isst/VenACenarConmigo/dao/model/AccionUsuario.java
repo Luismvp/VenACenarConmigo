@@ -9,7 +9,6 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class AccionUsuario implements Serializable{
-	//ToDo:Revisar relaciones ¿foreingnkey?
 	@Id
 	private int idAccion;
 	private String usuarioEmisor;
