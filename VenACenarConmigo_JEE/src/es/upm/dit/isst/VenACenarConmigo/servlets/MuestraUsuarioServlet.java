@@ -28,13 +28,25 @@ public class MuestraUsuarioServlet extends HttpServlet {
 		Usuario usuarioVisitado = UsuarioDAOImplementation.getInstance().readUsuario(emailUsuario);
 
 		String emailUsuario2 = (String) req.getSession().getAttribute("email");
-		Usuario usuarioVisitante = UsuarioDAOImplementation.getInstance().readUsuario(emailUsuario2);
-		AccionUsuario seguimiento = null;
+		//1=si me sigue 2=si nos seguimos
+		int privacidad = usuarioVisitado.getPrivacidad3();
+		// 1=ninguna, 2=sigoAlAnfitrion 3=nosSeguimos (4=meSigue)
+		int relacion = 1;
 		List<AccionUsuario> seguimientos = AccionUsuarioDAOImplementation.getInstance().readAllAccionUsuario();
+		for (AccionUsuario a : seguimientos) {
+			if (a.getUsuarioEmisor().equals(emailUsuario) && a.getUsuarioReceptor().equals(emailUsuario2)
+					&& a.getSeguimientoBloqueoDenuncia() == 1) {
+				relacion=4;
+			}
+		}
 		for (AccionUsuario a : seguimientos) {
 			if (a.getUsuarioEmisor().equals(emailUsuario2) && a.getUsuarioReceptor().equals(emailUsuario)
 					&& a.getSeguimientoBloqueoDenuncia() == 1) {
-				seguimiento=a;
+				if (relacion == 4) {
+					relacion=3;
+				} else {
+					relacion=2;
+				}
 			}
 		}
 
@@ -53,14 +65,16 @@ public class MuestraUsuarioServlet extends HttpServlet {
 				convitesUsuario.add(convites.get(i));
 			}
 		}
-
-		if (null != seguimiento) {
-			req.getSession().setAttribute("seguimiento", seguimiento);
+		
+		if(emailUsuario.equals(emailUsuario2)) {
+			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
+		} else {
+			req.getSession().setAttribute("relacion", relacion);
+			req.getSession().setAttribute("privacidad", privacidad);
+			req.getSession().setAttribute("convite_list", convitesUsuario);
+			req.getSession().setAttribute("usuario_visitado", usuarioVisitado);
+			req.getSession().setAttribute("publicaciones", publicacionesUsuario);
+			resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 		}
-
-		req.getSession().setAttribute("convite_list", convitesUsuario);
-		req.getSession().setAttribute("usuario_visitado", usuarioVisitado);
-		req.getSession().setAttribute("publicaciones", publicacionesUsuario);
-		resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 	}
 }

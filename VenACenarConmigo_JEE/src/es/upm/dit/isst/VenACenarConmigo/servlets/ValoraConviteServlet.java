@@ -24,20 +24,20 @@ public class ValoraConviteServlet extends HttpServlet {
 		int idValoracion=0;
 		Valoracion valoracionFinal = new Valoracion();
 		for(int i=1;i<=15;i++) {
-			if(req.getParameter("email"+i)!=null) {
-				invitados[i-1]=req.getParameter("email"+1);
+			if(req.getParameter("email"+String.valueOf(i))!=null) {
+				invitados[i-1]=req.getParameter("email"+String.valueOf(i));
 			}else {
 				invitados[i-1]="0";
 			}
 			log("invitados "+invitados[i-1]);
-			if(req.getParameter("caras"+i)!=null) {
-				valoracion[i-1]=Integer.parseInt(req.getParameter("caras"+i));
+			if(req.getParameter("caras"+String.valueOf(i))!=null) {
+				valoracion[i-1]=Integer.parseInt(req.getParameter("caras"+String.valueOf(i)));
 			}else {
 				valoracion[i-1]=0;
 			}
 			log("valoraciones "+valoracion[i-1]);
-			if(req.getParameter("comentario"+i)!=null) {
-				comentarios[i-1]= req.getParameter("comentario"+i);
+			if(req.getParameter("comentario"+String.valueOf(i))!=null) {
+				comentarios[i-1]= req.getParameter("comentario"+String.valueOf(i));
 			}else {
 				comentarios[i-1]="0";
 			}
@@ -61,6 +61,7 @@ public class ValoraConviteServlet extends HttpServlet {
 			valoracionFinal.setPuntuacion(valorA);
 			valoracionFinal.setUsuarioValorado(emailA);
 			valoracionFinal.setUsuarioValorador(email);
+			ValoracionDAOImplementation.getInstance().createValoracion(valoracionFinal);
 			idValoracion++;
 		}
 		for(int i=0;i<invitados.length;i++) {

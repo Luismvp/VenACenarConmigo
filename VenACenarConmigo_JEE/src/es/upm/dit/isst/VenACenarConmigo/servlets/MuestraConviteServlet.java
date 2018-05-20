@@ -110,7 +110,11 @@ public class MuestraConviteServlet extends HttpServlet {
 				haValorado = true;
 			}
 		}
+		Usuario anfitrion = UsuarioDAOImplementation.getInstance().readUsuario(convite.getEmailAnfitrion());
+		String nombre_anfitrion = anfitrion.getNombre();
+		nombre_anfitrion += " "+anfitrion.getApellidos();
 		
+		req.getSession().setAttribute("nombre_anfitrion", nombre_anfitrion);
 		req.getSession().setAttribute("haValorado", haValorado);
 		req.getSession().setAttribute("esAnfitrion", esAnfitrion);
 		req.getSession().setAttribute("esAsistenteConfirmado", esAsistenteConfirmado);

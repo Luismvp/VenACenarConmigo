@@ -19,19 +19,25 @@ a {
 }
 
 #foto {
-	margin-top: 70px;
-	min-width: 260px;
 	float: left;
+	min-width:260px;
+	margin-top: 50px;
 }
 
 #nombre {
 	float: left;
+	margin-left: 150px;
 	margin-top: 70px;
-	margin-left: 100px;
+	min-width:520px;
+	text-align:center;
+	border: 2px solid #1d7045;
+	padding: 20px;
 }
 
 #convites {
 	float: left;
+	border: 2px solid #1d7045;
+	padding: 20px;
 }
 
 #userInfo {
@@ -42,6 +48,17 @@ a {
 #publicaciones {
 	float: left;
 	margin-left: 175px;
+	max-width:400px;
+	border: 2px solid #1d7045;
+	padding: 20px;
+}
+
+#valoracion {
+	float: left;
+	margin-left: 175px;
+	max-width:400px;
+	border: 2px solid #1d7045;
+	padding: 20px;
 }
 
 .fotoPub {
@@ -69,9 +86,9 @@ a {
 				style="margin-top: 20px; border: 2px groove #e7e5dd; width: 260px; height: 300px;">
 		</div>
 		<div id="nombre">
-			<h1 style="align-text: center">${usuario_visitado.nombre}
-				${usuario_visitado.apellidos}</h1>
-			<c:if test="${seguimiento != null}">
+			<h1 style="align-text: center"><b>${usuario_visitado.nombre}
+				${usuario_visitado.apellidos}</b></h1>
+			<c:if test="${relacion == 2 || relacion == 3}">
 				<form action="DejarSeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -80,7 +97,7 @@ a {
 				</form>
 				<br>
 			</c:if>
-			<c:if test="${seguimiento ==null }">
+			<c:if test="${relacion == 1 || relacion == 4 }">
 				<form action="SeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -104,21 +121,16 @@ a {
 			</form>
 		</div>
 	</div>
-	<hr>
 	<div class="container" style="margin-top: 50px; margin-left: 100px">
 		<div id="userInfo">
-			<h3>${usuario_visitado.nombre }</h3>
-			<h3>${usuario_visitado.apellidos }</h3>
-			<h3>Nacid@ el ${usuario_visitado.nacimiento }</h3>
-			<h3>${usuario_visitado.email }</h3>
-			<h3>Teléfono móvil: ${usuario_visitado.telefono }</h3>
-			<h3>Ciudad: ${usuario_visitado.ciudad }</h3>
-			<h3>Ocupación: ${usuario_visitado.profesion}</h3>
-			<h3>Descripción personal:</h3>
-			<h4>${usuario_visitado.descripcion}</h4>
+			<h3><b>Nacid@ el ${usuario_visitado.nacimiento }</b></h3>
+			<h3><b>Datos de contacto:</b><br>${usuario_visitado.email }<br>${usuario_visitado.telefono }</h3>
+			<h3><b>Ciudad:</b> ${usuario_visitado.ciudad }</h3>
+			<h3><b>Ocupación:</b> ${usuario_visitado.profesion}</h3>
+			<h3><b>Descripción personal:</b><br>${usuario_visitado.descripcion}</h3>
 			<hr>
 			<div id="convites">
-				<h3>Convites del usuario:</h3>
+				<h2><b>Convites del usuario:</b></h2>
 				<c:if test="${convite_list.isEmpty()}">
 					<br>
 					<p style="text-align: center">
@@ -127,7 +139,7 @@ a {
 				</c:if>
 				<c:forEach items="${convite_list}" var="convitei">
 					<div>
-						<h2>${convitei.nombre}</h2>
+						<h3>${convitei.nombre}</h3>
 						<h4>Fecha: ${convitei.fecha}</h4>
 						<h4>Ciudad: ${convitei.ciudad}</h4>
 						<h4>Área: ${convitei.area}</h4>
@@ -143,8 +155,12 @@ a {
 				</c:forEach>
 			</div>
 		</div>
+		<div id="valoracion" style="margin-top: 15px">
+			<h3><b>Valoración media recibida:</b> ${valoracion_media}</h3>
+		</div>
+		<c:if test="${relacion == 3 || (relacion == 2 && privacidad == 1)}">
 		<div id="publicaciones" style="margin-top: 15px">
-			<h3>Historial de publicaciones:</h3>
+			<h3><b>Historial de publicaciones:</b></h3>
 			<table>
 				<c:forEach items="${publicaciones}" var="publicacioni">
 					<tr>
@@ -160,7 +176,7 @@ a {
 								<div class="descripPub"
 									<c:if test="${publicacioni.adjunto != null }">style="margin-left: 160px;"</c:if>>
 									<br>
-									<p>${publicacioni.texto}</p>
+									<h4>${publicacioni.texto}</h4>
 								</div>
 							</div>
 						</td>
@@ -168,6 +184,7 @@ a {
 				</c:forEach>
 			</table>
 		</div>
+		</c:if>
 	</div>
 	<div style="clear: both; margin-top:10%;  text-align: center;">
 		<p> Todos los derechos reservados </p>

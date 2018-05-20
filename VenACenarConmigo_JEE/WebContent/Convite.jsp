@@ -49,7 +49,7 @@ label {
 	<div class="convite">
 		<h1 align="center">${convite.nombre}</h1>
 		<div class="infoconvite">
-
+			<h4>Anfitrión: ${nombre_anfitrion}</h4>
 			<h4>Fecha: ${convite.fecha}</h4>
 			<h4>Hora de comienzo: ${convite.horaComienzo}</h4>
 			<h4>Hora de finalización: ${convite.horaFin}</h4>

@@ -164,7 +164,7 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			req.getSession().setAttribute("lista_invitados", null);
 			req.getSession().setAttribute("lista_invitados", asistente2);
 		}
-		boolean enNotificaciones = Boolean.getBoolean(req.getParameter("enNotificaciones"));
+		boolean enNotificaciones = Boolean.parseBoolean(req.getParameter("enNotificaciones"));
 		List<AsistenciaConvite> asistenciaConvite = AsistenciaConviteDAOImplementation.getInstance()
 				.readAllAsistenciaConvite();
 		if (enNotificaciones) {

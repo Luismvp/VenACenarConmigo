@@ -32,7 +32,7 @@ label {
 </head>
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
-	<h2 align="center">Rellena los campos que desees modificar</h2>
+	<h2 align="center">Modifica los campos que desees</h2>
 	<form action="CambiosPerfilServlet">
 		<div class="form-group" id="nombre-group">
 			<label for="nombre">Nombre</label> <br> <input type="text"
