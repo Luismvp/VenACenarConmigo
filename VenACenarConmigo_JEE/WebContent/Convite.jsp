@@ -106,7 +106,7 @@ label {
 		</div>
 		<div class="invitados">
 			<h2>Asistentes</h2>
-			<c:forEach items="${index_list}" var="indexi">
+			<c:forEach items="${indexList}" var="indexi">
 				<h4>${lista_invitados.get(indexi).emailUsuarioAsistente}</h4>
 				<h4>
 					Estado:
@@ -190,7 +190,8 @@ label {
 						<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
 							invitación</button>
 						<br> <input type="hidden" value="${convite.idConvite}"
-							name="idConvite" id="idConvite"> <input type="hidden" value="${indexi}" name="index">
+							name="idConvite" id="idConvite"> <input type="hidden" value="false" name="enNotificaciones"
+			id="enNotificaciones"> <input type="hidden" value="${indexi}" name="index">
 					</form>
 				</c:if>
 				<c:if

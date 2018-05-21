@@ -30,7 +30,7 @@ public class MuestraUsuarioServlet extends HttpServlet {
 		String emailUsuario2 = (String) req.getSession().getAttribute("email");
 		//1=si me sigue 2=si nos seguimos
 		int privacidad = usuarioVisitado.getPrivacidad3();
-		// 1=ninguna, 2=sigoAlAnfitrion 3=nosSeguimos (4=meSigue)
+		// 1=ninguna, 2=sigoAlAnfitrion 3=nosSeguimos (4=meSigue) 5=leBloqueé
 		int relacion = 1;
 		List<AccionUsuario> seguimientos = AccionUsuarioDAOImplementation.getInstance().readAllAccionUsuario();
 		for (AccionUsuario a : seguimientos) {
@@ -47,6 +47,12 @@ public class MuestraUsuarioServlet extends HttpServlet {
 				} else {
 					relacion=2;
 				}
+			}
+		}
+		for (AccionUsuario a: seguimientos) {
+			if (a.getUsuarioEmisor().equals(emailUsuario2) && a.getUsuarioReceptor().equals(emailUsuario)
+					&& a.getSeguimientoBloqueoDenuncia() == 2) {
+				relacion=5;
 			}
 		}
 

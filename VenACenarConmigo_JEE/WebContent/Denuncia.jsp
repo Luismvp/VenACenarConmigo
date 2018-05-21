@@ -38,7 +38,6 @@
             <textarea cols="152" rows="7" placeholder="Explique el motivo de su denuncia" id="comentario" name="comentario"></textarea>
         </div>
         <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
-        </fieldset>
-    </form>
+</form>
 </body>
 </html>

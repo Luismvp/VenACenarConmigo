@@ -14,7 +14,7 @@ import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 import es.upm.dit.isst.VenACenarConmigo.dao.AccionUsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 
-@WebServlet("/SeguirUsuarioServlet")
+@WebServlet("/DesbloquearUsuarioServlet")
 public class DesbloquearUsuarioServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +30,8 @@ public class DesbloquearUsuarioServlet extends HttpServlet {
 				AccionUsuarioDAOImplementation.getInstance().updateAccionUsuario(accion);
 			}
 		}
-		req.getSession().setAttribute("accion", accion);
+		int relacion = 1;
+		req.getSession().setAttribute("relacion", relacion);
 		resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 	}
 }

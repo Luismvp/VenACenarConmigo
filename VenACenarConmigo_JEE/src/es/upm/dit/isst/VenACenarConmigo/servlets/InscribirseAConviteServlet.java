@@ -67,7 +67,7 @@ public class InscribirseAConviteServlet extends HttpServlet {
 		relaciones.add(0);
 		botones.add(0);
 		
-		req.getSession().setAttribute("index_list", indexList);
+		req.getSession().setAttribute("indexList", indexList);
 		req.getSession().setAttribute("privacidades", privacidades);
 		req.getSession().setAttribute("relaciones", relaciones);
 		req.getSession().setAttribute("botones", botones);

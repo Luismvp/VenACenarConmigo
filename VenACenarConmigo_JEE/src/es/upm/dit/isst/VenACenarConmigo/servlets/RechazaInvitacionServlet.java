@@ -190,7 +190,7 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			relaciones.remove(index);
 			botones.remove(index);
 			
-			req.getSession().setAttribute("index_list", indexList);
+			req.getSession().setAttribute("indexList", indexList);
 			req.getSession().setAttribute("privacidades", privacidades);
 			req.getSession().setAttribute("relaciones", relaciones);
 			req.getSession().setAttribute("botones", botones);

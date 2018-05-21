@@ -192,7 +192,7 @@ public class MuestraConviteServlet extends HttpServlet {
 		req.getSession().setAttribute("privacidades", privacidades);
 		req.getSession().setAttribute("relaciones", relaciones);
 		req.getSession().setAttribute("botones", botones);
-		req.getSession().setAttribute("index_list", indexList);
+		req.getSession().setAttribute("indexList", indexList);
 		req.getSession().setAttribute("nombre_anfitrion", nombre_anfitrion);
 		req.getSession().setAttribute("haValorado", haValorado);
 		req.getSession().setAttribute("esAnfitrion", esAnfitrion);

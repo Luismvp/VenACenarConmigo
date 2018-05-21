@@ -72,7 +72,8 @@ public class SeguirUsuarioServlet extends HttpServlet {
 			}
 			
 		} else {
-			req.getSession().setAttribute("accion", accion);
+			int relacion = 2;
+			req.getSession().setAttribute("relacion", relacion);
 			resp.sendRedirect(req.getContextPath() + "/VistaPerfil.jsp");
 		}
 	}

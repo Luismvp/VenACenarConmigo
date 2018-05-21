@@ -108,7 +108,7 @@ public class AnadeInvitadoServlet extends HttpServlet {
 			botones.add(1);
 		}
 		
-		req.getSession().setAttribute("index_list", indexList);
+		req.getSession().setAttribute("indexList", indexList);
 		req.getSession().setAttribute("privacidades", privacidades);
 		req.getSession().setAttribute("relaciones", relaciones);
 		req.getSession().setAttribute("botones", botones);

@@ -86,7 +86,9 @@ a {
 				style="margin-top: 20px; border: 2px groove #e7e5dd; width: 260px; height: 300px;">
 		</div>
 		<div id="nombre">
-			<c:if test="${accion.seguimientoBloqueoDenuncia == 1}">
+			<h1><b>${usuario_visitado.nombre} ${usuario_visitado.apellidos}</b></h1>
+			<br>
+			<c:if test="${relacion == 2 || relacion == 3}">
 				<form action="DejarSeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -95,7 +97,7 @@ a {
 				</form>
 				<br>
 			</c:if>
-			<c:if test="${accion == null || accion.seguimientoBloqueoDenuncia != 1}">
+			<c:if test="${relacion != 2 && relacion != 3}">
 				<form action="SeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -104,7 +106,7 @@ a {
 				</form>
 				<br>
 			</c:if>
-			<c:if test="${accion == null || accion.seguimientoBloqueoDenuncia != 2}">
+			<c:if test="${relacion != 5}">
 				<form action="BloquearUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-warning">
@@ -112,7 +114,7 @@ a {
 					</button>
 				</form>
 			</c:if>
-			<c:if test="${accion.seguimientoBloqueoDenuncia == 2}">
+			<c:if test="${relacion == 5}">
 				<form action="DesbloquearUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-warning">
