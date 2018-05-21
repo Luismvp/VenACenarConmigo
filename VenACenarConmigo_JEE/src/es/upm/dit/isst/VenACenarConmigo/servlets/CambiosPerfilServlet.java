@@ -27,7 +27,6 @@ public class CambiosPerfilServlet extends HttpServlet{
 		String telefono = req.getParameter("telefono");
 		String ciudad = req.getParameter("ciudad");
 		String codigoPostal = req.getParameter("codigoPostal");
-		String email = req.getParameter("email");
 		String profesion = req.getParameter("profesion");
 		String descripcion = req.getParameter("descripcion");
 		if(!nombre.isEmpty()) {
@@ -48,12 +47,8 @@ public class CambiosPerfilServlet extends HttpServlet{
 		if(!codigoPostal.isEmpty()) {
 			usuario.setCodigoPostal(codigoPostal);
 		}
-		if(!profesion.isEmpty()) {
-			usuario.setProfesion(profesion);
-		}
-		if(!descripcion.isEmpty()) {
-			usuario.setDescripcion(descripcion);
-		}
+		usuario.setProfesion(profesion);
+		usuario.setDescripcion(descripcion);
 		req.getSession().setAttribute("usuario", usuario);
 		dao.updateUsuario(usuario);
 		resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");

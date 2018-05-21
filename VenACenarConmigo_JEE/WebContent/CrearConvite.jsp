@@ -39,17 +39,17 @@
         <div class="form-group" id="user-group">
             <label for="nombre">Nombre del convite: </label>
             <br>
-            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="introduce el nombre del convite">
+            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="introduce el nombre del convite" required>
         </div>
         <div class="form-group" id="date-group">
             <label for="fecha">Fecha del convite: </label>
             <br>
-            <input type="text" name="fecha" class="form-control" id="fecha" placeholder="dd/mm/aaaa">
+            <input type="text" name="fecha" class="form-control" id="fecha" placeholder="dd/mm/aaaa" required>
         </div>
         <div class="form-group" id="time-group">
             <label for="horaComienzo">Hora de inicio: </label>
             <br>
-            <input type="text" name="horaComienzo" class="form-control" id="horaComienzo" placeholder="hh:mm">
+            <input type="text" name="horaComienzo" class="form-control" id="horaComienzo" placeholder="hh:mm" required>
         </div>
         <div class="form-group" id="timeEnd-group">
             <label for="horaFin">Hora de finalización: </label>
@@ -59,12 +59,12 @@
 	<div class="form-group" id="ciudad-group">
             <label for="ciudad">Ciudad:</label>
             <br>
-            <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="introduce la ciudad donde se celebrará el convite">
+            <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="introduce la ciudad donde se celebrará el convite" required>
         </div>
         <div class="form-group" id="distrito-group">
             <label for="area">Distrito:</label>
             <br>
-            <input type="text" name="area" class="form-control" id="area" placeholder="introduce el distrito donde se celebrará el convite">
+            <input type="text" name="area" class="form-control" id="area" placeholder="introduce el distrito donde se celebrará el convite" required>
         </div>
         <div class="form-group" id="rest-group">
             <label for="restaurante">Nombre del restaurante: </label>
@@ -82,12 +82,12 @@
         <div class="form-group" id="invitados-group">
             <label for="numInvitados">Número de invitados (max 15):</label>
             <br>
-            <input type="text" name="numInvitados"  max="15" min="0" class="form-control" id="numInvitados" placeholder="introduce el número de invitados">
+            <input type="text" name="numInvitados"  max="15" min="0" class="form-control" id="numInvitados" placeholder="introduce el número de invitados" required>
         </div>
         <div class="form-group" id="precio-group">
             <label for="precioInvitado">Precio por invitado (en €):</label>
             <br>
-            <input type="text" name="precioInvitado"  min="0" class="form-control" id="precioInvitado" placeholder="introduce el precio de la comida por invitado">
+            <input type="text" name="precioInvitado"  min="0" class="form-control" id="precioInvitado" placeholder="introduce el precio de la comida por invitado" required>
         </div>
         <div class="form-group" id="descripcion-group">
             <label for="descripcion">Descripción temática:</label>

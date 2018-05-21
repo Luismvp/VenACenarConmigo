@@ -15,10 +15,12 @@ import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ComentarioConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.ValoracionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.ComentarioConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Valoracion;
 
 @WebServlet("/MuestraConviteServlet")
 
@@ -101,7 +103,19 @@ public class MuestraConviteServlet extends HttpServlet {
 				}
 			}
 		}
+		boolean haValorado = false;
+		List<Valoracion> valoraciones = ValoracionDAOImplementation.getInstance().readAllValoracion();
+		for(Valoracion v:valoraciones) {
+			if(v.getUsuarioValorador().equals(email) && v.getConvite() == idConvite) {
+				haValorado = true;
+			}
+		}
+		Usuario anfitrion = UsuarioDAOImplementation.getInstance().readUsuario(convite.getEmailAnfitrion());
+		String nombre_anfitrion = anfitrion.getNombre();
+		nombre_anfitrion += " "+anfitrion.getApellidos();
 		
+		req.getSession().setAttribute("nombre_anfitrion", nombre_anfitrion);
+		req.getSession().setAttribute("haValorado", haValorado);
 		req.getSession().setAttribute("esAnfitrion", esAnfitrion);
 		req.getSession().setAttribute("esAsistenteConfirmado", esAsistenteConfirmado);
 		req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);

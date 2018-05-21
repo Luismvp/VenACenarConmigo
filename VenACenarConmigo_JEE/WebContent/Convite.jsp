@@ -47,11 +47,9 @@ label {
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
 	<div class="convite">
-		<input type="hidden" value="false" name="enNotificaciones"
-			id="enNotificaciones">
 		<h1 align="center">${convite.nombre}</h1>
 		<div class="infoconvite">
-
+			<h4>Anfitrión: ${nombre_anfitrion}</h4>
 			<h4>Fecha: ${convite.fecha}</h4>
 			<h4>Hora de comienzo: ${convite.horaComienzo}</h4>
 			<h4>Hora de finalización: ${convite.horaFin}</h4>
@@ -65,7 +63,7 @@ label {
 
 
 			<hr>
-
+			<c:if test="${(esAnfitrion || esAsistenteConfirmado)}">
 			<div class="comentarios" id="comentarios-group">
 				<form action="AnadirComentarioEnConviteServlet">
 					<label for="comentario">¿Tienes algo que decir?</label>
@@ -86,16 +84,25 @@ label {
 					<table >
 						<c:forEach items="${lista_comentarios_convite}" var="comentarioi">
 							<tr>
-								<td style="border-radius:0.5em; background-color: #FAFAFA; min-width: 500px;">${comentarioi.nombre}:<br>
+								<c:if test="${comentarioi.nombre.equals('Admin')}">
+									<td style="border-radius:0.5em; background-color: #FAFAFA; min-width: 500px;">${comentarioi.nombre}<br>
+									${comentarioi.comentario}
+									</td>
+								</c:if>
+								<c:if test="${!comentarioi.nombre.equals('Admin')}">
+									<td style="border-radius:0.5em; background-color: #FAFAFA; min-width: 500px;">${comentarioi.nombre}
+								[${comentarioi.fecha.getTime().toString().substring(8,10)}/${comentarioi.fecha.getTime().toString().substring(4,7)}/${comentarioi.fecha.getTime().toString().substring(25)}
+								${comentarioi.fecha.getTime().toString().substring(11,19)}]:<br>
 									${comentarioi.comentario}
 								</td>
+								</c:if>
 							</tr>
 							<tr><td><br></td></tr>
 						</c:forEach>
 					</table>
 				</div>
 			</div>
-
+			</c:if>
 		</div>
 		<div class="invitados">
 			<h2>Asistentes</h2>
@@ -115,7 +122,8 @@ label {
 							<br> <input type="hidden" value="${convite.idConvite}"
 								name="idConvite" id="idConvite"> <input type="hidden"
 								value="${asistentei.idAsistente}" name="idAsistente"
-								id="idAsistente">
+								id="idAsistente"> <input type="hidden" value="false" name="enNotificaciones"
+			id="enNotificaciones">
 						</form>
 					</c:if>
 					<c:if
@@ -126,7 +134,7 @@ label {
 							<input type="hidden" value="${convite.idConvite}"
 								name="idConvite" id="idConvite"> <input type="hidden"
 								value="${asistentei.emailUsuarioAsistente}"
-								name="emailAsistente" id="emailAsistente">
+								name="emailAsistente" id="emailAsistente"> 
 						</form>
 						<form action="RechazaInscripcionServlet">
 							<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
@@ -144,7 +152,8 @@ label {
 						<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
 							invitación</button>
 						<input type="hidden" value="${convite.idConvite}" name="idConvite"
-							id="idConvite">
+							id="idConvite"> <input type="hidden" value="false" name="enNotificaciones"
+			id="enNotificaciones">
 					</form>
 					<form action="RechazaInvitacionServlet">
 						<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
@@ -159,7 +168,8 @@ label {
 						<button class="btn btn-danger" type="submit" id="btnSubmit2">Desapuntarse
 							del convite</button>
 						<br> <input type="hidden" value="${convite.idConvite}"
-							name="idConvite" id="idConvite">
+							name="idConvite" id="idConvite"> <input type="hidden" value="false" name="enNotificaciones"
+			id="enNotificaciones">
 					</form>
 				</c:if>
 				<br>
@@ -183,7 +193,7 @@ label {
 				</form>
 			</c:if>
 			<c:if
-				test="${(esAnfitrion || esAsistenteConfirmado) && null!=conviteFin && conviteFin==1}">
+				test="${(esAnfitrion || esAsistenteConfirmado) && null!=conviteFin && conviteFin==1 && !haValorado}">
 				<form action="PaginaValoraConviteServlet">
 					<button class="btn btn-success" type="submit" id="btnSubmit2">Valorar
 						Convite</button>

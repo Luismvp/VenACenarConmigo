@@ -19,29 +19,42 @@ a {
 }
 
 #foto {
-	margin-top: 70px;
-	min-width: 260px;
 	float: left;
+	min-width: 260px;
+	margin-top: 50px;
 }
 
 #nombre {
 	float: left;
+	margin-left: 150px;
 	margin-top: 70px;
-	margin-left: 100px;
+	min-width: 520px;
+	text-align: center;
+	padding: 20px;
 }
 
 #convites {
 	float: left;
+	padding: 20px;
 }
 
 #userInfo {
 	float: left;
-	max-width: 300px;
+	max-width: 400px;
 }
 
 #publicaciones {
 	float: left;
-	margin-left: 175px;
+	margin-left: 100px;
+	max-width: 500px;
+	padding: 20px;
+}
+
+#valoracion {
+	float: left;
+	text-align: center;
+	min-width: 520px;
+	padding: 20px;
 }
 
 .fotoPub {
@@ -65,13 +78,20 @@ a {
 	<%@ include file="templates/navBarLoged.jsp"%>
 	<div class="container" style="margin-left: 100px">
 		<div id="foto">
-			<img src="images/${usuario_visitado.nombreFoto }"
-				style="margin-top: 20px; border: 2px groove #e7e5dd; width: 260px; height: 300px;">
+			<c:if test="${usuario_visitado.nombreFoto == null }">
+				<img src="cubiertos_icono.png"
+					style="margin-top: 30px; border: 2px groove #e7e5dd; border-radius: 3%; width: 260px; height: 300px;">
+			</c:if>
+			<c:if test="${usuario_visitado.nombreFoto != null }">
+				<img src="images/${usuario_visitado.nombreFoto}"
+					style="margin-top: 60px; border: 2px groove #e7e5dd; border-radius: 3%; width: 260px; height: 300px;">
+			</c:if>
 		</div>
 		<div id="nombre">
-			<h1 style="align-text: center">${usuario_visitado.nombre}
-				${usuario_visitado.apellidos}</h1>
-			<c:if test="${seguimiento != null}">
+			<h1 style="align-text: center">
+				<b>${usuario_visitado.nombre} ${usuario_visitado.apellidos}</b>
+			</h1>
+			<c:if test="${relacion == 2 || relacion == 3}">
 				<form action="DejarSeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -80,7 +100,7 @@ a {
 				</form>
 				<br>
 			</c:if>
-			<c:if test="${seguimiento ==null }">
+			<c:if test="${relacion == 1 || relacion == 4 }">
 				<form action="SeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -102,75 +122,96 @@ a {
 					Denunciar <span class="glyphicon glyphicon-thumbs-down"></span>
 				</button>
 			</form>
+			<div id="valoracion" style="margin-top: 15px">
+				<h3>
+					<b>Valoración media recibida:</b> ${valoracion_media_buscada}
+				</h3>
+			</div>
 		</div>
 	</div>
 	<hr>
-	<div class="container" style="margin-top: 50px; margin-left: 100px">
-		<div id="userInfo">
-			<h3>${usuario_visitado.nombre }</h3>
-			<h3>${usuario_visitado.apellidos }</h3>
-			<h3>Nacid@ el ${usuario_visitado.nacimiento }</h3>
-			<h3>${usuario_visitado.email }</h3>
-			<h3>Teléfono móvil: ${usuario_visitado.telefono }</h3>
-			<h3>Ciudad: ${usuario_visitado.ciudad }</h3>
-			<h3>Ocupación: ${usuario_visitado.profesion}</h3>
-			<h3>Descripción personal:</h3>
-			<h4>${usuario_visitado.descripcion}</h4>
-			<hr>
-			<div id="convites">
-				<h3>Convites del usuario:</h3>
-				<c:if test="${convite_list.isEmpty()}">
-					<br>
-					<p style="text-align: center">
-						<i>Este usuario no tiene convites.</i>
-					</p>
-				</c:if>
-				<c:forEach items="${convite_list}" var="convitei">
-					<div>
-						<h2>${convitei.nombre}</h2>
-						<h4>Fecha: ${convitei.fecha}</h4>
-						<h4>Ciudad: ${convitei.ciudad}</h4>
-						<h4>Área: ${convitei.area}</h4>
-						<h4>Descripción: ${convitei.descripcion}</h4>
-					</div>
-					<form action="MuestraConviteServlet">
-						<input type="hidden" value="${convitei.idConvite}"
-							name="idConvite">
-						<button type="submit" class="btn btn-success">
-							Ver detalles <span class="glyphicon glyphicon-search"></span>
-						</button>
-					</form>
-				</c:forEach>
+	<div class="container">
+		<div >
+			<div id="userInfo"style="background-color: #FAFAFA;">
+				<h3>
+					<b>Nacid@ el ${usuario_visitado.nacimiento }</b>
+				</h3>
+				<h3>
+					<b>Datos de contacto:</b><br>${usuario_visitado.email }<br>${usuario_visitado.telefono }</h3>
+				<h3>
+					<b>Ciudad:</b> ${usuario_visitado.ciudad }
+				</h3>
+				<h3>
+					<b>Ocupación:</b> ${usuario_visitado.profesion}
+				</h3>
+				<h3>
+					<b>Descripción personal:</b><br>${usuario_visitado.descripcion}</h3>
+				<hr>
+				<div id="convites">
+					<h2>
+						<b>Convites del usuario:</b>
+					</h2>
+					<c:if test="${convite_list.isEmpty()}">
+						<br>
+						<p style="text-align: center">
+							<i>Este usuario no ha creado convites.</i>
+						</p>
+					</c:if>
+					<c:forEach items="${convite_list}" var="convitei">
+						<div>
+							<h3>${convitei.nombre}</h3>
+							<h4>Fecha: ${convitei.fecha}</h4>
+							<h4>Ciudad: ${convitei.ciudad}</h4>
+							<h4>Área: ${convitei.area}</h4>
+							<h4>Descripción: ${convitei.descripcion}</h4>
+						</div>
+						<form action="MuestraConviteServlet">
+							<input type="hidden" value="${convitei.idConvite}"
+								name="idConvite">
+							<button type="submit" class="btn btn-success">
+								Ver detalles <span class="glyphicon glyphicon-search"></span>
+							</button>
+						</form>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
-		<div id="publicaciones" style="margin-top: 15px">
-			<h3>Historial de publicaciones:</h3>
-			<table>
-				<c:forEach items="${publicaciones}" var="publicacioni">
-					<tr>
-						<td>
-							<div class="publicacion">
-								<div class="fotoPub">
-									<c:if test="${publicacioni.adjunto != null }">
-										<img src="imagen_public/${publicacioni.adjunto }" height="150"
-											width="150"
-											style="margin-top: 20px; border: 2px groove #e7e5dd;">
-									</c:if>
+		<c:if test="${relacion == 3 || (relacion == 2 && privacidad == 1)}">
+			<div id="publicaciones" style="margin-top: 15px;">
+				<h3>
+					<b>Historial de publicaciones:</b>
+				</h3>
+				<table>
+					<c:forEach items="${publicaciones}" var="publicacioni">
+						<tr>
+							<td>
+								<div class="publicacion">
+									<div class="fotoPub">
+										<c:if test="${publicacioni.adjunto != null }">
+											<img src="imagen_public/${publicacioni.adjunto }"
+												height="150" width="150"
+												style="margin-top: 20px; border: 2px groove #e7e5dd;">
+										</c:if>
+									</div>
+									<div class="descripPub"
+										<c:if test="${publicacioni.adjunto != null }">style="margin-left: 160px;"</c:if>>
+										<br>
+										<h4>${publicacioni.texto}
+											[${publicacioni.fecha.getTime().toString().substring(8,10)}/${publicacioni.fecha.getTime().toString().substring(4,7)}/${publicacioni.fecha.getTime().toString().substring(25)}
+											${publicacioni.fecha.getTime().toString().substring(11,19)}]
+										</h4>
+									</div>
 								</div>
-								<div class="descripPub"
-									<c:if test="${publicacioni.adjunto != null }">style="margin-left: 160px;"</c:if>>
-									<br>
-									<p>${publicacioni.texto}</p>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</c:if>
 	</div>
-	<div style="clear: both; margin-top:10%;  text-align: center;">
-		<p> Todos los derechos reservados </p>
-	</div>
+	<footer style="clear: both; margin-top:1%;  text-align: center; background-color: #1d7045; color:white;">
+		<p> Todos los derechos reservados. </p>
+		<p> Puedes ponerte en contacto con el equipo en cualquier momento en la página de contacto. </p>
+	</footer>
 </body>
 </html>

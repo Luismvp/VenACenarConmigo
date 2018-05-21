@@ -7,5 +7,7 @@
 		<class>es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite</class>
 		<class>es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones</class>
 		<class>es.upm.dit.isst.VenACenarConmigo.dao.model.Aficion</class>
+		<class>es.upm.dit.isst.VenACenarConmigo.dao.model.ComentarioConvite</class>
+		<class>es.upm.dit.isst.VenACenarConmigo.dao.model.Valoracion</class>
 	</persistence-unit>
 </persistence>
