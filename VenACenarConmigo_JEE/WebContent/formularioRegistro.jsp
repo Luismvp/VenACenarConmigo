@@ -55,7 +55,7 @@
             <div class="form-group" id="descripcion-group">
                 <label for="descripcion">Descripción personal</label>
                 <br>
-                <textarea cols="45" rows="10" name="descripcion" id="descripcion" placeholder="Introduce una descripción personal" id="descripcion"></textarea>
+                <textarea cols="122" rows="10" name="descripcion" id="descripcion" placeholder="Introduce una descripción personal" id="descripcion"></textarea>
             </div>
             <br>
             <button type="submit" class="btn btn-success col-xs-12" id="btnSubmit">Registrarse <span class="glyphicon glyphicon-arrow-right"></span></button>

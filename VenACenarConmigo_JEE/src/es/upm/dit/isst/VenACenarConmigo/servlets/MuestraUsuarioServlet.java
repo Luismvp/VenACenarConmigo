@@ -14,10 +14,12 @@ import es.upm.dit.isst.VenACenarConmigo.dao.AccionUsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.PublicacionesDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.ValoracionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Valoracion;
 
 @WebServlet("/MuestraUsuarioServlet")
 
@@ -30,7 +32,7 @@ public class MuestraUsuarioServlet extends HttpServlet {
 		String emailUsuario2 = (String) req.getSession().getAttribute("email");
 		//1=si me sigue 2=si nos seguimos
 		int privacidad = usuarioVisitado.getPrivacidad3();
-		// 1=ninguna, 2=sigoAlAnfitrion 3=nosSeguimos (4=meSigue) 5=leBloqueé
+		// 1=ninguna, 2=sigoAlAnfitrion 3=nosSeguimos (4=meSigue)
 		int relacion = 1;
 		List<AccionUsuario> seguimientos = AccionUsuarioDAOImplementation.getInstance().readAllAccionUsuario();
 		for (AccionUsuario a : seguimientos) {
@@ -49,12 +51,6 @@ public class MuestraUsuarioServlet extends HttpServlet {
 				}
 			}
 		}
-		for (AccionUsuario a: seguimientos) {
-			if (a.getUsuarioEmisor().equals(emailUsuario2) && a.getUsuarioReceptor().equals(emailUsuario)
-					&& a.getSeguimientoBloqueoDenuncia() == 2) {
-				relacion=5;
-			}
-		}
 
 		List<Convite> convites = ConviteDAOImplementation.getInstance().readAllConvite();
 		List<Publicaciones> publicaciones = PublicacionesDAOImplementation.getInstance().readAllPublicaciones();
@@ -71,7 +67,21 @@ public class MuestraUsuarioServlet extends HttpServlet {
 				convitesUsuario.add(convites.get(i));
 			}
 		}
-		
+		double valoracion_media = 0.00;
+		int num_valoraciones = 0;
+		List<Valoracion> valoraciones = ValoracionDAOImplementation.getInstance().readAllValoracion();
+		for (Valoracion valoracion:valoraciones) {
+			if (valoracion.getUsuarioValorado().equals(emailUsuario)) {
+				valoracion_media+= (valoracion.getPuntuacion()*2);
+				num_valoraciones++;
+			}
+		}
+		valoracion_media = valoracion_media / num_valoraciones;
+		if(num_valoraciones > 0) {
+			req.getSession().setAttribute("valoracion_media_buscada", valoracion_media);
+		}else {
+			req.getSession().setAttribute("valoracion_media_buscada", "No ha sido valorado todavia");
+		}
 		if(emailUsuario.equals(emailUsuario2)) {
 			resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
 		} else {

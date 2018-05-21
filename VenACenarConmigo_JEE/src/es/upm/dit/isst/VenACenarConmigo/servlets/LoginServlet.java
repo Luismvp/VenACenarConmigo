@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.upm.dit.isst.VenACenarConmigo.dao.AccionUsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.ComentarioConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.PublicacionesDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
@@ -75,6 +77,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 		valoracion_media = valoracion_media / num_valoraciones;
+		valoracion_media = round(valoracion_media, 2);
 		
 		if (ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(password)
 				&& req.getSession().getAttribute("usuario") == null) {
@@ -82,6 +85,8 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("usuario_list", UsuarioDAOImplementation.getInstance().readAllUsuarios());
 			req.getSession().setAttribute("convite_list", ConviteDAOImplementation.getInstance().readAllConvite());
 			req.getSession().setAttribute("lista_publicaciones_usuario", publicacionesUsuario);
+			req.getSession().setAttribute("accion_list", AccionUsuarioDAOImplementation.getInstance().readAllAccionUsuario());
+			req.getSession().setAttribute("comentario_list", ComentarioConviteDAOImplementation.getInstance().readAllComentarioConvite());
 			req.getSession().setAttribute("asistente_list",
 					AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite());
 			req.getSession().setAttribute("valoracion_list", valoraciones);
@@ -116,5 +121,13 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/Login.jsp");
 		}
+	}
+	private double round(double num, int decimals) {
+		int factor = (int) Math.pow(10, decimals);
+		double d_aux = num*factor;
+		long i_aux = Math.round(d_aux);
+		double rounded_num;
+		rounded_num = (double)(i_aux) / (double) factor;
+		return rounded_num;
 	}
 }

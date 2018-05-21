@@ -35,7 +35,7 @@
         <div class="form-group" id="descripcion-group">
             <label for="comentario">Motivo de la denuncia:</label>
             <br>
-            <textarea cols="152" rows="7" placeholder="Explique el motivo de su denuncia" id="comentario" name="comentario"></textarea>
+            <textarea cols="122" rows="7" placeholder="Explique el motivo de su denuncia" id="comentario" name="comentario"></textarea>
         </div>
         <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
 </form>

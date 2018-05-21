@@ -28,6 +28,7 @@ public class BuscarConviteServlet extends HttpServlet{
 		String fecha_actual = now.getTime().toString().substring(8,10)+"/"+mes+"/"+now.getTime().toString().substring(25);
 		String hora_actual = now.getTime().toString().substring(11,17);
 		List<Convite> convites = ConviteDAOImplementation.getInstance().readAllConvite();
+
 		// Quitamos los convites que ya se han celebrado (o ya han empezado)
 		for (int i = 0; i < convites.size(); i++) {
 			if (conviteAnteriorAFecha(convites.get(i), fecha_actual, hora_actual)) {

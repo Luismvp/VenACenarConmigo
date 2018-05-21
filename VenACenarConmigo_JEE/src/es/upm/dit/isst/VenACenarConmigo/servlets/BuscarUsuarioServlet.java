@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AccionUsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.ValoracionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Valoracion;
 
 @WebServlet("/BuscarUsuarioServlet")
 public class BuscarUsuarioServlet extends HttpServlet {
@@ -64,7 +66,7 @@ public class BuscarUsuarioServlet extends HttpServlet {
 				privacidades.set(i, resBusqueda.get(i).getPrivacidad1());
 			}
 			
-			// Compruebo la relacion del usuario con el usuario que busca (1, 2 o 3)
+			// Compruebo la relacion del usuario con el anfitrion (1, 2 o 3)
 			for (int j = 0; j < accionesUsuarios.size(); j++) {
 			    if (accionesUsuarios.get(j).getUsuarioEmisor().equals(emailAjeno) &&
 					accionesUsuarios.get(j).getUsuarioReceptor().equals(email) &&
@@ -111,6 +113,21 @@ public class BuscarUsuarioServlet extends HttpServlet {
 			indexList.add(i);
 		}
 		
+		double valoracion_media = 0.00;
+		int num_valoraciones = 0;
+		List<Valoracion> valoraciones = ValoracionDAOImplementation.getInstance().readAllValoracion();
+		for (Valoracion valoracion:valoraciones) {
+			if (valoracion.getUsuarioValorado().equals(email_usuario) || valoracion.getUsuarioValorado().equals(resBusqueda.get(0).getEmail())) {
+				valoracion_media+= (valoracion.getPuntuacion()*2);
+				num_valoraciones++;
+			}
+		}
+		valoracion_media = valoracion_media / num_valoraciones;
+		if(num_valoraciones > 0) {
+			req.getSession().setAttribute("valoracion_media_buscada", valoracion_media);
+		}else {
+			req.getSession().setAttribute("valoracion_media_buscada", "No ha sido valorado todavia");
+		}
 		req.getSession().setAttribute("privacidades", privacidades);
 		req.getSession().setAttribute("relaciones", relaciones);
 		req.getSession().setAttribute("botones", botones);

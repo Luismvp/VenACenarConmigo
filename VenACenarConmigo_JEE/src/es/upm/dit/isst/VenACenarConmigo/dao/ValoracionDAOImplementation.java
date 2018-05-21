@@ -25,7 +25,7 @@ public class ValoracionDAOImplementation implements ValoracionDAO {
 		try {
 			session.beginTransaction();
 			valoracion.addAll(
-					session.createQuery("from Valoraciones").list()
+					session.createQuery("from Valoracion").list()
 			);
 			session.getTransaction().commit();
 		} catch (Exception e) {
