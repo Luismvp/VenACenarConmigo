@@ -86,7 +86,7 @@ public class AceptaInvitacionServlet extends HttpServlet {
 		if (!convitesConfirmados.isEmpty()) {
 			req.getSession().setAttribute("convitesConfirmados", convitesConfirmados);
 		}
-		boolean enNotificaciones = Boolean.getBoolean(req.getParameter("enNotificaciones"));
+		boolean enNotificaciones = Boolean.parseBoolean(req.getParameter("enNotificaciones"));
 		if (enNotificaciones) {
 			resp.sendRedirect(req.getContextPath() + "/Notificaciones.jsp");
 		} else {

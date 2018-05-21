@@ -75,7 +75,7 @@
             <div class="form-group" id="menu-group">
                 <label for="menu">Menú Propuesto: </label>
                 <br>
-                <textarea cols="152" rows="7" placeholder="Escribe aquí el menu propuesto" name="menu" id="menu"></textarea>
+                <textarea cols="122" rows="7" placeholder="Escribe aquí el menu propuesto" name="menu" id="menu"></textarea>
             </div>
         </div>
         <br>
@@ -92,7 +92,7 @@
         <div class="form-group" id="descripcion-group">
             <label for="descripcion">Descripción temática:</label>
             <br>
-            <textarea cols="152" rows="7" placeholder="Introduce una descripción de la temática del convite" id="descripcion" name="descripcion"></textarea>
+            <textarea cols="122" rows="7" placeholder="Introduce una descripción de la temática del convite" id="descripcion" name="descripcion"></textarea>
         </div>
         <button type="submit" class="btn btn-success" id="btnSubmit">Enviar <span class="glyphicon glyphicon-arrow-right"></span></button>
         </fieldset>

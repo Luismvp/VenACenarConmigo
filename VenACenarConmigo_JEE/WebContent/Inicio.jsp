@@ -28,10 +28,11 @@ a {
 
 		<h2>Número de meses a mostrar (<12):</h2>
 		<form action="MuestraConviteInicioServlet">
-			<div class="form-group" >
-				<br> <textarea id= "meses_a_mostrar" name="meses_a_mostrar"
-					class="form-control" id="meses_a_mostrar" 
-					placeholder="Introduce el numero de meses" cols="1" rows="1" ></textarea>
+			<div class="form-group">
+				<br>
+				<textarea id="meses_a_mostrar" name="meses_a_mostrar"
+					class="form-control" id="meses_a_mostrar"
+					placeholder="Introduce el numero de meses" cols="1" rows="1"></textarea>
 			</div>
 			<button href="AnadirPublicacion.jsp" class="btn btn-success">Enviar</button>
 		</form>
@@ -54,7 +55,8 @@ a {
 							</div>
 						</tr>
 						<form action="MuestraConviteServlet">
-							<input type="hidden" name="idConvite" value="${convitei.idConvite }"> 
+							<input type="hidden" name="idConvite"
+								value="${convitei.idConvite }">
 							<button type="submit" class="btn btn-success" id="btnSubmit">Ver
 								detalles</button>
 						</form>
@@ -64,12 +66,22 @@ a {
 			</c:otherwise>
 		</c:choose>
 		<br>
-		<hr>
-		<h1 align="center">Publicaciones cercanas:</h1>
+		<c:if test="${ofertaUsuarios != 0 }">
+			<hr>
+			<h1 align="center">Publicaciones cercanas:</h1>
 
-		<hr>
-		<h1 align="center">Sugerencias de personas cercanas a tí, quizás
-			les conozcas:</h1>
+			<hr>
+			<h1 align="center">Sugerencias de personas cercanas a tí, quizás
+				les conozcas:</h1>
+			<c:forEach items="${oferta}" var="usuario">
+				<h5>${usuario.nombre}</h5><form action="SeguirUsuarioServlet">
+	    			<input type="hidden" value="${usuario.email}" name="email">
+        			<button type="submit" class="btn btn-success">
+						Seguir <span class="glyphicon glyphicon-ok"></span>
+					</button>
+        		</form>
+			</c:forEach>
+		</c:if>
 	</div>
 </body>
 </html>

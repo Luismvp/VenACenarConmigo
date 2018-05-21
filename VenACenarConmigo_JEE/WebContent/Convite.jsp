@@ -106,34 +106,65 @@ label {
 		</div>
 		<div class="invitados">
 			<h2>Asistentes</h2>
-			<c:forEach items="${lista_invitados}" var="asistentei">
-				<h4>${asistentei.emailUsuarioAsistente}</h4>
+			<c:forEach items="${indexList}" var="indexi">
+				<h4>${lista_invitados.get(indexi).emailUsuarioAsistente}</h4>
 				<h4>
 					Estado:
-					<c:if test="${asistentei.confirmado == true }">Confirmado</c:if>
-					<c:if test="${asistentei.confirmado == false }">Pendiente de confirmación</c:if>
+					<c:if test="${lista_invitados.get(indexi).confirmado == true }">Confirmado</c:if>
+					<c:if test="${lista_invitados.get(indexi).confirmado == false }">Pendiente de confirmación</c:if>
 				</h4>
+				<c:choose>
+				<c:when test="${botones.get(indexi) == 1}">
+					<form action="MuestraUsuarioServlet">
+	    				<input type="hidden" value="${lista_invitados.get(indexi).emailUsuarioAsistente}" name="email">
+        				<button type="submit" class="btn btn-success">Ver perfil</button>
+        			</form>
+				</c:when>
+				<c:when test="${botones.get(indexi) == 2}">
+					<form action="SeguirUsuarioServlet">
+	    				<input type="hidden" value="${lista_invitados.get(indexi).emailUsuarioAsistente}" name="email">
+	    				<input type="hidden" value="true" name="enConvite">
+	    				<input type="hidden" value="false" name="enBusqueda">
+	    				<input type="hidden" value="${indexi}" name="index">
+        				<button type="submit" class="btn btn-success">
+						Seguir <span class="glyphicon glyphicon-ok"></span>
+						</button>
+        			</form>
+				</c:when>
+				<c:when test="${botones.get(indexi) == 3}">
+					<form action="">
+	    				<input type="hidden" value="${lista_invitados.get(indexi).emailUsuarioAsistente}" name="email">
+	    				<input type="hidden" value="true" name="enConvite">
+	    				<input type="hidden" value="false" name="enBusqueda">
+	    				<input type="hidden" value="${indexi}" name="index">
+        				<button type="submit" class="btn btn-success">
+						Dejar de seguir <span class="glyphicon glyphicon-ok"></span>
+						</button>
+        			</form>
+				</c:when>
+				</c:choose>
+				
 				<c:if test="${esAnfitrion && null!=conviteFin && conviteFin==0}">
 					<c:if
-						test="${asistentei.invitacionInscripcion == 1 || asistentei.confirmado}">
+						test="${lista_invitados.get(indexi).invitacionInscripcion == 1 || lista_invitados.get(indexi).confirmado}">
 						<form action="RechazaInvitacionServlet">
 							<button class="btn btn-danger" type="submit" id="btnSubmit2">Retirar
 								invitación</button>
 							<br> <input type="hidden" value="${convite.idConvite}"
 								name="idConvite" id="idConvite"> <input type="hidden"
-								value="${asistentei.idAsistente}" name="idAsistente"
+								value="${lista_invitados.get(indexi).idAsistente}" name="idAsistente"
 								id="idAsistente"> <input type="hidden" value="false" name="enNotificaciones"
-			id="enNotificaciones">
+			id="enNotificaciones"> <input type="hidden" value="${indexi}" name="index">
 						</form>
 					</c:if>
 					<c:if
-						test="${asistentei.invitacionInscripcion == 2 && !asistentei.confirmado}">
+						test="${lista_invitados.get(indexi).invitacionInscripcion == 2 && !lista_invitados.get(indexi).confirmado}">
 						<form action="AceptaInscripcionServlet">
 							<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
 								inscripción</button>
 							<input type="hidden" value="${convite.idConvite}"
 								name="idConvite" id="idConvite"> <input type="hidden"
-								value="${asistentei.emailUsuarioAsistente}"
+								value="${lista_invitados.get(indexi).emailUsuarioAsistente}"
 								name="emailAsistente" id="emailAsistente"> 
 						</form>
 						<form action="RechazaInscripcionServlet">
@@ -141,13 +172,13 @@ label {
 								inscripción</button>
 							<br> <input type="hidden" value="${convite.idConvite}"
 								name="idConvite" id="idConvite"> <input type="hidden"
-								value="${asistentei.emailUsuarioAsistente}"
-								name="emailAsistente" id="emailAsistente">
+								value="${lista_invitados.get(indexi).emailUsuarioAsistente}"
+								name="emailAsistente" id="emailAsistente"> <input type="hidden" value="${indexi}" name="index">
 						</form>
 					</c:if>
 				</c:if>
 				<c:if
-					test="${esInvitadoPendiente && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
+					test="${esInvitadoPendiente && lista_invitados.get(indexi).emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
 					<form action="AceptaInvitacionServlet">
 						<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
 							invitación</button>
@@ -159,21 +190,23 @@ label {
 						<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
 							invitación</button>
 						<br> <input type="hidden" value="${convite.idConvite}"
-							name="idConvite" id="idConvite">
+							name="idConvite" id="idConvite"> <input type="hidden" value="false" name="enNotificaciones"
+			id="enNotificaciones"> <input type="hidden" value="${indexi}" name="index">
 					</form>
 				</c:if>
 				<c:if
-					test="${(esAsistenteConfirmado || esInscritoPendiente) && asistentei.emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
+					test="${(esAsistenteConfirmado || esInscritoPendiente) && lista_invitados.get(indexi).emailUsuarioAsistente.equals(email) && null!=conviteFin && conviteFin==0}">
 					<form action="RechazaInvitacionServlet">
 						<button class="btn btn-danger" type="submit" id="btnSubmit2">Desapuntarse
 							del convite</button>
 						<br> <input type="hidden" value="${convite.idConvite}"
 							name="idConvite" id="idConvite"> <input type="hidden" value="false" name="enNotificaciones"
-			id="enNotificaciones">
+			id="enNotificaciones"> <input type="hidden" value="${indexi}" name="index">
 					</form>
 				</c:if>
 				<br>
 			</c:forEach>
+			<br>
 			<c:if
 				test="${numeroRestante > 0 && !(esAnfitrion || esAsistenteConfirmado || esInvitadoPendiente || esInscritoPendiente) && null!=conviteFin && conviteFin==0}">
 				<form action="InscribirseAConviteServlet">

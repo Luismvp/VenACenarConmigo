@@ -23,9 +23,6 @@ a {
 	min-width: 260px;
 	margin-top: 50px;
 }
-button{
-	min-width:204px;
-}
 
 #nombre {
 	float: left;
@@ -103,7 +100,7 @@ button{
 				</form>
 				<br>
 			</c:if>
-			<c:if test="${relacion != 2 && relacion != 3}">
+			<c:if test="${relacion == 1 || relacion == 4 }">
 				<form action="SeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -112,25 +109,14 @@ button{
 				</form>
 				<br>
 			</c:if>
-			<c:if test="${relacion != 5}">
-				<form action="BloquearUsuarioServlet">
-					<input type="hidden" value="${usuario_visitado.email}" name="email">
-					<button type="submit" class="btn btn-warning">
-						Bloquear <span class="glyphicon glyphicon-remove"></span>
-					</button>
-				</form>
-				<br>
-			</c:if>
-			<c:if test="${relacion == 5}">
-				<form action="DesbloquearUsuarioServlet">
-					<input type="hidden" value="${usuario_visitado.email}" name="email">
-					<button type="submit" class="btn btn-warning">
-						Desbloquear <span class="glyphicon glyphicon-remove"></span>
-					</button>
-				</form>
-				<br>
-			</c:if>
-			<form action="Denuncia.jsp">
+			<form action="BloquearUsuarioServlet">
+				<input type="hidden" value="${usuario_visitado.email}" name="email">
+				<button type="submit" class="btn btn-warning">
+					Bloquear <span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</form>
+			<br>
+			<form action="DenunciarUsuarioServlet">
 				<input type="hidden" value="${usuario_visitado.email}" name="email">
 				<button type="submit" class="btn btn-danger">
 					Denunciar <span class="glyphicon glyphicon-thumbs-down"></span>
