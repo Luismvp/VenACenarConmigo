@@ -64,7 +64,7 @@ public class BuscarUsuarioServlet extends HttpServlet {
 				privacidades.set(i, resBusqueda.get(i).getPrivacidad1());
 			}
 			
-			// Compruebo la relacion del usuario con el anfitrion (1, 2 o 3)
+			// Compruebo la relacion del usuario con el usuario que busca (1, 2 o 3)
 			for (int j = 0; j < accionesUsuarios.size(); j++) {
 			    if (accionesUsuarios.get(j).getUsuarioEmisor().equals(emailAjeno) &&
 					accionesUsuarios.get(j).getUsuarioReceptor().equals(email) &&

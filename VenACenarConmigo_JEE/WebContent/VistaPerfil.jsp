@@ -86,9 +86,7 @@ a {
 				style="margin-top: 20px; border: 2px groove #e7e5dd; width: 260px; height: 300px;">
 		</div>
 		<div id="nombre">
-			<h1 style="align-text: center"><b>${usuario_visitado.nombre}
-				${usuario_visitado.apellidos}</b></h1>
-			<c:if test="${relacion == 2 || relacion == 3}">
+			<c:if test="${accion.seguimientoBloqueoDenuncia == 1}">
 				<form action="DejarSeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -97,7 +95,7 @@ a {
 				</form>
 				<br>
 			</c:if>
-			<c:if test="${relacion == 1 || relacion == 4 }">
+			<c:if test="${accion == null || accion.seguimientoBloqueoDenuncia != 1}">
 				<form action="SeguirUsuarioServlet">
 					<input type="hidden" value="${usuario_visitado.email}" name="email">
 					<button type="submit" class="btn btn-success">
@@ -106,14 +104,24 @@ a {
 				</form>
 				<br>
 			</c:if>
-			<form action="BloquearUsuarioServlet">
-				<input type="hidden" value="${usuario_visitado.email}" name="email">
-				<button type="submit" class="btn btn-warning">
-					Bloquear <span class="glyphicon glyphicon-remove"></span>
-				</button>
-			</form>
+			<c:if test="${accion == null || accion.seguimientoBloqueoDenuncia != 2}">
+				<form action="BloquearUsuarioServlet">
+					<input type="hidden" value="${usuario_visitado.email}" name="email">
+					<button type="submit" class="btn btn-warning">
+						Bloquear <span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</form>
+			</c:if>
+			<c:if test="${accion.seguimientoBloqueoDenuncia == 2}">
+				<form action="DesbloquearUsuarioServlet">
+					<input type="hidden" value="${usuario_visitado.email}" name="email">
+					<button type="submit" class="btn btn-warning">
+						Desbloquear <span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</form>
+			</c:if>
 			<br>
-			<form action="DenunciarUsuarioServlet">
+			<form action="Denuncia.jsp">
 				<input type="hidden" value="${usuario_visitado.email}" name="email">
 				<button type="submit" class="btn btn-danger">
 					Denunciar <span class="glyphicon glyphicon-thumbs-down"></span>

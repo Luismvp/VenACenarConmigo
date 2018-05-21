@@ -178,6 +178,22 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			}
 			boolean esInvitadoPendiente = false;
 			
+			List<Integer> indexList = new ArrayList<>();
+			for (int i = 0; i < asistentes2.size(); i++) {
+				indexList.add(i);
+			}
+			int index = Integer.parseInt(req.getParameter("index"));
+			List<Integer> privacidades = (List<Integer>) req.getSession().getAttribute("privacidades");
+			List<Integer> relaciones = (List<Integer>) req.getSession().getAttribute("relaciones");
+			List<Integer> botones = (List<Integer>) req.getSession().getAttribute("botones");
+			privacidades.remove(index);
+			relaciones.remove(index);
+			botones.remove(index);
+			
+			req.getSession().setAttribute("index_list", indexList);
+			req.getSession().setAttribute("privacidades", privacidades);
+			req.getSession().setAttribute("relaciones", relaciones);
+			req.getSession().setAttribute("botones", botones);
 			req.getSession().setAttribute("lista_invitados", asistentes2);
 			req.getSession().setAttribute("esInvitadoPendiente", esInvitadoPendiente);
 			req.getSession().setAttribute("esInscritoPendiente", false);

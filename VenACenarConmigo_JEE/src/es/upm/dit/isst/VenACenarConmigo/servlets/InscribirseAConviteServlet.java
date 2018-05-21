@@ -55,6 +55,22 @@ public class InscribirseAConviteServlet extends HttpServlet {
 		
 		boolean esInscritoPendiente = true;
 		
+		List<Integer> indexList = new ArrayList<>();
+		for (int i = 0; i < asistentes2.size(); i++) {
+			indexList.add(i);
+		}
+		
+		List<Integer> privacidades = (List<Integer>) req.getSession().getAttribute("privacidades");
+		List<Integer> relaciones = (List<Integer>) req.getSession().getAttribute("relaciones");
+		List<Integer> botones = (List<Integer>) req.getSession().getAttribute("botones");
+		privacidades.add(1);
+		relaciones.add(0);
+		botones.add(0);
+		
+		req.getSession().setAttribute("index_list", indexList);
+		req.getSession().setAttribute("privacidades", privacidades);
+		req.getSession().setAttribute("relaciones", relaciones);
+		req.getSession().setAttribute("botones", botones);
 		req.getSession().setAttribute("lista_invitados", asistentes2);
 		req.getSession().setAttribute("esInscritoPendiente", esInscritoPendiente);
 		resp.sendRedirect(req.getContextPath() + "/Convite.jsp");
