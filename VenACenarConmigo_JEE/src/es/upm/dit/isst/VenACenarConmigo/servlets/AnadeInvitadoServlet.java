@@ -95,6 +95,11 @@ public class AnadeInvitadoServlet extends HttpServlet {
 				}
 			} 
 		}
+
+		if(!added) {
+			relaciones.add(1);
+			added = true;
+		}
 		
 		if (relaciones.get(new_index) == 0 || relaciones.get(new_index) == 5) {
 		   	botones.add(0);
