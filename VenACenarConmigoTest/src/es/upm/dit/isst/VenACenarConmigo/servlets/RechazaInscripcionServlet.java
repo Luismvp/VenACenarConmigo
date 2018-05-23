@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 
 @WebServlet("/RechazaInscripcionServlet")
 public class RechazaInscripcionServlet extends HttpServlet {
@@ -25,6 +27,13 @@ public class RechazaInscripcionServlet extends HttpServlet {
 			if (asistentes.get(i).getIdConvite() == idConvite
 					&& asistentes.get(i).getEmailUsuarioAsistente().equals(emailAsistente)) {
 				asistenteRechazado = asistentes.get(i);
+			}
+		}
+		List<Notificacion> notificaciones = NotificacionDAOImplementation.getInstance().readAllNotificacion();
+		for(Notificacion n:notificaciones) {
+			if(n.getAsistencia().equals(asistenteRechazado) && n.getConvite().getIdConvite()== idConvite) {
+				n.setAsistencia(null);
+				NotificacionDAOImplementation.getInstance().updateNotificacion(n);
 			}
 		}
 		AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistenteRechazado);

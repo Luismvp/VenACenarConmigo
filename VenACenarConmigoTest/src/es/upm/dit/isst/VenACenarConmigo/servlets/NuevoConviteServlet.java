@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 
 @WebServlet("/NuevoConviteServlet")
 public class NuevoConviteServlet extends HttpServlet {
@@ -86,8 +88,18 @@ public class NuevoConviteServlet extends HttpServlet {
 		convite.setArea(area);
 		convite.setEmailAnfitrion(emailAnfitrion);
 		convite.setDescripcion(descripcion);
-
+		
+		
 		ConviteDAOImplementation.getInstance().createConvite(convite);
+		Notificacion notificacion = new Notificacion();
+		notificacion.setIdNotificacion(NotificacionDAOImplementation.getInstance().readAllNotificacion().size()+1);
+		notificacion.setConvite(convite);
+		notificacion.setAsistencia(null);
+		notificacion.setChecked(false);
+		notificacion.setHasFinished(false);
+		notificacion.setHasStarted(false);
+		NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
+		req.getSession().setAttribute("notificacion", notificacion);
 		req.getSession().setAttribute("convite", convite);
 		req.getSession().setAttribute("idConvite", IdConvite);
 		req.getSession().setAttribute("emailAnfitrion", emailAnfitrion);

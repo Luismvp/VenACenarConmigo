@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 
 @WebServlet("/AceptaInscripcionServlet")
 public class AceptaInscripcionServlet extends HttpServlet {
@@ -29,9 +31,14 @@ public class AceptaInscripcionServlet extends HttpServlet {
 		}
 		asistenteConfirmado.setConfirmado(true);
 		AsistenciaConviteDAOImplementation.getInstance().updateAsistenciaConvite(asistenteConfirmado);
-		
-		List<AsistenciaConvite> asistentes2 = AsistenciaConviteDAOImplementation.getInstance()
-				.readAllAsistenciaConvite();
+		List<Notificacion> notificaciones = NotificacionDAOImplementation.getInstance().readAllNotificacion();
+		for(Notificacion n:notificaciones) {
+			if(n.getAsistencia().equals(asistenteConfirmado) && n.getConvite().getIdConvite()== idConvite) {
+				n.setAsistencia(asistenteConfirmado);
+				NotificacionDAOImplementation.getInstance().updateNotificacion(n);
+			}
+		}
+		List<AsistenciaConvite> asistentes2 = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
 		List<AsistenciaConvite> asistentes3 = new ArrayList();
 		for (int i = 0; i < asistentes2.size(); i++) {
 			if (asistentes2.get(i).getIdConvite() == idConvite) {

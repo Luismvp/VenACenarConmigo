@@ -5,6 +5,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,10 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import es.upm.dit.isst.VenACenarConmigo.dao.AccionUsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.PublicacionesDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
 @WebServlet("/MuestraConviteInicioServlet")
@@ -117,6 +121,52 @@ public class MuestraConviteInicioServlet extends HttpServlet {
 		} else {
 			req.getSession().setAttribute("ofertaUsuarios", 0);
 		}
+		List<AccionUsuario> accionesUsuarios = AccionUsuarioDAOImplementation.getInstance().readAllAccionUsuario();
+
+		List<String> usuariosALosQuePuedoCotillear = new ArrayList<>();
+		List<Publicaciones> publicacionesAMostrar= new ArrayList<>();
+		List<Publicaciones> publicaciones = PublicacionesDAOImplementation.getInstance().readAllPublicaciones();
+
+		for(AccionUsuario accion : accionesUsuarios) {
+			//Compruebo a que usuarios sigo siendo yo el usuario emisor
+			if(accion.getUsuarioEmisor().equals(usuario.getEmail()) && accion.getSeguimientoBloqueoDenuncia()==1) {
+				Usuario usuarioSeguido = UsuarioDAOImplementation.getInstance().readUsuario(accion.getUsuarioReceptor());
+				//Si el usuario al que sigo tiene la privacidad3 a 2 (Solo pueden ver sus publicaciones si sigue y le sigue al usuario que quiere verlas)
+				if(usuarioSeguido.getPrivacidad3()==2){
+					
+					log("entro en la condicion de privacidad3 con:" +usuarioSeguido);
+					
+					for(AccionUsuario accionUsuarioSeguido : accionesUsuarios) {
+						//Compruebo si el usuario al que sigue me sigue, siendo el usuarioSeguido el emisor
+						if(accionUsuarioSeguido.getUsuarioEmisor().equals(usuarioSeguido.getEmail()) && accionUsuarioSeguido.getUsuarioReceptor().equals(usuario.getEmail()) && accionUsuarioSeguido.getSeguimientoBloqueoDenuncia()==1) {
+							usuariosALosQuePuedoCotillear.add(accion.getUsuarioReceptor());
+						}
+					}
+				//Si el usuario al que sigo no tiene privacidad 3, podré visualizar sus publicaciones por defecto
+				}else {
+					usuariosALosQuePuedoCotillear.add(accion.getUsuarioReceptor());
+				}
+			}
+		}
+		
+		for(Publicaciones publicacion : publicaciones) {
+			for(String emailUsuarioAMostrarPublicaciones : usuariosALosQuePuedoCotillear) {
+				Usuario usuarioAMostrarPublicaciones = UsuarioDAOImplementation.getInstance().readUsuario(emailUsuarioAMostrarPublicaciones);
+				if(publicacion.getUsuario().getEmail().equals(usuarioAMostrarPublicaciones.getEmail())) {
+					publicacionesAMostrar.add(publicacion);
+				}
+			}
+		}
+		//Metodo para ordenar la Lista de publicaciones a partir de la fecha
+		Collections.sort(publicacionesAMostrar, new Comparator<Publicaciones>() {
+			  public int compare(Publicaciones o1, Publicaciones o2) {
+			      if (o1.getFecha() == null || o2.getFecha() == null)
+			        return 0;
+			      return o1.getFecha().compareTo(o2.getFecha());
+			  }
+		});
+		
+		req.getSession().setAttribute("lista_publicaciones", publicacionesAMostrar);
 		req.getSession().setAttribute("lista_convites", convitesCercanosEnTiempoYUbicacion);
 
 		req.getSession().setAttribute("meses_a_mostrar", mesesAMostrar);

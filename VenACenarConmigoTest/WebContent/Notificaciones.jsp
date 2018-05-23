@@ -41,38 +41,71 @@ label {
 <body>
 	<%@include file="templates/navBarLoged.jsp"%>
 	<div class="notificaciones">
-		<c:forEach items="${Lista_convites}" var="convitei">
-			<div class="notificacion">
-				<h3>${convitei.nombre}</h3>
-				<h4>Fecha: ${convitei.fecha}</h4>
-				<h4>Ciudad: ${convitei.ciudad}</h4>
-				<h4>Área: ${convitei.area}</h4>
-				<h4>Precio por invitado: ${convitei.precioInvitado} €</h4>
-				<h4>Descripción: ${convitei.descripcion}</h4>
-				<form action="AceptaInvitacionServlet">
-					<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
-						invitación</button>
-					<br> <input type="text" value="${convitei.idConvite}"
-						name="idConvite" id="idConvite" style="visibility: hidden;">
-						<input type="hidden" value="true" name="enNotificaciones"
-			id="enNotificaciones">
+		<c:forEach items="${lista_notificaciones}" var="convitei">
+			<c:if test="${convitei.hasFinished == true }">
+				<h3>El convite ${convitei.convite.nombre} ha terminado, no
+					olvides valorar a los invitados.</h3>
+					<form action="MuestraConviteServlet">
+				<input type="hidden" name="idConvite" value="${convitei.convite.idConvite}">
+				<input type="hidden" name="email" value="${email}">
+				<button type="submit" class="btn btn-success">ver convite</button>
 				</form>
-				<form action="RechazaInvitacionServlet">
-					<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
-						invitación</button>
-					<br> <input type="text" value="${convitei.idConvite}"
-						name="idConvite" id="idConvite" style="visibility: hidden;">
-						<input type="hidden" value="true" name="enNotificaciones"
-			id="enNotificaciones">
+			</c:if>
+			<c:if test=" ${convitei.hasStarted == true }">
+				<h3>El convite ${convitei.convite.nombre} ha comenzado,
+					disfruta de él y no llegues tarde!</h3>
+					<form action="MuestraConviteServlet">
+				<input type="hidden" name="idConvite" value="${convitei.convite.idConvite}">
+				<input type="hidden" name="email" value="${email}">
+				<button type="submit" class="btn btn-success">ver convite</button>
 				</form>
-			</div>
-			<br>
-		</c:forEach>
-		<c:forEach items="${inscripcionesAceptadas}" var="asistenciai">
-			<h3>Tu inscripción al convite ${asistenciai.nombre} ha sido aceptada!</h3>
-		</c:forEach>
-		<c:forEach items="${convitesConfirmados}" var="convitec">
-			<h3>Has confirmado tu asistencia al evento ${convitec.nombre}</h3>
+			</c:if>
+			<c:if test="${convitei.asistencia.confirmado == false}">
+				<div class="notificacion">
+					<h3>${convitei.convite.nombre}</h3>
+					<h4>Fecha: ${convitei.convite.fecha}</h4>
+					<h4>Ciudad: ${convitei.convite.ciudad}</h4>
+					<h4>Área: ${convitei.convite.area}</h4>
+					<h4>Precio por invitado: ${convitei.convite.precioInvitado} €</h4>
+					<h4>Descripción: ${convitei.convite.descripcion}</h4>
+					<form action="AceptaInvitacionServlet">
+						<button type="submit" class="btn btn-success" id="btnSubmit">Aceptar
+							invitación</button>
+						<br> <input type="text" value="${convitei.convite.idConvite}"
+							name="idConvite" id="idConvite" style="visibility: hidden;">
+						<input type="hidden" value="true" name="enNotificaciones"
+							id="enNotificaciones">
+					</form>
+					<form action="RechazaInvitacionServlet">
+						<button class="btn btn-danger" type="submit" id="btnSubmit2">Rechazar
+							invitación</button>
+						<br> <input type="text" value="${convitei.convite.idConvite}"
+							name="idConvite" id="idConvite" style="visibility: hidden;">
+						<input type="hidden" value="true" name="enNotificaciones"
+							id="enNotificaciones">
+					</form>
+				</div>
+				<br>
+			</c:if>
+			<c:if
+				test="${convitei.asistencia.confirmado==true && convitei.asistencia.invitacionInscripcion==2 && !convitei.convite.emailAnfitrion.equals(email) && convitei.hasFinished != true}">
+				<h3>Tu inscripción en el convite ${convitei.convite.nombre} ha
+					sido aceptada!</h3>
+				<form action="MuestraConviteServlet">
+				<input type="hidden" name="idConvite" value="${convitei.convite.idConvite}">
+				<input type="hidden" name="email" value="${email}">
+				<button type="submit" class="btn btn-success">ver convite</button>
+				</form>
+			</c:if>
+			<c:if
+				test="${convitei.asistencia.confirmado==true && convitei.asistencia.invitacionInscripcion==1 && !convitei.convite.emailAnfitrion.equals(email) && convitei.hasFinished != true}">
+				<h3>Has aceptado la invitación al convite ${convitei.convite.nombre}</h3>
+				<form action="MuestraConviteServlet">
+				<input type="hidden" name="idConvite" value="${convitei.convite.idConvite}">
+				<input type="hidden" name="email" value="${email}">
+				<button type="submit" class="btn btn-success">ver convite</button>
+				</form>
+			</c:if>	
 		</c:forEach>
 	</div>
 </body>

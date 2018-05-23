@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,11 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import es.upm.dit.isst.VenACenarConmigo.dao.AccionUsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AccionUsuario;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 
 @WebServlet("/AnadeInvitadoServlet")
 
@@ -35,6 +35,7 @@ public class AnadeInvitadoServlet extends HttpServlet {
 			}
 		}
 		Convite convite = ConviteDAOImplementation.getInstance().readConvite(idConvite);
+		
 		AsistenciaConvite invitado = new AsistenciaConvite();
 		invitado.setInvitacionInscripcion(1);
 		invitado.setIdConvite(idConvite);
@@ -44,7 +45,32 @@ public class AnadeInvitadoServlet extends HttpServlet {
 		invitado.setIdAsistente(asistente.size()+1);
 		invitado.setNumeroInvitado(asistente2.size()+1);
 		
+		
+		
 		AsistenciaConviteDAOImplementation.getInstance().createAsistenciaConvite(invitado);
+		Notificacion notificacion = new Notificacion();
+		notificacion.setIdNotificacion(NotificacionDAOImplementation.getInstance().readAllNotificacion().size()+1);
+		notificacion.setConvite(convite);
+		notificacion.setAsistencia(invitado);
+		notificacion.setChecked(false);
+		notificacion.setHasFinished(false);
+		notificacion.setHasStarted(false);
+		List<Notificacion> notificaciones = NotificacionDAOImplementation.getInstance().readAllNotificacion();
+		for(Notificacion n:notificaciones) {
+			if(n.getAsistencia()==null && n.getConvite().getIdConvite()== idConvite) {
+				n.setAsistencia(invitado);
+				NotificacionDAOImplementation.getInstance().updateNotificacion(n);
+			}
+		}
+		int p=0;
+		for(Notificacion n:notificaciones) {
+			if(n.getAsistencia().equals(asistente) && n.getConvite().getIdConvite()== idConvite) {
+				p++;
+			}
+		}
+		if(p ==0) {
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
+		}
 		asistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite();
 		asistente2.clear();
 		for(AsistenciaConvite i:asistente) {
@@ -94,11 +120,6 @@ public class AnadeInvitadoServlet extends HttpServlet {
 					added = true;
 				}
 			} 
-		}
-
-		if(!added) {
-			relaciones.add(1);
-			added = true;
 		}
 		
 		if (relaciones.get(new_index) == 0 || relaciones.get(new_index) == 5) {

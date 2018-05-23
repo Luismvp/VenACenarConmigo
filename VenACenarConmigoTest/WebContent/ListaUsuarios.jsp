@@ -119,43 +119,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<table border="1">
-		<tr>
-			<th>id de la accionUsuario</th>
-			<th>email usuarioEmisor</th>
-			<th>email usuarioReceptor</th>
-			<th>seguimientoBloqueoDenuncia</th>
-			<th>comentario</th>
-		</tr>
-		<c:forEach items="${accion_list}" var="accioni">
-			<tr>
-				<td>${accioni.idAccion}</td>
-				<td>${accioni.usuarioEmisor}</td>
-				<td>${accioni.usuarioReceptor}</td>
-				<td>${accioni.seguimientoBloqueoDenuncia}</td>
-				<td>${accioni.comentario}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<table border="1">
-		<tr>
-			<th>id del comentario</th>
-			<th>Convite.idConvite</th>
-			<th>nombre</th>
-			<th>comentario</th>
-			<th>fecha</th>
-		</tr>
-		<c:forEach items="${comentario_list}" var="comentarioi">
-			<tr>
-				<td>${accioni.iDComentario}</td>
-				<td>${accioni.convite.idConvite}</td>
-				<td>${accioni.usuarioReceptor}</td>
-				<td>${accioni.comentario}</td>
-				<td>${accioni.fecha}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<a href="EliminaTodaBBDDServlet">Borrar toda la BBDD</a>
 	<a href="LogoutServlet">Logout</a>
 </body>
 </html>

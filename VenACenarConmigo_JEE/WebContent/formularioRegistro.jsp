@@ -55,9 +55,11 @@
             <div class="form-group" id="descripcion-group">
                 <label for="descripcion">Descripción personal</label>
                 <br>
-                <textarea cols="122" rows="10" name="descripcion" id="descripcion" placeholder="Introduce una descripción personal" id="descripcion"></textarea>
+                <textarea cols="45" rows="10" name="descripcion" id="descripcion" placeholder="Introduce una descripción personal" id="descripcion"></textarea>
             </div>
+            <p>Al clicar en Crear cuenta, estás aceptando nuestra política de privacidad. ¡Échale un ojo! </p>
+            <a href="PoliticaDePrivacidad.jsp" style="color: black">Politica de privacidad</a>
             <br>
-            <button type="submit" class="btn btn-success col-xs-12" id="btnSubmit">Registrarse <span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button type="submit" class="btn btn-success col-xs-12" id="btnSubmit">Crear cuenta <span class="glyphicon glyphicon-arrow-right"></span></button>
         </fieldset>
     </form>

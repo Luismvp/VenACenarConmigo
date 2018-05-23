@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.ComentarioConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
-import es.upm.dit.isst.VenACenarConmigo.dao.PublicacionesDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.UsuarioDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.ComentarioConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
-import es.upm.dit.isst.VenACenarConmigo.dao.model.Publicaciones;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Usuario;
 
 @WebServlet("/AnadirComentarioEnConviteServlet")
@@ -44,7 +44,7 @@ public class AnadirComentarioEnConviteServlet extends HttpServlet {
 			indexComentario = comentarios.size() + 1;
 		}
 		comentario.setiDComentario(indexComentario);
-
+		
 		ComentarioConviteDAOImplementation.getInstance().createComentarioConvite(comentario);
 		List<ComentarioConvite> comentariosConvite = new ArrayList<>();
 		comentariosConvite.add(comentario);

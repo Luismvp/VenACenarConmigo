@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 
 @WebServlet("/InscribirseAConviteServlet")
 public class InscribirseAConviteServlet extends HttpServlet {
@@ -43,6 +45,29 @@ public class InscribirseAConviteServlet extends HttpServlet {
 		asistente.setIdAsistente(idAsistente);
 		asistente.setConfirmado(false);
 		dao.createAsistenciaConvite(asistente);
+		Notificacion notificacion = new Notificacion();
+		notificacion.setIdNotificacion(NotificacionDAOImplementation.getInstance().readAllNotificacion().size()+1);
+		notificacion.setAsistencia(asistente);
+		notificacion.setConvite(convite);
+		notificacion.setChecked(false);
+		notificacion.setHasFinished(false);
+		notificacion.setHasStarted(false);
+		List<Notificacion> notificaciones = NotificacionDAOImplementation.getInstance().readAllNotificacion();
+		for(Notificacion n:notificaciones) {
+			if(n.getAsistencia()==null && n.getConvite().getIdConvite()== idConvite) {
+				n.setAsistencia(asistente);
+				NotificacionDAOImplementation.getInstance().updateNotificacion(n);
+			}
+		}
+		int j=0;
+		for(Notificacion n:notificaciones) {
+			if(n.getAsistencia().equals(asistente) && n.getConvite().getIdConvite()== idConvite) {
+				j++;
+			}
+		}
+		if(j==0) {
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
+		}
 		
 		List<AsistenciaConvite> asistentes = AsistenciaConviteDAOImplementation.getInstance()
 				.readAllAsistenciaConvite();

@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.ConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.Convite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 
 @WebServlet("/RechazaInvitacionServlet")
 
@@ -31,6 +33,13 @@ public class RechazaInvitacionServlet extends HttpServlet {
 				if (asistente.get(i).getIdConvite() == idConvite
 						&& asistente.get(i).getEmailUsuarioAsistente().equals(email)) {
 					asistenteRechaza = asistente.get(i);
+				}
+			}
+			List<Notificacion> notificaciones = NotificacionDAOImplementation.getInstance().readAllNotificacion();
+			for(Notificacion n:notificaciones) {
+				if(n.getAsistencia().equals(asistenteRechaza) && n.getConvite().getIdConvite()== idConvite) {
+					n.setAsistencia(null);
+					NotificacionDAOImplementation.getInstance().updateNotificacion(n);
 				}
 			}
 			AsistenciaConviteDAOImplementation.getInstance().deleteAsistenciaConvite(asistenteRechaza);
@@ -79,13 +88,11 @@ public class RechazaInvitacionServlet extends HttpServlet {
 			}
 			if (null != req.getSession().getAttribute("lista_notificaciones")) {
 				req.getSession().setAttribute("lista_notificaciones", asistenciaConvite2);
-				req.getSession().setAttribute("numero_notificaciones", null);
-				req.getSession().setAttribute("numero_notificaciones", asistenciaConvite2.size());
+				req.getSession().setAttribute("numero_notificaciones", (Integer)req.getSession().getAttribute("numero_notificaciones")-1);
 			} else {
 				req.getSession().removeAttribute("lista_notificaciones");
 				req.getSession().setAttribute("lista_notificaciones", asistenciaConvite2);
-				req.getSession().setAttribute("numero_notificaciones", null);
-				req.getSession().setAttribute("numero_notificaciones", asistenciaConvite2.size());
+				req.getSession().setAttribute("numero_notificaciones",(Integer)req.getSession().getAttribute("numero_notificaciones")-1);
 			}
 			List<Convite> convites = new ArrayList<>();
 			List<Convite> convitesConfirmados = new ArrayList<>();

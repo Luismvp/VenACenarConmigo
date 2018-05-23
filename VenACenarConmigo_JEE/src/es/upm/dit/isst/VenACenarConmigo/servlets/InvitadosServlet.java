@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.VenACenarConmigo.dao.AsistenciaConviteDAOImplementation;
+import es.upm.dit.isst.VenACenarConmigo.dao.NotificacionDAOImplementation;
 import es.upm.dit.isst.VenACenarConmigo.dao.model.AsistenciaConvite;
+import es.upm.dit.isst.VenACenarConmigo.dao.model.Notificacion;
 
 @WebServlet("/InvitadosServlet")
 public class InvitadosServlet extends HttpServlet{
@@ -40,7 +42,9 @@ public class InvitadosServlet extends HttpServlet{
 		int idAsistente = AsistenciaConviteDAOImplementation.getInstance().readAllAsistenciaConvite().size() + 1;
 		AsistenciaConvite asistente = new AsistenciaConvite();
 		AsistenciaConviteDAOImplementation dao = AsistenciaConviteDAOImplementation.getInstance();
+		Notificacion notificacion = (Notificacion)req.getSession().getAttribute("notificacion");
 		if( !emailInvitados[0].isEmpty()) {
+			req.getSession().setAttribute("notificacion", null);
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv1);
 			asistente.setInvitacionInscripcion(1);
@@ -49,8 +53,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setIdAsistente(idAsistente);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().updateNotificacion(notificacion);
 		}
 		if(!emailInvitados[1].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setEmailAnfitrion(emailAnfitrion);
 			asistente.setEmailUsuarioAsistente(emailInv2);
@@ -60,8 +67,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setIdConvite(idConvite);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[2].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -71,8 +81,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(3);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[3].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -82,8 +95,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(4);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[4].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -93,8 +109,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(5);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[5].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -104,8 +123,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(6);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[6].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -115,8 +137,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(7);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[7].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -126,8 +151,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(8);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[8].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -137,8 +165,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(9);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[9].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -148,8 +179,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(10);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[10].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -159,8 +193,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(11);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[11].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -170,8 +207,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(12);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[12].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -181,8 +221,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(13);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[13].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -192,8 +235,11 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(14);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		if(!emailInvitados[14].isEmpty()) {
+			notificacion.setIdNotificacion(notificacion.getIdNotificacion()+1);
 			idAsistente++;
 			asistente.setIdConvite(idConvite);
 			asistente.setIdAsistente(idAsistente);
@@ -203,6 +249,8 @@ public class InvitadosServlet extends HttpServlet{
 			asistente.setNumeroInvitado(15);
 			asistente.setConfirmado(false);
 			dao.createAsistenciaConvite(asistente);
+			notificacion.setAsistencia(asistente);
+			NotificacionDAOImplementation.getInstance().createNotificacion(notificacion);
 		}
 		resp.sendRedirect(req.getContextPath() + "/Perfil.jsp");
 	}
